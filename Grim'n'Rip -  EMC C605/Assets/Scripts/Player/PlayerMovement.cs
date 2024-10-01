@@ -4,15 +4,58 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    // Start is called before the first frame update
+    [SerializeField] Rigidbody playerRb;
+    [SerializeField] FixedJoystick movementJoystick;
+    [SerializeField] FixedJoystick aimingJoystick;
+    private Vector3 lastAimDirection;
+
+    [Header("Upgradable")]
+    public float playerMoveSpeed;
+    
     void Start()
     {
-        
+        lastAimDirection = Vector3.forward; // Default facing direction
+        playerRb = GetComponent<Rigidbody>();
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
-        
+                // Handle movement
+        Vector3 movement = new Vector3(movementJoystick.Horizontal * playerMoveSpeed, playerRb.velocity.y, movementJoystick.Vertical * playerMoveSpeed);
+        playerRb.velocity = movement;
+
+        // Check if there is aim input, if so update the aim direction
+        if (aimingJoystick.Horizontal != 0 || aimingJoystick.Vertical != 0)
+        {
+            lastAimDirection = new Vector3(aimingJoystick.Horizontal, 0, aimingJoystick.Vertical).normalized;
+            transform.rotation = Quaternion.LookRotation(lastAimDirection); // Rotate the player to face the aim direction
+        }
+        else if (movementJoystick.Horizontal != 0 || movementJoystick.Vertical != 0)
+        {
+            // If the player is moving and there is no aim input, keep the last aim direction for facing
+            transform.rotation = Quaternion.LookRotation(lastAimDirection);
+        }
+
+        // Handle animations based on movement
+        if (movementJoystick.Horizontal != 0 || movementJoystick.Vertical != 0)
+        {
+            Vector3 moveDirection = new Vector3(movementJoystick.Horizontal, 0, movementJoystick.Vertical).normalized;
+
+            // Check if the player is moving backward (opposite of the last aim direction)
+            if (Vector3.Dot(moveDirection, lastAimDirection) < -0.5f)
+            {
+                // Running backward while firing
+            }
+            else
+            {
+                // Regular forward movement while firing
+            }
+        }
+        else
+        {
+            // Player is idle
+        }
     }
 }
+
