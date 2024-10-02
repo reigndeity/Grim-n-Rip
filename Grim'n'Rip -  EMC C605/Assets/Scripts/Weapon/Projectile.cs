@@ -20,7 +20,7 @@ public class Projectile : MonoBehaviour
             // {
             //     enemyHealth.Damage(bulletDamage);
             // }
-            // Destroy(gameObject); // Destroy Bullet Upon Collision With Enemy
+            Destroy(gameObject); // Destroy Bullet Upon Collision With Enemy
         }
 
         if (other.gameObject.CompareTag("ProjectileDestroyer"))
