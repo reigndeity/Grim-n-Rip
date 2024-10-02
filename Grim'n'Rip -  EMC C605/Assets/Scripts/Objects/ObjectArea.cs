@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor.SearchService;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class ObjectArea : MonoBehaviour
 {
@@ -15,6 +16,8 @@ public class ObjectArea : MonoBehaviour
     private Vector3 startPosition; // Start position
     private bool isMoving = false;
 
+    //[Header("Nav Mesh Area Properties")]
+    
     void Start()
     {
         startPosition = new Vector3(0, -10, 0); // Set the starting position
