@@ -59,79 +59,81 @@ public class PlayerMovement : MonoBehaviour
             // Player is idle
         }
     }
+    
+
+//     //CAMERA MOVEMENT WITH ROTATING CAMERA USING THE AIMING JOYSTICK ====================================================================================================
+//     [Header("Upgradable")]
+//     public float playerMoveSpeed;
+
+//     [Header("Player Components")]
+//     [SerializeField] Rigidbody playerRb;
+//     [SerializeField] FixedJoystick movementJoystick;
+//     [SerializeField] FixedJoystick aimingJoystick;
+//     private Vector3 lastAimDirection;
 
 
-    // CAMERA MOVEMENT WITH ROTATING CAMERA USING THE AIMING JOYSTICK ====================================================================================================
-    // [Header("Upgradable")]
-    // public float playerMoveSpeed;
+//     [Header("Camera Properties")]
+//     [SerializeField] CinemachineVirtualCamera virtualCamera; // Cinemachine reference
+//     private Vector3 initialCameraPosition;
+//     private Quaternion initialCameraRotation;
 
-    // [Header("Player Components")]
-    // [SerializeField] Rigidbody playerRb;
-    // [SerializeField] FixedJoystick movementJoystick;
-    // [SerializeField] FixedJoystick aimingJoystick;
-    // private Vector3 lastAimDirection;
+//     void Start()
+//     {
+//         lastAimDirection = Vector3.forward; // Default facing direction
+//         playerRb = GetComponent<Rigidbody>();
 
+//         // Store the initial position and rotation of the camera
+//         initialCameraPosition = virtualCamera.transform.position;
+//         initialCameraRotation = virtualCamera.transform.rotation;
+//     }
 
-    // [Header("Camera Properties")]
-    // [SerializeField] CinemachineVirtualCamera virtualCamera; // Cinemachine reference
-    // private Vector3 initialCameraPosition;
-    // private Quaternion initialCameraRotation;
+//     // Update is called once per frame
+//     void FixedUpdate()
+//     {
+//         // Handle movement
+//         Vector3 movement = new Vector3(movementJoystick.Horizontal * playerMoveSpeed, playerRb.velocity.y, movementJoystick.Vertical * playerMoveSpeed);
+//         playerRb.velocity = movement;
 
-    // void Start()
-    // {
-    //     lastAimDirection = Vector3.forward; // Default facing direction
-    //     playerRb = GetComponent<Rigidbody>();
+//         // Check if there is aim input, if so update the aim direction
+//         if (aimingJoystick.Horizontal != 0 || aimingJoystick.Vertical != 0)
+//         {
+//             lastAimDirection = new Vector3(aimingJoystick.Horizontal, 0, aimingJoystick.Vertical).normalized;
+//             transform.rotation = Quaternion.LookRotation(lastAimDirection); // Rotate the player to face the aim direction
 
-    //     // Store the initial position and rotation of the camera
-    //     initialCameraPosition = virtualCamera.transform.position;
-    //     initialCameraRotation = virtualCamera.transform.rotation;
-    // }
+//             // Rotate the virtual camera without changing its position
+//             virtualCamera.transform.position = initialCameraPosition; // Keep the original position
+//             virtualCamera.transform.rotation = Quaternion.Euler(initialCameraRotation.eulerAngles.x, transform.rotation.eulerAngles.y, 0);
+//         }
+//         else if (movementJoystick.Horizontal != 0 || movementJoystick.Vertical != 0)
+//         {
+//             // If the player is moving and there is no aim input, keep the last aim direction for facing
+//             transform.rotation = Quaternion.LookRotation(lastAimDirection);
 
-    // // Update is called once per frame
-    // void FixedUpdate()
-    // {
-    //     // Handle movement
-    //     Vector3 movement = new Vector3(movementJoystick.Horizontal * playerMoveSpeed, playerRb.velocity.y, movementJoystick.Vertical * playerMoveSpeed);
-    //     playerRb.velocity = movement;
+//             // Keep the camera's original position and apply the last aim rotation
+//             virtualCamera.transform.position = initialCameraPosition;
+//             virtualCamera.transform.rotation = Quaternion.Euler(initialCameraRotation.eulerAngles.x, transform.rotation.eulerAngles.y, 0);
+//         }
 
-    //     // Check if there is aim input, if so update the aim direction
-    //     if (aimingJoystick.Horizontal != 0 || aimingJoystick.Vertical != 0)
-    //     {
-    //         lastAimDirection = new Vector3(aimingJoystick.Horizontal, 0, aimingJoystick.Vertical).normalized;
-    //         transform.rotation = Quaternion.LookRotation(lastAimDirection); // Rotate the player to face the aim direction
+//         // Handle animations based on movement
+//         if (movementJoystick.Horizontal != 0 || movementJoystick.Vertical != 0)
+//         {
+//             Vector3 moveDirection = new Vector3(movementJoystick.Horizontal, 0, movementJoystick.Vertical).normalized;
 
-    //         // Rotate the virtual camera without changing its position
-    //         virtualCamera.transform.position = initialCameraPosition; // Keep the original position
-    //         virtualCamera.transform.rotation = Quaternion.Euler(initialCameraRotation.eulerAngles.x, transform.rotation.eulerAngles.y, 0);
-    //     }
-    //     else if (movementJoystick.Horizontal != 0 || movementJoystick.Vertical != 0)
-    //     {
-    //         // If the player is moving and there is no aim input, keep the last aim direction for facing
-    //         transform.rotation = Quaternion.LookRotation(lastAimDirection);
-
-    //         // Keep the camera's original position and apply the last aim rotation
-    //         virtualCamera.transform.position = initialCameraPosition;
-    //         virtualCamera.transform.rotation = Quaternion.Euler(initialCameraRotation.eulerAngles.x, transform.rotation.eulerAngles.y, 0);
-    //     }
-
-    //     // Handle animations based on movement
-    //     if (movementJoystick.Horizontal != 0 || movementJoystick.Vertical != 0)
-    //     {
-    //         Vector3 moveDirection = new Vector3(movementJoystick.Horizontal, 0, movementJoystick.Vertical).normalized;
-
-    //         // Check if the player is moving backward (opposite of the last aim direction)
-    //         if (Vector3.Dot(moveDirection, lastAimDirection) < -0.5f)
-    //         {
-    //             // Running backward while firing
-    //         }
-    //         else
-    //         {
-    //             // Regular forward movement while firing
-    //         }
-    //     }
-    //     else
-    //     {
-    //         // Player is idle
-    //     }
+//             // Check if the player is moving backward (opposite of the last aim direction)
+//             if (Vector3.Dot(moveDirection, lastAimDirection) < -0.5f)
+//             {
+//                 // Running backward while firing
+//             }
+//             else
+//             {
+//                 // Regular forward movement while firing
+//             }
+//         }
+//         else
+//         {
+//             // Player is idle
+//         }
+// }
 }
+
 
