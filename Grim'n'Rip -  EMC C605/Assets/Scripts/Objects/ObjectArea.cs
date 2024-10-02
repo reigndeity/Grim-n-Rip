@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.AI.Navigation;
 using UnityEditor.SearchService;
 using UnityEngine;
 using UnityEngine.AI;
@@ -17,6 +18,7 @@ public class ObjectArea : MonoBehaviour
     private bool isMoving = false;
 
     //[Header("Nav Mesh Area Properties")]
+    public NavMeshSurface navMeshSurface;
     
     void Start()
     {
@@ -42,6 +44,7 @@ public class ObjectArea : MonoBehaviour
             if (transform.position == targetPosition)
             {
                 isMoving = false; // Stop moving
+                navMeshSurface.BuildNavMesh(); // bake
                 GameManager.instance.isDoneSpawningObjects = true;
             }
         }
