@@ -22,7 +22,7 @@ public class ObjectArea : MonoBehaviour
     
     void Start()
     {
-        startPosition = new Vector3(0, -10, 0); // Set the starting position
+        startPosition = new Vector3(0, -20, 0); // Set the starting position
         transform.position = startPosition; // Set the GameObject's initial position
         isMoving = true; // Start moving
     }
