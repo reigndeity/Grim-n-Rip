@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class ObjectSpawner : MonoBehaviour
 {
+    [Header("Object Spawner Properties")]
     [SerializeField] Transform[] spawnPos;
     [SerializeField] GameObject[] objectPrefabs;
 

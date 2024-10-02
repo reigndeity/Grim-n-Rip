@@ -831,6 +831,7 @@ MonoBehaviour:
   areaPrefabs:
   - {fileID: 8117492673738036943, guid: 3ae667c839759c54aac28c6d0152117f, type: 3}
   - {fileID: 4776659495606418793, guid: c97d7ce0a44dd19429c6e9999e3752aa, type: 3}
+  moveSpeed: 5
 --- !u!1 &1019984316
 GameObject:
   m_ObjectHideFlags: 0

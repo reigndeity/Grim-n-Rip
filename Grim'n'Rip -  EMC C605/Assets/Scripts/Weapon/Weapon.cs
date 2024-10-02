@@ -16,14 +16,16 @@ public class Weapon : MonoBehaviour
 
     void Update()
     {
-        if (isShoot == false)
+        if (GameManager.instance.canShoot == true)
         {
-            var bullet = Instantiate(projectilePrefab, firingPos.position, firingPos.rotation);
-            bullet.GetComponent<Rigidbody>().velocity =  firingPos.forward * projectileSpeed;
-            isShoot = true;
-            Invoke("ResetShoot", fireRate);
+            if (isShoot == false)
+            {
+                var bullet = Instantiate(projectilePrefab, firingPos.position, firingPos.rotation);
+                bullet.GetComponent<Rigidbody>().velocity =  firingPos.forward * projectileSpeed;
+                isShoot = true;
+                Invoke("ResetShoot", fireRate);
+            }
         }
-
     }
     void ResetShoot()
     {
