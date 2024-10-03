@@ -1709,7 +1709,7 @@ MonoBehaviour:
   playerRb: {fileID: 0}
   movementJoystick: {fileID: 2929252284117550050}
   aimingJoystick: {fileID: 1672407710}
-  rotationSpeed: 15
+  rotationSpeed: 25
 --- !u!195 &1642041800
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -2010,7 +2010,7 @@ Canvas:
   m_GameObject: {fileID: 1730329146}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 1
+  m_RenderMode: 0
   m_Camera: {fileID: 963194227}
   m_PlaneDistance: 2
   m_PixelPerfect: 0

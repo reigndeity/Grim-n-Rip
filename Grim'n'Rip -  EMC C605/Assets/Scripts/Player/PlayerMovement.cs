@@ -5,7 +5,7 @@ using Cinemachine;
 
 public class PlayerMovement : MonoBehaviour
 {
-       [Header("Upgradable")]
+    [Header("Upgradable")]
     public float playerMovementSpeed;
 
     [Header("PlayerComponent")]
@@ -14,7 +14,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] FixedJoystick aimingJoystick;
     private Vector3 lastAimDirection;
 
-    [Header("Rotation Properties")]
+    [Header("Aiming Rotation Properties")]
     public float rotationSpeed = 5f; // Smoothing speed for rotation
 
     void Start()
