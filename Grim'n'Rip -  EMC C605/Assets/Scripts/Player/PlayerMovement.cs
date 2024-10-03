@@ -5,7 +5,7 @@ using Cinemachine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    [Header("Upgradable")]
+       [Header("Upgradable")]
     public float playerMovementSpeed;
 
     [Header("PlayerComponent")]
@@ -13,6 +13,9 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] FixedJoystick movementJoystick;
     [SerializeField] FixedJoystick aimingJoystick;
     private Vector3 lastAimDirection;
+
+    [Header("Rotation Properties")]
+    public float rotationSpeed = 5f; // Smoothing speed for rotation
 
     void Start()
     {
@@ -33,15 +36,19 @@ public class PlayerMovement : MonoBehaviour
             if (aimingJoystick.Horizontal != 0 || aimingJoystick.Vertical != 0)
             {
                 lastAimDirection = new Vector3(aimingJoystick.Horizontal, 0, aimingJoystick.Vertical).normalized;
-                transform.rotation = Quaternion.LookRotation(lastAimDirection); // Rotate the player to face the aim direction
+
+                // Smoothly rotate the player towards the aim direction
+                Quaternion targetRotation = Quaternion.LookRotation(lastAimDirection);
+                transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * rotationSpeed);
             }
             else if (movementJoystick.Horizontal != 0 || movementJoystick.Vertical != 0)
             {
                 // If the player is moving and there is no aim input, keep the last aim direction for facing
-                transform.rotation = Quaternion.LookRotation(lastAimDirection);
+                Quaternion targetRotation = Quaternion.LookRotation(lastAimDirection);
+                transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * rotationSpeed);
             }
 
-            // Handle animations based on movement
+            // Handle animations or other behavior based on movement, e.g., backward or forward running
             if (movementJoystick.Horizontal != 0 || movementJoystick.Vertical != 0)
             {
                 Vector3 moveDirection = new Vector3(movementJoystick.Horizontal, 0, movementJoystick.Vertical).normalized;
@@ -49,19 +56,14 @@ public class PlayerMovement : MonoBehaviour
                 // Check if the player is moving backward (opposite of the last aim direction)
                 if (Vector3.Dot(moveDirection, lastAimDirection) < -0.5f)
                 {
-                    // Running backward while firing
+                    // Running backward while firing (add relevant code here)
                 }
                 else
                 {
-                    // Regular forward movement while firing
+                    // Regular forward movement while firing (add relevant code here)
                 }
             }
-            else
-            {
-                // Player is idle
-            }
         }
-
     }
 }
 

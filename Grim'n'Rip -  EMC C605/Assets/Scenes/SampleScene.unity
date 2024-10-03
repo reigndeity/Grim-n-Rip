@@ -1709,6 +1709,7 @@ MonoBehaviour:
   playerRb: {fileID: 0}
   movementJoystick: {fileID: 2929252284117550050}
   aimingJoystick: {fileID: 1672407710}
+  rotationSpeed: 15
 --- !u!195 &1642041800
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -1816,7 +1817,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -200, y: 200}
+  m_AnchoredPosition: {x: -300, y: 300}
   m_SizeDelta: {x: 256, y: 256}
   m_Pivot: {x: 1, y: 0}
 --- !u!114 &1672407710
@@ -2011,7 +2012,7 @@ Canvas:
   serializedVersion: 3
   m_RenderMode: 1
   m_Camera: {fileID: 963194227}
-  m_PlaneDistance: 1
+  m_PlaneDistance: 2
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
   m_OverrideSorting: 0
@@ -2557,7 +2558,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 200, y: 200}
+  m_AnchoredPosition: {x: 300, y: 300}
   m_SizeDelta: {x: 256, y: 256}
   m_Pivot: {x: 0, y: 0}
 --- !u!1 &2929252284437413908
@@ -2652,5 +2653,5 @@ SceneRoots:
   - {fileID: 2087258080}
   - {fileID: 1642041797}
   - {fileID: 1804224930}
-  - {fileID: 677846627}
   - {fileID: 480050199}
+  - {fileID: 677846627}
