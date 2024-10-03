@@ -8,11 +8,7 @@ public class ObjectBehavior : MonoBehaviour
 
     void Start()
     {
-        // Ensure materialObj is assigned in the Inspector
-        if (materialObj == null)
-        {
-            Debug.LogError("Material is not assigned!");
-        }
+        SetMaterialToOpaque(materialObj); 
     }
 
     void OnTriggerStay(Collider other)

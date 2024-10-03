@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class GameManager : MonoBehaviour
 {
@@ -13,6 +14,10 @@ public class GameManager : MonoBehaviour
     public bool isDoneSpawningObjects;
     public bool canShoot;
     public bool canMove;
+
+    [Header("Score Properties")]
+    [SerializeField] TextMeshProUGUI scoreTxt;
+    public float scoreValue;
 
 
     void Awake()
@@ -41,6 +46,8 @@ public class GameManager : MonoBehaviour
             canMove = true; // Player can now move
             canShoot = true; // Player can now shoot 
         }
+
+        scoreTxt.text = scoreValue.ToString();
     }
 
     IEnumerator BeginRound()

@@ -7,6 +7,10 @@ public class Projectile : MonoBehaviour
     [Header("Upgradables")]
     [SerializeField] float projectileDamage;
 
+    [Header("Script References")]
+    [SerializeField] EnemyValues enemyValuesScript;
+    
+
 
 
     // public Health enemyHealth;
@@ -15,11 +19,8 @@ public class Projectile : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Enemy"))
         {
-            // Health enemyHealth = other.gameObject.GetComponent<Health>();
-            // if (enemyHealth != null)
-            // {
-            //     enemyHealth.Damage(bulletDamage);
-            // }
+            EnemyValues enemyValuesScript = other.gameObject.GetComponent<EnemyValues>();
+            enemyValuesScript.TakeDamage(projectileDamage);
             Destroy(gameObject); // Destroy Bullet Upon Collision With Enemy
         }
 

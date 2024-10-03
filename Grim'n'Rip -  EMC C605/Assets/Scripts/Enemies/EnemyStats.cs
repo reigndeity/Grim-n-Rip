@@ -8,4 +8,5 @@ public class EnemyStats : MonoBehaviour
     public float damage;
     public float movementSpeed;
     public float hitChance;
+    public float enemyScore;
 }
