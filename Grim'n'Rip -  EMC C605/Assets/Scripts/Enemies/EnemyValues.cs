@@ -56,7 +56,7 @@ public class EnemyValues : MonoBehaviour
         {
             Destroy(gameObject);
             GameManager.instance.scoreValue += enemyStatsScript.enemyScore;
-            waveManagerScript.enemyCount --;
+            waveManagerScript.enemyCount--;
         }
     }
 }

@@ -1437,6 +1437,7 @@ MonoBehaviour:
   - {fileID: 8117492673738036943, guid: 3ae667c839759c54aac28c6d0152117f, type: 3}
   - {fileID: 4776659495606418793, guid: c97d7ce0a44dd19429c6e9999e3752aa, type: 3}
   moveSpeed: 12
+  isMoving: 0
   navMeshSurface: {fileID: 858131634}
 --- !u!1 &1019984316
 GameObject:
@@ -2545,8 +2546,8 @@ MonoBehaviour:
   playerObj: {fileID: 1642041793}
   waveTxt: {fileID: 1116077666}
   enemiesRemainingTxt: {fileID: 1910706358}
+  isRoundFinished: 0
   enemiesValue: 0
-  isResetRound: 0
   scoreTxt: {fileID: 1419609368}
   scoreValue: 0
 --- !u!1 &1672407708

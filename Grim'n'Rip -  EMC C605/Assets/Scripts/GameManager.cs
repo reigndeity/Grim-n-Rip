@@ -4,6 +4,7 @@ using UnityEngine;
 using TMPro;
 
 
+
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
@@ -24,8 +25,8 @@ public class GameManager : MonoBehaviour
     [Header("Wave Properties")]
     [SerializeField] TextMeshProUGUI waveTxt;
     [SerializeField] TextMeshProUGUI enemiesRemainingTxt;
+    public bool isRoundFinished;
     public float enemiesValue;
-    public bool isResetRound;
 
     [Header("Score Properties")]
     [SerializeField] TextMeshProUGUI scoreTxt;
@@ -51,11 +52,14 @@ public class GameManager : MonoBehaviour
 
         waveManagerScript = FindObjectOfType<WaveManager>();
         enemySpawnerScript = FindObjectOfType<EnemySpawner>();
+        objectAreaScript = FindObjectOfType<ObjectArea>();
+
     }
 
     // Update is called once per frame
     void Update()
     {
+        // Allow the player to move and shoot after spawning the objects     
         if (isDoneSpawningObjects == true)
         {
             canMove = true; // Player can now move
@@ -63,41 +67,53 @@ public class GameManager : MonoBehaviour
         }
 
         
-
         //UI Updates
         scoreTxt.text = scoreValue.ToString();
         waveTxt.text = waveManagerScript.currentWave.ToString();
-
         enemiesValue = waveManagerScript.enemyCount;
         enemiesRemainingTxt.text = enemiesValue.ToString();
 
-        if (canMove == true && canShoot == true && enemiesValue <= 0)
+        // If there are no enemies left
+        if (enemiesValue <= 0 && isRoundFinished == false)
         {
-            Debug.Log("reset round");
-            StartCoroutine(EndRound());
+            playerObj.transform.position = new Vector3(0,1,0); // Go back to the center of the map
+            isRoundFinished = true;
         }
+
+        if (isRoundFinished == true)
+        {
+            StartCoroutine(BeginRound());
+            isDoneSpawningObjects = false;
+        }
+
     }
 
     IEnumerator BeginRound()
     {
+        isRoundFinished = false;
         if (isDoneSpawningObjects == false)
-        {
+        {    
             canMove = false; // Player can't move yet
             canShoot = false; // Player can't shoot yet
-            objectAreaScript = FindObjectOfType<ObjectArea>();
             yield return new WaitForSeconds(0.1f);
             objectAreaScript.SpawnArea();
-            yield return new WaitForSeconds(0.5f);
             objectSpawnerScript = FindObjectOfType<ObjectSpawner>();
-            yield return new WaitForSeconds(0.1f);
+            yield return new WaitForSeconds(0.5f);
             objectSpawnerScript.SpawnObject();
         }
     }
 
+
+
     IEnumerator EndRound()
     {
-        playerObj.transform.position = new Vector3(0,1,0); // Go back to the center of the map
+        Debug.Log("Round End");
+        canMove = false; // Player can't move yet
+        canShoot = false; // Player can't shoot yet
+        
         yield return new WaitForSeconds(1.0f);
+        isDoneSpawningObjects = false;
+        yield return new WaitForSeconds(0.5f);
         StartCoroutine(BeginRound());
     }
 }

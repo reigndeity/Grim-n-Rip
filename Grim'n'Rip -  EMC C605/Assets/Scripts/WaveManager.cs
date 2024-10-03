@@ -16,6 +16,7 @@ public class WaveManager : MonoBehaviour
     void Start()
     {
         enemySpawnerScript = FindObjectOfType<EnemySpawner>();
+        enemyCount = Mathf.Ceil(baseEnemyCount + Mathf.Pow(1.07f, currentWave - 1));
         
     }
 
@@ -23,21 +24,16 @@ public class WaveManager : MonoBehaviour
     {
         if (GameManager.instance.canStartWave == true)
         {
-            allowSpawn = true;
             currentWave++;  // Increment the wave count
             enemyCount = Mathf.Ceil(baseEnemyCount + Mathf.Pow(1.07f, currentWave - 1));
             enemySpawnerScript.enemiesToSpawn = enemyCount;
             GameManager.instance.canStartWave = false; 
+            if (GameManager.instance.isDoneSpawningObjects == true)
+            {
+                allowSpawn = true;
+            }
         }
     }
 
-//     void StartWave()
-//     {
-//         beginWave = true;
-//         currentWave++;  // Increment the wave count
-//         enemyCount = Mathf.Ceil(baseEnemyCount + Mathf.Pow(1.3f, currentWave));  // Increase by 30% each wave
-//         enemySpawnerScript.enemiesToSpawn = enemyCount;
-//         GameManager.instance.canStartWave = false;
-//     }
-// 
+
 }

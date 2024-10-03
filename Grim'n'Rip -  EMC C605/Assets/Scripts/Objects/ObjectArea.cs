@@ -16,7 +16,7 @@ public class ObjectArea : MonoBehaviour
     private Vector3 risePosition = new Vector3(0, 0, 0); // Rise position
     private Vector3 descentPosition = new Vector3(0, -20, 0); // Rise position
     private Vector3 startPosition; // Start position
-    private bool isMoving = false;
+    public bool isMoving = false;
 
     //[Header("Nav Mesh Area Properties")]
     public NavMeshSurface navMeshSurface;
@@ -36,19 +36,12 @@ public class ObjectArea : MonoBehaviour
     // Object Intro Intro
     void Update()
     {
-        if (GameManager.instance.isResetRound == false)
-        {
-            RiseObjects();
-        }
-        else
-        {
-            DescentObjects();
-        }   
+        PositionObjects();
     }
     
-    public void RiseObjects()
+    public void PositionObjects()
     {
-        if (isMoving)
+        if (isMoving && GameManager.instance.isRoundFinished == false)
         {
             // Move towards the target position
             transform.position = Vector3.MoveTowards(transform.position, risePosition, moveSpeed * Time.deltaTime);
@@ -62,20 +55,17 @@ public class ObjectArea : MonoBehaviour
                 GameManager.instance.canStartWave = true;
             }
         }
-    }
-    public void DescentObjects()
-    {
-        if (isMoving)
+        if (GameManager.instance.isRoundFinished == true)
         {
+            isMoving = true;
             // Move towards the target position
             transform.position = Vector3.MoveTowards(transform.position, descentPosition, moveSpeed * Time.deltaTime);
 
             // Check if the object has reached the target position
             if (transform.position == descentPosition)
             {
-                isMoving = false; // Stop moving
+                GameManager.instance.isRoundFinished = false;
             }
         }
     }
-
 }
