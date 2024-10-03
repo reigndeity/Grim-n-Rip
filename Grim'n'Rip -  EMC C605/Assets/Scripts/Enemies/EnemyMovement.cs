@@ -38,8 +38,8 @@ public class EnemyMovement : MonoBehaviour
         if (isProjectileType == false)
         {
             float distanceToPlayer = Vector3.Distance(transform.position, playerTarget.position);
-            Debug.Log("Enemy Distance: " + enemyAgent.velocity);
-            Debug.Log("Player Distance: " + distanceToPlayer);
+            // Debug.Log("Enemy Distance: " + enemyAgent.velocity);
+            // Debug.Log("Player Distance: " + distanceToPlayer);
 
             // Zombie is going to Attack the player
             if (distanceToPlayer < 2.0f)
@@ -67,8 +67,8 @@ public class EnemyMovement : MonoBehaviour
         else
         {
             float distanceToPlayer = Vector3.Distance(transform.position, playerTarget.position);
-            Debug.Log("Enemy Distance: " + enemyAgent.velocity);
-            Debug.Log("Player Distance: " + distanceToPlayer);
+            // Debug.Log("Enemy Distance: " + enemyAgent.velocity);
+            // Debug.Log("Player Distance: " + distanceToPlayer);
 
             // Zombie is going to Attack the player
             if (distanceToPlayer < 10.0f)

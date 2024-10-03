@@ -13,7 +13,8 @@ public class ObjectArea : MonoBehaviour
 
     [Header("Object Intro Properties")]
     public float moveSpeed; // Speed at which the object moves
-    private Vector3 targetPosition = new Vector3(0, 0, 0); // Target position
+    private Vector3 risePosition = new Vector3(0, 0, 0); // Rise position
+    private Vector3 descentPosition = new Vector3(0, -20, 0); // Rise position
     private Vector3 startPosition; // Start position
     private bool isMoving = false;
 
@@ -35,17 +36,44 @@ public class ObjectArea : MonoBehaviour
     // Object Intro Intro
     void Update()
     {
+        if (GameManager.instance.isResetRound == false)
+        {
+            RiseObjects();
+        }
+        else
+        {
+            DescentObjects();
+        }   
+    }
+    
+    public void RiseObjects()
+    {
         if (isMoving)
         {
             // Move towards the target position
-            transform.position = Vector3.MoveTowards(transform.position, targetPosition, moveSpeed * Time.deltaTime);
+            transform.position = Vector3.MoveTowards(transform.position, risePosition, moveSpeed * Time.deltaTime);
 
             // Check if the object has reached the target position
-            if (transform.position == targetPosition)
+            if (transform.position == risePosition)
             {
                 isMoving = false; // Stop moving
                 navMeshSurface.BuildNavMesh(); // bake
                 GameManager.instance.isDoneSpawningObjects = true;
+                GameManager.instance.canStartWave = true;
+            }
+        }
+    }
+    public void DescentObjects()
+    {
+        if (isMoving)
+        {
+            // Move towards the target position
+            transform.position = Vector3.MoveTowards(transform.position, descentPosition, moveSpeed * Time.deltaTime);
+
+            // Check if the object has reached the target position
+            if (transform.position == descentPosition)
+            {
+                isMoving = false; // Stop moving
             }
         }
     }

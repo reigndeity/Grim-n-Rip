@@ -6,6 +6,7 @@ public class EnemyValues : MonoBehaviour
 {
     [Header("Script References")]
     [SerializeField] EnemyStats enemyStatsScript;
+    [SerializeField] WaveManager waveManagerScript;
 
     [Header("Enemy Properties")]
     [SerializeField] int enemyType; // 0 - blaze | 1 - sinister seer | 2 - vained | 3 - tormented soul
@@ -14,6 +15,7 @@ public class EnemyValues : MonoBehaviour
     void Start()
     {
         enemyStatsScript = GetComponent<EnemyStats>();
+        waveManagerScript = FindObjectOfType<WaveManager>();
         switch(enemyType)
         {
             case 0: // BLAZE Base Values
@@ -54,6 +56,7 @@ public class EnemyValues : MonoBehaviour
         {
             Destroy(gameObject);
             GameManager.instance.scoreValue += enemyStatsScript.enemyScore;
+            waveManagerScript.enemyCount --;
         }
     }
 }
