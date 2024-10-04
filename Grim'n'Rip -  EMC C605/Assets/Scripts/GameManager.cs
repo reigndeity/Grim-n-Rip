@@ -25,7 +25,8 @@ public class GameManager : MonoBehaviour
     [Header("Wave Properties")]
     [SerializeField] TextMeshProUGUI waveTxt;
     [SerializeField] TextMeshProUGUI enemiesRemainingTxt;
-    public bool isRoundFinished;
+    public bool isRoundStart;
+    public bool isRoundResetting;
     public float enemiesValue;
 
     [Header("Score Properties")]
@@ -48,72 +49,74 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         Application.targetFrameRate = 90;
-        StartCoroutine(BeginRound());
-
         waveManagerScript = FindObjectOfType<WaveManager>();
         enemySpawnerScript = FindObjectOfType<EnemySpawner>();
         objectAreaScript = FindObjectOfType<ObjectArea>();
 
+        // Start the round
+        StartCoroutine(BeginRound());
     }
 
-    // Update is called once per frame
     void Update()
-    {
-        // Allow the player to move and shoot after spawning the objects     
-        if (isDoneSpawningObjects == true)
-        {
-            canMove = true; // Player can now move
-            canShoot = true; // Player can now shoot 
-        }
-
-        
-        //UI Updates
+    {  
+        // UI Updates
         scoreTxt.text = scoreValue.ToString();
         waveTxt.text = waveManagerScript.currentWave.ToString();
         enemiesValue = waveManagerScript.enemyCount;
         enemiesRemainingTxt.text = enemiesValue.ToString();
 
+
+        // After the spawning of objects are done
+        if (isDoneSpawningObjects == true)
+        {
+            canMove = true; // Player can now move
+            canShoot = true; // Player can now shoot 
+        }
+        else
+        {
+            canMove = false; // Player cannot move
+            canShoot = false; // Player cannot shoot
+            waveManagerScript.allowSpawn = true;
+        }
+
+
         // If there are no enemies left
-        if (enemiesValue <= 0 && isRoundFinished == false)
+        if (enemiesValue <= 0 && isRoundStart == true)
         {
             playerObj.transform.position = new Vector3(0,1,0); // Go back to the center of the map
-            isRoundFinished = true;
+            if (isRoundResetting == false)
+            {
+                isDoneSpawningObjects = false;
+                isRoundResetting = true;
+                isRoundStart = false;
+                Invoke("StartRound", 3f);
+            }
         }
+    }
 
-        if (isRoundFinished == true)
-        {
-            StartCoroutine(BeginRound());
-            isDoneSpawningObjects = false;
-        }
-
+    void StartRound()
+    {
+        StartCoroutine(BeginRound());
+        objectSpawnerScript.DestroyObjects();
+        Invoke("RoundResetBool", 3f);
     }
 
     IEnumerator BeginRound()
     {
-        isRoundFinished = false;
-        if (isDoneSpawningObjects == false)
-        {    
-            canMove = false; // Player can't move yet
-            canShoot = false; // Player can't shoot yet
-            yield return new WaitForSeconds(0.1f);
-            objectAreaScript.SpawnArea();
-            objectSpawnerScript = FindObjectOfType<ObjectSpawner>();
-            yield return new WaitForSeconds(0.5f);
-            objectSpawnerScript.SpawnObject();
-        }
+        isRoundStart = true;
+        canMove = false;
+        canShoot = false; 
+        objectAreaScript.isMoving = true;
+        yield return new WaitForSeconds(0.5f);
+        objectAreaScript.SpawnArea();
+        yield return new WaitForSeconds(0.1f);
+        objectSpawnerScript = FindObjectOfType<ObjectSpawner>();
+        yield return new WaitForSeconds(0.1f);
+        objectSpawnerScript.SpawnObject();
     }
 
-
-
-    IEnumerator EndRound()
+    void RoundResetBool()
     {
-        Debug.Log("Round End");
-        canMove = false; // Player can't move yet
-        canShoot = false; // Player can't shoot yet
-        
-        yield return new WaitForSeconds(1.0f);
-        isDoneSpawningObjects = false;
-        yield return new WaitForSeconds(0.5f);
-        StartCoroutine(BeginRound());
+        isRoundResetting = false;
     }
 }

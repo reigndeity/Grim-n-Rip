@@ -1,13 +1,13 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class WaveManager : MonoBehaviour
 {
-    public float currentWave;
-    public float baseEnemyCount = 5;  // The starting number of enemies for the first wave
-    public float enemyCount;          // The number of enemies for the current wave
+    public float currentWave = 1;   // Starting at wave 1
+    public float baseEnemyCount;
+    public float newWaveCount;
+    public float enemyCount;
     public bool allowSpawn;
 
     [Header("Script References")]
@@ -16,24 +16,37 @@ public class WaveManager : MonoBehaviour
     void Start()
     {
         enemySpawnerScript = FindObjectOfType<EnemySpawner>();
-        enemyCount = Mathf.Ceil(baseEnemyCount + Mathf.Pow(1.07f, currentWave - 1));
-        
+        CalculateEnemyCount();
+
+
     }
 
     void Update()
     {
-        if (GameManager.instance.canStartWave == true)
+        if (GameManager.instance.canStartWave)
         {
-            currentWave++;  // Increment the wave count
-            enemyCount = Mathf.Ceil(baseEnemyCount + Mathf.Pow(1.07f, currentWave - 1));
-            enemySpawnerScript.enemiesToSpawn = enemyCount;
-            GameManager.instance.canStartWave = false; 
-            if (GameManager.instance.isDoneSpawningObjects == true)
-            {
-                allowSpawn = true;
-            }
+            StartNewWave();  // Explicitly call to start a new wave
+            GameManager.instance.canStartWave = false;
         }
     }
 
+    // Function to start a new wave
+    public void StartNewWave()
+    {
+        currentWave++;
+        CalculateEnemyCount();
+        enemySpawnerScript.enemiesToSpawn = enemyCount;
+        allowSpawn = true;
+        // Debugging logs to check if values update correctly
+        Debug.Log("New wave started: " + currentWave);
+        Debug.Log("Enemies to spawn: " + enemyCount);
+    }
 
+    // Function to calculate the enemy count
+    private void CalculateEnemyCount()
+    {
+        baseEnemyCount = 3 + Mathf.Ceil(currentWave * 1.30f);
+        newWaveCount = Mathf.Ceil(baseEnemyCount * 1.30f);
+        enemyCount = newWaveCount;
+    }
 }

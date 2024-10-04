@@ -25,7 +25,6 @@ public class ObjectArea : MonoBehaviour
     {
         startPosition = new Vector3(0, -20, 0); // Set the starting position
         transform.position = startPosition; // Set the GameObject's initial position
-        isMoving = true; // Start moving
     }
     public void SpawnArea()
     {
@@ -36,12 +35,31 @@ public class ObjectArea : MonoBehaviour
     // Object Intro Intro
     void Update()
     {
-        PositionObjects();
+       if (GameManager.instance.isRoundStart == true)
+       {
+        RiseObjects();
+       } 
+       else
+       {
+        DescendObjects();
+       }
     }
     
-    public void PositionObjects()
+    public void DescendObjects()
     {
-        if (isMoving && GameManager.instance.isRoundFinished == false)
+        // Move towards the target position
+        transform.position = Vector3.MoveTowards(transform.position, descentPosition, moveSpeed * Time.deltaTime);
+        // Check if the object has reached the target position
+        if (transform.position == descentPosition)
+        {
+            isMoving = true;
+            navMeshSurface.BuildNavMesh(); // bake
+        }
+    }
+
+    public void RiseObjects()
+    {
+        if (isMoving)
         {
             // Move towards the target position
             transform.position = Vector3.MoveTowards(transform.position, risePosition, moveSpeed * Time.deltaTime);
@@ -51,20 +69,10 @@ public class ObjectArea : MonoBehaviour
             {
                 isMoving = false; // Stop moving
                 navMeshSurface.BuildNavMesh(); // bake
-                GameManager.instance.isDoneSpawningObjects = true;
+                GameManager.instance.isDoneSpawningObjects = true; // objects are spawned
                 GameManager.instance.canStartWave = true;
-            }
-        }
-        if (GameManager.instance.isRoundFinished == true)
-        {
-            isMoving = true;
-            // Move towards the target position
-            transform.position = Vector3.MoveTowards(transform.position, descentPosition, moveSpeed * Time.deltaTime);
 
-            // Check if the object has reached the target position
-            if (transform.position == descentPosition)
-            {
-                GameManager.instance.isRoundFinished = false;
+                Debug.Log("I AM DONE SPAWNING THE OBJECTS");
             }
         }
     }

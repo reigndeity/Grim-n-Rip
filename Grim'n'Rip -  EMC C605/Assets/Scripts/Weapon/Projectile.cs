@@ -29,4 +29,12 @@ public class Projectile : MonoBehaviour
             Destroy(gameObject);
         }
     }
+
+    void Update()
+    {
+        if (GameManager.instance.isDoneSpawningObjects == false)
+        {
+            Destroy(gameObject);
+        }
+    }
 }

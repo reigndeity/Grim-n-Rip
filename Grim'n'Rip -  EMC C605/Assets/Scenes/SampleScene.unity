@@ -382,7 +382,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentWave: 0
-  baseEnemyCount: 5
+  baseEnemyCount: 0
+  newWaveCount: 0
   enemyCount: 0
   allowSpawn: 0
   enemySpawnerScript: {fileID: 0}
@@ -507,9 +508,9 @@ MonoBehaviour:
   - {fileID: 1956614799622796200, guid: c14d4903a09b4a345a756a8d74847e74, type: 3}
   - {fileID: 7975396900172024465, guid: f29cb6c8542e8b84aa818964f915fbf0, type: 3}
   isEnemySpawning: 0
-  enemySpawnRate: 0.5
+  enemySpawnRate: 0.3
   enemiesToSpawn: 0
-  maxEnemiesOnScreen: 10
+  maxEnemiesOnScreen: 50
   waveManagerScript: {fileID: 0}
 --- !u!1 &563321147
 GameObject:
@@ -2546,7 +2547,8 @@ MonoBehaviour:
   playerObj: {fileID: 1642041793}
   waveTxt: {fileID: 1116077666}
   enemiesRemainingTxt: {fileID: 1910706358}
-  isRoundFinished: 0
+  isRoundStart: 0
+  isRoundResetting: 0
   enemiesValue: 0
   scoreTxt: {fileID: 1419609368}
   scoreValue: 0
