@@ -10,6 +10,7 @@ public class EnemyValues : MonoBehaviour
 
     [Header("Enemy Properties")]
     [SerializeField] int enemyType; // 0 - blaze | 1 - sinister seer | 2 - vained | 3 - tormented soul
+   
 
 
     void Start()
@@ -23,14 +24,14 @@ public class EnemyValues : MonoBehaviour
                 enemyStatsScript.damage = 20f;
                 enemyStatsScript.movementSpeed = 4f;
                 enemyStatsScript.hitChance = 100f;
-                enemyStatsScript.enemyScore = 50f;
+                enemyStatsScript.enemyScore = 50f;               
             break;
             case 1: // SINISTER SEER Base Values
                 enemyStatsScript.health = 60f;
                 enemyStatsScript.damage = 15f;
                 enemyStatsScript.movementSpeed = 3;
                 enemyStatsScript.hitChance = 50f;
-                enemyStatsScript.enemyScore = 75f;
+                enemyStatsScript.enemyScore = 75f;                
             break;
             case 2: // VAINED Base Values
                 enemyStatsScript.health = 120f;

@@ -503,14 +503,19 @@ MonoBehaviour:
   - {fileID: 243438454}
   - {fileID: 344671539}
   enemyPrefabs:
+  - {fileID: 7975396900172024465, guid: f29cb6c8542e8b84aa818964f915fbf0, type: 3}
+  - {fileID: 1956614799622796200, guid: c14d4903a09b4a345a756a8d74847e74, type: 3}
   - {fileID: 3177586770093975662, guid: f54eb967f111c5d4181ebe8e8e9e83dc, type: 3}
   - {fileID: 528880538750447764, guid: 414e0d9c6e6c6e347b69fbf6941d4de3, type: 3}
-  - {fileID: 1956614799622796200, guid: c14d4903a09b4a345a756a8d74847e74, type: 3}
-  - {fileID: 7975396900172024465, guid: f29cb6c8542e8b84aa818964f915fbf0, type: 3}
   isEnemySpawning: 0
   enemySpawnRate: 0.3
   enemiesToSpawn: 0
   maxEnemiesOnScreen: 50
+  baseEnemySpawn: 5
+  commonSpawnChance: 100
+  uncommonSpawnChance: 5
+  rareSpawnChance: 0
+  epicSpawnChance: 0
   waveManagerScript: {fileID: 0}
 --- !u!1 &563321147
 GameObject:
@@ -3147,8 +3152,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f33112d7fd0d97d428cb22b6c6ae9220, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  projectileSpeed: 10
-  fireRate: 0.5
+  projectileSpeed: 25
+  fireRate: 0.2
   firingPos: {fileID: 2011600503}
   projectilePrefab: {fileID: 8316339259124047575, guid: 60b6da9966a0f5e40abc143a4c27ea72, type: 3}
   isShoot: 0
