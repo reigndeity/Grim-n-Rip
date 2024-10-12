@@ -10,13 +10,16 @@ public class EnemyValues : MonoBehaviour
 
     [Header("Enemy Properties")]
     [SerializeField] int enemyType; // 0 - blaze | 1 - sinister seer | 2 - vained | 3 - tormented soul
+    [SerializeField] bool isDoneUpgrade;
    
 
-
-    void Start()
+    void Awake()
     {
         enemyStatsScript = GetComponent<EnemyStats>();
         waveManagerScript = FindObjectOfType<WaveManager>();
+    }
+    void Start()
+    {
         switch(enemyType)
         {
             case 0: // BLAZE Base Values
@@ -58,6 +61,29 @@ public class EnemyValues : MonoBehaviour
             Destroy(gameObject);
             GameManager.instance.scoreValue += enemyStatsScript.enemyScore;
             waveManagerScript.enemyCount--;
+        }
+    }
+
+    void Update()
+    {
+        // Enemy Difficulty Progression
+        if (isDoneUpgrade == false)
+        {
+            enemyStatsScript.health = enemyStatsScript.health + (enemyStatsScript.health * 0.1f * waveManagerScript.currentWave);
+            enemyStatsScript.damage = enemyStatsScript.damage + (enemyStatsScript.damage * 0.06f * waveManagerScript.currentWave);
+            enemyStatsScript.movementSpeed = enemyStatsScript.movementSpeed + (enemyStatsScript.movementSpeed * 0.05f * waveManagerScript.currentWave);
+            enemyStatsScript.hitChance = enemyStatsScript.hitChance + (enemyStatsScript.hitChance * 0.02f * waveManagerScript.currentWave);
+            isDoneUpgrade = true;
+        }
+
+        // Capping The Enemy Stats
+        if (enemyStatsScript.hitChance > 70f)
+        {
+            enemyStatsScript.hitChance = 70f;
+        }
+        if (enemyStatsScript.movementSpeed > 15f)
+        {
+            enemyStatsScript.movementSpeed = 15f;
         }
     }
 }

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
 
 
 
@@ -33,6 +34,11 @@ public class GameManager : MonoBehaviour
     [SerializeField] TextMeshProUGUI scoreTxt;
     public float scoreValue;
 
+    [Header("Player UI Properties")]
+    [SerializeField] Image enemiesRemainingFillImg;
+    public bool isEnemiesRemainingFill;
+    [SerializeField] float valuesEnemy;
+
 
     void Awake()
     {
@@ -53,6 +59,7 @@ public class GameManager : MonoBehaviour
         enemySpawnerScript = FindObjectOfType<EnemySpawner>();
         objectAreaScript = FindObjectOfType<ObjectArea>();
 
+        isEnemiesRemainingFill = true;
         // Start the round
         StartCoroutine(BeginRound());
     }
@@ -64,6 +71,13 @@ public class GameManager : MonoBehaviour
         waveTxt.text = waveManagerScript.currentWave.ToString();
         enemiesValue = waveManagerScript.enemyCount;
         enemiesRemainingTxt.text = enemiesValue.ToString();
+
+        if (isEnemiesRemainingFill == false)
+        {
+            valuesEnemy = enemiesValue;
+            isEnemiesRemainingFill = true;
+        }
+        enemiesRemainingFillImg.fillAmount = enemiesValue / valuesEnemy;
 
 
         // After the spawning of objects are done
@@ -90,6 +104,7 @@ public class GameManager : MonoBehaviour
                 isRoundResetting = true;
                 isRoundStart = false;
                 Invoke("StartRound", 3f);
+                
             }
         }
     }

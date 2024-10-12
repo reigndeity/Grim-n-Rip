@@ -9,7 +9,6 @@ public class WaveManager : MonoBehaviour
     public float newWaveCount;
     public float enemyCount;
     public bool allowSpawn;
-
     [Header("Script References")]
     public EnemySpawner enemySpawnerScript;
 
@@ -40,6 +39,7 @@ public class WaveManager : MonoBehaviour
         // Debugging logs to check if values update correctly
         Debug.Log("New wave started: " + currentWave);
         Debug.Log("Enemies to spawn: " + enemyCount);
+        GameManager.instance.isEnemiesRemainingFill = false;
     }
 
     // Function to calculate the enemy count
