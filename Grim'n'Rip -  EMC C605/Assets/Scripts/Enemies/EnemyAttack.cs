@@ -7,6 +7,9 @@ public class EnemyAttack : MonoBehaviour
     [Header("Script References")]
     [SerializeField] EnemyStats enemyStatsScript;
     [SerializeField] PlayerStats playerStatsScript;
+
+    [Header("Enemy Properties")]
+    [SerializeField] float enemyHitChance;
     
     void Awake()
     {
@@ -27,12 +30,12 @@ public class EnemyAttack : MonoBehaviour
     }
     public void CalculateHitChance(float damageAmount)
     {
-        enemyStatsScript.hitChance = enemyStatsScript.hitChance - playerStatsScript.dodgeRate;
+        enemyHitChance = enemyStatsScript.hitChance - playerStatsScript.dodgeRate;
         float hitChance = Random.Range(1f, 101f);
-
-        if (hitChance <= enemyStatsScript.hitChance)
+        if (hitChance <= enemyHitChance)
         {
             playerStatsScript.health -= damageAmount;
+            playerStatsScript.health = Mathf.Ceil(playerStatsScript.health);
         }
     }
 

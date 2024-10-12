@@ -16,7 +16,7 @@ public class EnemyMovement : MonoBehaviour
     [Header("Melee Type Enemy")]
     [SerializeField] bool isAttacking;
     [SerializeField] bool isPlayerWithinArea;
-    [SerializeField] GameObject penisAttack;
+    [SerializeField] GameObject meleeAttack;
 
     [Header("Projectile Type Enemy")]
     [SerializeField] bool isProjectileType;
@@ -41,19 +41,11 @@ public class EnemyMovement : MonoBehaviour
         if (isProjectileType == false)
         {
             float distanceToPlayer = Vector3.Distance(transform.position, playerTarget.position);
-            // Debug.Log("Enemy Distance: " + enemyAgent.velocity);
-            // Debug.Log("Player Distance: " + distanceToPlayer);
-
-            // Zombie is going to Attack the player
             if (distanceToPlayer < 2.0f)
             {
-                Debug.Log("Enemy Attacking Area Reached!");
-                isAttacking = true;
-                isPlayerWithinArea = true;
-                if (isAttacking == true && isPlayerWithinArea == true)
+                if (isAttacking == false)
                 {
-                    enemyAgent.velocity = Vector3.zero;
-                    StartCoroutine(MeleeAttackPlayer());
+                    StartCoroutine(MeleeAttack());
                 }
             }
             // Player left the zombie's attack range
@@ -70,20 +62,15 @@ public class EnemyMovement : MonoBehaviour
         else
         {
             float distanceToPlayer = Vector3.Distance(transform.position, playerTarget.position);
-            // Debug.Log("Enemy Distance: " + enemyAgent.velocity);
-            // Debug.Log("Player Distance: " + distanceToPlayer);
-
-            // Zombie is going to Attack the player
             if (distanceToPlayer < 10.0f)
             {
                 Debug.Log("Enemy Attacking Area Reached!");
-                isAttacking = true;
-                isPlayerWithinArea = true;
-                if (isAttacking == true && isPlayerWithinArea == true)
+                
+                if (isAttacking == false)
                 {
-                    enemyAgent.velocity = Vector3.zero;
-                    StartCoroutine(RangeAttackPlayer());
+                    StartCoroutine(RangeAttack());
                 }
+
             }
             // Player left the zombie's attack range
             if (distanceToPlayer >= 10)
@@ -97,21 +84,23 @@ public class EnemyMovement : MonoBehaviour
         }
 
     }
-    IEnumerator MeleeAttackPlayer()
+
+    IEnumerator MeleeAttack()
     {
+        isAttacking = true;
         enemyAgent.ResetPath();
-        yield return new WaitForSeconds(2.0f); // adjust according to the attack animation of the enemy
-        penisAttack.SetActive(true);
-        yield return new WaitForSeconds(0.01f);
-        penisAttack.SetActive(false);
+        meleeAttack.SetActive(true);
+        yield return new WaitForSeconds(0.1f);
+        meleeAttack.SetActive(false);
+        yield return new WaitForSeconds(2f); // Adjust base on animation
         isAttacking = false;
     }
 
-    IEnumerator RangeAttackPlayer()
+    IEnumerator RangeAttack()
     {
+        isAttacking = true;
         enemyAgent.ResetPath();
-        yield return new WaitForSeconds(2.0f); // adjust according to the attack animation of the enemy
+        yield return new WaitForSeconds(2f); // Adjust base on animation
         isAttacking = false;
     }
-
 }

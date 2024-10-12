@@ -44,6 +44,9 @@ public class GameManager : MonoBehaviour
     [SerializeField] GameObject currentWaveObj;
     [SerializeField] Image healthRemainingFill;
     [SerializeField] TextMeshProUGUI healthRemainingTxt;
+    public bool isHealthRemainingFill;
+     [SerializeField] float healthValue;
+
 
 
     void Awake()
@@ -88,7 +91,14 @@ public class GameManager : MonoBehaviour
         enemiesRemainingFillImg.fillAmount = enemiesValue / valuesEnemy;
 
         // Player Health Fill
+        if (isHealthRemainingFill == false) 
+        {
+            healthValue = playerStatsScipt.health;
+            isHealthRemainingFill = true;
+        }
         healthRemainingTxt.text = playerStatsScipt.health.ToString();
+        healthRemainingFill.fillAmount = playerStatsScipt.health / healthValue;
+
 
         // In Game Mechanics ===================================
         if (isDoneSpawningObjects == true)  // After the spawning of objects are done

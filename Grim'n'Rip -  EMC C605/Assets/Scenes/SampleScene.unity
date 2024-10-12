@@ -3221,6 +3221,8 @@ MonoBehaviour:
   currentWaveObj: {fileID: 286593161}
   healthRemainingFill: {fileID: 373498476}
   healthRemainingTxt: {fileID: 1329072519}
+  isHealthRemainingFill: 0
+  healthValue: 0
 --- !u!1 &1672407708
 GameObject:
   m_ObjectHideFlags: 0
