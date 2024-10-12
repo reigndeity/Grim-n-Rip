@@ -7,6 +7,7 @@ public class EnemyValues : MonoBehaviour
     [Header("Script References")]
     [SerializeField] EnemyStats enemyStatsScript;
     [SerializeField] WaveManager waveManagerScript;
+    [SerializeField] PlayerStats playerStatsScript;
 
     [Header("Enemy Properties")]
     [SerializeField] int enemyType; // 0 - blaze | 1 - sinister seer | 2 - vained | 3 - tormented soul
@@ -17,6 +18,7 @@ public class EnemyValues : MonoBehaviour
     {
         enemyStatsScript = GetComponent<EnemyStats>();
         waveManagerScript = FindObjectOfType<WaveManager>();
+        playerStatsScript = FindObjectOfType<PlayerStats>();
     }
     void Start()
     {
@@ -53,6 +55,7 @@ public class EnemyValues : MonoBehaviour
         }        
     }
 
+    // Receiving Damage
     public void TakeDamage(float damageAmount)
     {
         enemyStatsScript.health -= damageAmount;
@@ -86,4 +89,5 @@ public class EnemyValues : MonoBehaviour
             enemyStatsScript.movementSpeed = 15f;
         }
     }
+
 }

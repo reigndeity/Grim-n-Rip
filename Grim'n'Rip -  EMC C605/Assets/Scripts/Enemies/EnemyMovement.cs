@@ -7,6 +7,7 @@ public class EnemyMovement : MonoBehaviour
 {
     [Header("Script Reference")]
     public EnemyStats enemyStatsScript;
+    public EnemyValues enemyValuesScript;
 
     [Header("Enemy Components")]
     [SerializeField] NavMeshAgent enemyAgent;
@@ -15,6 +16,7 @@ public class EnemyMovement : MonoBehaviour
     [Header("Melee Type Enemy")]
     [SerializeField] bool isAttacking;
     [SerializeField] bool isPlayerWithinArea;
+    [SerializeField] GameObject penisAttack;
 
     [Header("Projectile Type Enemy")]
     [SerializeField] bool isProjectileType;
@@ -26,6 +28,7 @@ public class EnemyMovement : MonoBehaviour
         enemyAgent = GetComponent<NavMeshAgent>();
         playerTarget = GameObject.FindWithTag("Player").transform; // finds the player tag within hierarchy
         enemyStatsScript = GetComponent<EnemyStats>();
+        enemyValuesScript = GetComponent<EnemyValues>();
     }
     void Update()
     {
@@ -98,6 +101,9 @@ public class EnemyMovement : MonoBehaviour
     {
         enemyAgent.ResetPath();
         yield return new WaitForSeconds(2.0f); // adjust according to the attack animation of the enemy
+        penisAttack.SetActive(true);
+        yield return new WaitForSeconds(0.01f);
+        penisAttack.SetActive(false);
         isAttacking = false;
     }
 

@@ -14,6 +14,9 @@ public class GameManager : MonoBehaviour
     public ObjectSpawner objectSpawnerScript;
     public WaveManager waveManagerScript;
     public EnemySpawner enemySpawnerScript;
+    public PlayerMovement playerMovementScript;
+    public PlayerStats playerStatsScipt;
+    public PlayerValues playerValuesScript;
     
     [Header("Game Properties")]
     public bool isDoneSpawningObjects;
@@ -38,6 +41,9 @@ public class GameManager : MonoBehaviour
     [SerializeField] Image enemiesRemainingFillImg;
     public bool isEnemiesRemainingFill;
     [SerializeField] float valuesEnemy;
+    [SerializeField] GameObject currentWaveObj;
+    [SerializeField] Image healthRemainingFill;
+    [SerializeField] TextMeshProUGUI healthRemainingTxt;
 
 
     void Awake()
@@ -58,6 +64,7 @@ public class GameManager : MonoBehaviour
         waveManagerScript = FindObjectOfType<WaveManager>();
         enemySpawnerScript = FindObjectOfType<EnemySpawner>();
         objectAreaScript = FindObjectOfType<ObjectArea>();
+        playerStatsScipt = FindObjectOfType<PlayerStats>();
 
         isEnemiesRemainingFill = true;
         // Start the round
@@ -66,22 +73,25 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {  
-        // UI Updates
+        // UI Updates ===================================
         scoreTxt.text = scoreValue.ToString();
         waveTxt.text = waveManagerScript.currentWave.ToString();
         enemiesValue = waveManagerScript.enemyCount;
         enemiesRemainingTxt.text = enemiesValue.ToString();
 
-        if (isEnemiesRemainingFill == false)
+        // Enemies Remaining Fill
+        if (isEnemiesRemainingFill == false) 
         {
             valuesEnemy = enemiesValue;
             isEnemiesRemainingFill = true;
         }
         enemiesRemainingFillImg.fillAmount = enemiesValue / valuesEnemy;
 
+        // Player Health Fill
+        healthRemainingTxt.text = playerStatsScipt.health.ToString();
 
-        // After the spawning of objects are done
-        if (isDoneSpawningObjects == true)
+        // In Game Mechanics ===================================
+        if (isDoneSpawningObjects == true)  // After the spawning of objects are done
         {
             canMove = true; // Player can now move
             canShoot = true; // Player can now shoot 
@@ -118,6 +128,8 @@ public class GameManager : MonoBehaviour
 
     IEnumerator BeginRound()
     {
+        
+
         isRoundStart = true;
         canMove = false;
         canShoot = false; 
@@ -128,6 +140,11 @@ public class GameManager : MonoBehaviour
         objectSpawnerScript = FindObjectOfType<ObjectSpawner>();
         yield return new WaitForSeconds(0.1f);
         objectSpawnerScript.SpawnObject();
+
+        yield return new WaitForSeconds(3f);
+        currentWaveObj.SetActive(true);
+        yield return new WaitForSeconds(2f);
+        currentWaveObj.SetActive(false);
     }
 
     void RoundResetBool()

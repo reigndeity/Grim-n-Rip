@@ -39,7 +39,7 @@ public class WaveManager : MonoBehaviour
         // Debugging logs to check if values update correctly
         Debug.Log("New wave started: " + currentWave);
         Debug.Log("Enemies to spawn: " + enemyCount);
-        GameManager.instance.isEnemiesRemainingFill = false;
+        GameManager.instance.isEnemiesRemainingFill = false; // Enemies Remaining Fill Update
     }
 
     // Function to calculate the enemy count
