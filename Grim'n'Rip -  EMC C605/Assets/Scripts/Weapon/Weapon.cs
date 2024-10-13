@@ -16,6 +16,8 @@ public class Weapon : MonoBehaviour
 
     void Update()
     {
+        projectileSpeed =  PlayerPrefs.GetFloat("projectileSpeedAmount");
+        fireRate = PlayerPrefs.GetFloat("weaponFireRateAmount");
         if (GameManager.instance.canShoot == true)
         {
             if (isShoot == false)

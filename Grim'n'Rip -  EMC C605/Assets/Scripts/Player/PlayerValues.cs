@@ -12,13 +12,13 @@ public class PlayerValues : MonoBehaviour
     }
     void Start()
     {
-        playerStatsScript.health = 100f;
-        playerStatsScript.movementSpeed = 5f;
-        playerStatsScript.dodgeRate = 5f;
-        playerStatsScript.luck = 5f;
-        playerStatsScript.projectileDamage = 30;
-        playerStatsScript.projectileSpeed = 10;
-        playerStatsScript.fireRate = 1;
+        playerStatsScript.health = PlayerPrefs.GetFloat("healthAmount");
+        playerStatsScript.movementSpeed = PlayerPrefs.GetFloat("movementSpeedAmount");
+        playerStatsScript.dodgeRate = PlayerPrefs.GetFloat("dodgeRateAmount");
+        playerStatsScript.luck = PlayerPrefs.GetFloat("luckRateAmount");
+        playerStatsScript.projectileDamage = PlayerPrefs.GetFloat("projectileDamageAmount");
+        playerStatsScript.projectileSpeed = PlayerPrefs.GetFloat("projectileSpeedAmount");
+        playerStatsScript.fireRate = PlayerPrefs.GetFloat("weaponFireRateAmount");
     }
 
     

@@ -7,7 +7,7 @@ public class EnemyHealthBar : MonoBehaviour
 {
     [SerializeField] Slider slider;
     [SerializeField] EnemyStats enemyStatsScript;
-    [SerializeField] Camera camera;
+    [SerializeField] Camera cameraMain;
     [SerializeField] Transform target;
 
     private bool isEnemyHealthFill;
@@ -16,7 +16,7 @@ public class EnemyHealthBar : MonoBehaviour
     void Awake()
     {
         enemyStatsScript = GetComponentInParent<EnemyStats>();
-        camera = FindObjectOfType<Camera>();
+        cameraMain = FindObjectOfType<Camera>();
     }
 
 
@@ -30,6 +30,6 @@ public class EnemyHealthBar : MonoBehaviour
         }
         slider.value = enemyStatsScript.health / enemyHealthValue;
 
-        transform.rotation = camera.transform.rotation;
+        transform.rotation = cameraMain.transform.rotation;
     }
 }

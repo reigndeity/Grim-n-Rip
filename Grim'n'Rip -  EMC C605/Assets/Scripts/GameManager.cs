@@ -17,6 +17,7 @@ public class GameManager : MonoBehaviour
     public PlayerMovement playerMovementScript;
     public PlayerStats playerStatsScipt;
     public PlayerValues playerValuesScript;
+    public WaveUpgrades waveUpgradesScript;
     
     [Header("Game Properties")]
     public bool isDoneSpawningObjects;
@@ -32,6 +33,7 @@ public class GameManager : MonoBehaviour
     public bool isRoundStart;
     public bool isRoundResetting;
     public float enemiesValue;
+    public GameObject waveUpgradeObj;
 
     [Header("Score Properties")]
     [SerializeField] TextMeshProUGUI scoreTxt;
@@ -44,8 +46,9 @@ public class GameManager : MonoBehaviour
     [SerializeField] GameObject currentWaveObj;
     [SerializeField] Image healthRemainingFill;
     [SerializeField] TextMeshProUGUI healthRemainingTxt;
+    [SerializeField] TextMeshProUGUI healthValueTxt;
     public bool isHealthRemainingFill;
-     [SerializeField] float healthValue;
+    public float healthValue;
 
 
 
@@ -68,8 +71,12 @@ public class GameManager : MonoBehaviour
         enemySpawnerScript = FindObjectOfType<EnemySpawner>();
         objectAreaScript = FindObjectOfType<ObjectArea>();
         playerStatsScipt = FindObjectOfType<PlayerStats>();
-
+        playerMovementScript = FindObjectOfType<PlayerMovement>();
+        waveUpgradesScript = FindObjectOfType<WaveUpgrades>();
         isEnemiesRemainingFill = true;
+        PlayerPrefs.SetFloat("temporaryProjectileDamageAmount", 0);
+        PlayerPrefs.SetFloat("temporaryMovementSpeedAmount", 0);
+        PlayerPrefs.SetFloat("temporaryProjectileDamageAmount", 0);
         // Start the round
         StartCoroutine(BeginRound());
     }
@@ -98,6 +105,8 @@ public class GameManager : MonoBehaviour
         }
         healthRemainingTxt.text = playerStatsScipt.health.ToString();
         healthRemainingFill.fillAmount = playerStatsScipt.health / healthValue;
+        healthValueTxt.text = healthValue.ToString();
+
 
 
         // In Game Mechanics ===================================
@@ -118,18 +127,22 @@ public class GameManager : MonoBehaviour
         if (enemiesValue <= 0 && isRoundStart == true)
         {
             playerObj.transform.position = new Vector3(0,1,0); // Go back to the center of the map
+            playerMovementScript.playerRb.velocity = Vector3.zero;
             if (isRoundResetting == false)
             {
                 isDoneSpawningObjects = false;
+                
                 isRoundResetting = true;
                 isRoundStart = false;
-                Invoke("StartRound", 3f);
+                waveUpgradeObj.SetActive(true);
+                waveUpgradesScript.SpawnWaveUpgrades();
+                //Invoke("StartRound", 3f);
                 
             }
         }
     }
 
-    void StartRound()
+    public void StartRound()
     {
         StartCoroutine(BeginRound());
         objectSpawnerScript.DestroyObjects();

@@ -13,7 +13,10 @@ public class Projectile : MonoBehaviour
 
 
 
-    // public Health enemyHealth;
+    void Start()
+    {
+        projectileDamage = PlayerPrefs.GetFloat("projectileDamageAmount") + PlayerPrefs.GetFloat("temporaryProjectileDamageAmount");
+    }
 
     void OnCollisionEnter(Collision other)
     {

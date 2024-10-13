@@ -9,7 +9,7 @@ public class PlayerMovement : MonoBehaviour
     public float playerMovementSpeed;
 
     [Header("PlayerComponent")]
-    [SerializeField] Rigidbody playerRb;
+    public Rigidbody playerRb;
     [SerializeField] FixedJoystick movementJoystick;
     [SerializeField] FixedJoystick aimingJoystick;
     private Vector3 lastAimDirection;
@@ -24,8 +24,13 @@ public class PlayerMovement : MonoBehaviour
     }
 
     // Update is called once per frame
+    void Update()
+    {
+        playerMovementSpeed = PlayerPrefs.GetFloat("movementSpeedAmount") + PlayerPrefs.GetFloat("temporaryMovementSpeedAmount");
+    }
     void FixedUpdate()
     {
+        
         if (GameManager.instance.canMove == true)
         {
             // Handle movement
