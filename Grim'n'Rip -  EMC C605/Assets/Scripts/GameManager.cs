@@ -16,14 +16,15 @@ public class GameManager : MonoBehaviour
     public EnemySpawner enemySpawnerScript;
     public PlayerMovement playerMovementScript;
     public PlayerStats playerStatsScipt;
-    public PlayerValues playerValuesScript;
     public WaveUpgrades waveUpgradesScript;
+    public Weapon weaponScript;
     
     [Header("Game Properties")]
     public bool isDoneSpawningObjects;
     public bool canShoot;
     public bool canMove;
     public bool canStartWave;
+
     [Header("Player Properties")]
     public GameObject playerObj;
 
@@ -49,6 +50,19 @@ public class GameManager : MonoBehaviour
     [SerializeField] TextMeshProUGUI healthValueTxt;
     public bool isHealthRemainingFill;
     public float healthValue;
+    [SerializeField] GameObject gameOverPanelObj;
+    [SerializeField] TextMeshProUGUI highScoreTxt;
+    [SerializeField] TextMeshProUGUI currentScoreTxt;
+    [SerializeField] TextMeshProUGUI coinsEarnedTxt;
+    public bool isCalculateCoinsEarned;
+
+    [Header("DEV Properties")]
+    [SerializeField] TextMeshProUGUI devMovementSpeedTxt;
+    [SerializeField] TextMeshProUGUI devLuckTxt;
+    [SerializeField] TextMeshProUGUI devDodgeRateTxt;
+    [SerializeField] TextMeshProUGUI devProjectileDamageTxt;
+    [SerializeField] TextMeshProUGUI devProjectileSpeedTxt;
+    [SerializeField] TextMeshProUGUI devWeaponFireRateTxt;
 
 
 
@@ -61,7 +75,10 @@ public class GameManager : MonoBehaviour
         else
         {
             instance = this;
-        }  
+        }
+
+        // Display the current high score at the start
+        Debug.Log("High Score: " + PlayerPrefs.GetFloat("HighScore", 0));
     }
 
     void Start()
@@ -73,11 +90,11 @@ public class GameManager : MonoBehaviour
         playerStatsScipt = FindObjectOfType<PlayerStats>();
         playerMovementScript = FindObjectOfType<PlayerMovement>();
         waveUpgradesScript = FindObjectOfType<WaveUpgrades>();
+        weaponScript = FindObjectOfType<Weapon>();
         isEnemiesRemainingFill = true;
-        PlayerPrefs.SetFloat("temporaryProjectileDamageAmount", 0);
-        PlayerPrefs.SetFloat("temporaryMovementSpeedAmount", 0);
-        PlayerPrefs.SetFloat("temporaryProjectileDamageAmount", 0);
+        ResetTemporaryUpgrades();
         // Start the round
+        Time.timeScale = 1;
         StartCoroutine(BeginRound());
     }
 
@@ -140,6 +157,19 @@ public class GameManager : MonoBehaviour
                 
             }
         }
+
+        if (playerStatsScipt.health <= 0)
+        {
+            PlayerDefeat();
+        }
+
+        // Developer View
+        devMovementSpeedTxt.text = playerStatsScipt.movementSpeed.ToString();
+        devLuckTxt.text = playerStatsScipt.luck.ToString();
+        devDodgeRateTxt.text = playerStatsScipt.dodgeRate.ToString();
+        devProjectileDamageTxt.text = playerStatsScipt.projectileDamage.ToString();
+        devProjectileSpeedTxt.text = playerStatsScipt.projectileSpeed.ToString();
+        devWeaponFireRateTxt.text = playerStatsScipt.fireRate.ToString();
     }
 
     public void StartRound()
@@ -151,8 +181,6 @@ public class GameManager : MonoBehaviour
 
     IEnumerator BeginRound()
     {
-        
-
         isRoundStart = true;
         canMove = false;
         canShoot = false; 
@@ -173,5 +201,59 @@ public class GameManager : MonoBehaviour
     void RoundResetBool()
     {
         isRoundResetting = false;
+    }
+
+    void ResetTemporaryUpgrades()
+    {
+        PlayerPrefs.SetFloat("temporaryMovementSpeedAmount", 0);
+        PlayerPrefs.SetFloat("temporaryLuckRateAmount", 0);
+        PlayerPrefs.SetFloat("temporaryDodgeRateAmount", 0);
+        PlayerPrefs.SetFloat("temporaryProjectileDamageAmount", 0);
+        PlayerPrefs.SetFloat("temporaryProjectileSpeedAmount", 0);
+        PlayerPrefs.SetFloat("temporaryWeaponFireRateAmount", 0);
+    }
+
+    public void PlayerDefeat()
+    {
+        Time.timeScale = 0;
+        gameOverPanelObj.SetActive(true);
+
+        // Display the current score
+        currentScoreTxt.text = scoreValue.ToString();
+
+        // Check for and display the correct high score
+        CheckHighScore();
+        highScoreTxt.text = PlayerPrefs.GetFloat("highScore", 0).ToString();  // Use GetFloat for high score
+
+        if (isCalculateCoinsEarned == false)
+        {
+            CalculateCoinsEarned();
+            isCalculateCoinsEarned = true;
+        }
+    }
+
+    public void CheckHighScore()
+    {
+        float highScore = PlayerPrefs.GetFloat("highScore", 0);  // Get the stored high score as a float, or 0 if not set
+
+        // If the current score is greater than the saved high score, update it
+        if (scoreValue > highScore)
+        {
+            PlayerPrefs.SetFloat("highScore", scoreValue);  // Save the new high score as a float
+            PlayerPrefs.Save();  // Optional, to force save to disk
+            Debug.Log("New High Score: " + scoreValue);
+        }
+    }
+
+    public void CalculateCoinsEarned()
+    {
+        int coinsEarned = (int)(scoreValue / 50);
+        int totalCoins = PlayerPrefs.GetInt("totalCoins", 0);
+        PlayerPrefs.Save();
+
+        totalCoins += coinsEarned;
+
+        PlayerPrefs.SetInt("totalCoins", totalCoins);
+        coinsEarnedTxt.text = coinsEarned.ToString();
     }
 }

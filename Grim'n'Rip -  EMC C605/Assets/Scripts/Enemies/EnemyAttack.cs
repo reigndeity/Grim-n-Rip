@@ -30,7 +30,8 @@ public class EnemyAttack : MonoBehaviour
     }
     public void CalculateHitChance(float damageAmount)
     {
-        enemyHitChance = enemyStatsScript.hitChance - playerStatsScript.dodgeRate;
+        float playerDodgeRate = playerStatsScript.dodgeRate;
+        enemyHitChance = enemyStatsScript.hitChance - playerDodgeRate;
         float hitChance = Random.Range(1f, 101f);
         if (hitChance <= enemyHitChance)
         {

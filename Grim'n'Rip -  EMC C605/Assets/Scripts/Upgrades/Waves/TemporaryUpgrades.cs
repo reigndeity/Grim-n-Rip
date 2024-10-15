@@ -29,25 +29,56 @@ public class TemporaryUpgrades : MonoBehaviour
 
     public void MovementSpeedUpgrade()
     {
-        float baseMovementSpeed = PlayerPrefs.GetFloat("movementSpeedAmount");
+        float movementSpeedUpgrade = 1;
         float temporaryMovementSpeed = PlayerPrefs.GetFloat("temporaryMovementSpeedAmount");
-        temporaryMovementSpeed += baseMovementSpeed * 0.1f;
+        temporaryMovementSpeed += movementSpeedUpgrade * 0.1f;
         PlayerPrefs.SetFloat("temporaryMovementSpeedAmount", temporaryMovementSpeed);
         StartTheRound();
     }
-
-    public void DamageUpgradeWave()
+    public void DodgeRateUpgradeWave()
     {
-        float baseDamage = PlayerPrefs.GetFloat("projectileDamageAmount");
-        float damageUpgrade = baseDamage * 0.1f;
-        float temporaryDamage = PlayerPrefs.GetFloat("temporaryProjectileDamageAmount");
-        temporaryDamage += damageUpgrade;
-        PlayerPrefs.SetFloat("temporaryProjectileDamageAmount", temporaryDamage);
+        float dodgeRateUpgrade = 2.75f;
+        float temporaryDodgeRate = PlayerPrefs.GetFloat("temporaryDodgeRateAmount");
+        temporaryDodgeRate += dodgeRateUpgrade;
+        PlayerPrefs.SetFloat("temporaryDodgeRateAmount", temporaryDodgeRate);
+        StartTheRound();
+    }
+
+    public void LuckUpgradeWave()
+    {
+        float luckUpgrade = 1.5f;
+        float temporaryLuck = PlayerPrefs.GetFloat("temporaryLuckRateAmount");
+        temporaryLuck += luckUpgrade;
+        PlayerPrefs.SetFloat("temporaryLuckRateAmount", temporaryLuck);
         StartTheRound();
     }
 
 
-
+    public void ProjectileDamageUpgradeWave()
+    {
+        
+        float projectileDamageUpgrade = 15;
+        float temporaryProjectileDamage = PlayerPrefs.GetFloat("temporaryProjectileDamageAmount");
+        temporaryProjectileDamage += projectileDamageUpgrade;
+        PlayerPrefs.SetFloat("temporaryProjectileDamageAmount", temporaryProjectileDamage);
+        StartTheRound();
+    }
+    public void ProjectileSpeedUpgradeWave()
+    {
+        float projectileSpeedUpgrade = 3f;
+        float temporaryProjectileSpeed = PlayerPrefs.GetFloat("temporaryProjectileSpeedAmount");
+        temporaryProjectileSpeed += projectileSpeedUpgrade;
+        PlayerPrefs.SetFloat("temporaryProjectileSpeedAmount", temporaryProjectileSpeed);
+        StartTheRound();
+    }
+    public void WeaponFireRateUpgradeWave()
+    {
+        float weaponFireRateUpgrade = 0.1f;
+        float temporaryWeaponFireRate = PlayerPrefs.GetFloat("temporaryWeaponFireRateAmount");
+        temporaryWeaponFireRate -= weaponFireRateUpgrade;
+        PlayerPrefs.SetFloat("temporaryWeaponFireRateAmount", temporaryWeaponFireRate);
+        StartTheRound();
+    }
 
     void StartTheRound()
     {

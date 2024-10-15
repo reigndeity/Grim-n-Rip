@@ -4,18 +4,15 @@ using UnityEngine;
 
 public class Projectile : MonoBehaviour
 {
-    [Header("Upgradables")]
-    [SerializeField] float projectileDamage;
 
     [Header("Script References")]
     [SerializeField] EnemyValues enemyValuesScript;
+    [SerializeField] Weapon weaponScript;
     
 
-
-
-    void Start()
+    void Awake()
     {
-        projectileDamage = PlayerPrefs.GetFloat("projectileDamageAmount") + PlayerPrefs.GetFloat("temporaryProjectileDamageAmount");
+        weaponScript = FindObjectOfType<Weapon>();
     }
 
     void OnCollisionEnter(Collision other)
@@ -23,7 +20,7 @@ public class Projectile : MonoBehaviour
         if (other.gameObject.CompareTag("Enemy"))
         {
             EnemyValues enemyValuesScript = other.gameObject.GetComponent<EnemyValues>();
-            enemyValuesScript.TakeDamage(projectileDamage);
+            enemyValuesScript.TakeDamage(weaponScript.projectileDamage);
             Destroy(gameObject); // Destroy Bullet Upon Collision With Enemy
         }
 

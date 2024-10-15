@@ -21,6 +21,4 @@ public class PlayerValues : MonoBehaviour
         playerStatsScript.fireRate = PlayerPrefs.GetFloat("weaponFireRateAmount");
     }
 
-    
-
 }
