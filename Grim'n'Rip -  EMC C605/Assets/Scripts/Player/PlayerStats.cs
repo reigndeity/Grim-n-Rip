@@ -22,6 +22,5 @@ public class PlayerStats : MonoBehaviour
         projectileSpeed =  Mathf.Ceil(PlayerPrefs.GetFloat("projectileSpeedAmount") + PlayerPrefs.GetFloat("temporaryProjectileSpeedAmount"));
         fireRate = PlayerPrefs.GetFloat("weaponFireRateAmount") + PlayerPrefs.GetFloat("temporaryWeaponFireRateAmount");
         projectileDamage = Mathf.Ceil(PlayerPrefs.GetFloat("projectileDamageAmount") + PlayerPrefs.GetFloat("temporaryProjectileDamageAmount"));
-
     }
 }

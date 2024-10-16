@@ -2650,7 +2650,7 @@ Transform:
   m_GameObject: {fileID: 963194225}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0.9650037, z: -0.96500367}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2875,6 +2875,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 378dc75ed4212304ca457351f1a69afc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  shopPanelObj: {fileID: 0}
 --- !u!4 &1060435115
 Transform:
   m_ObjectHideFlags: 0
@@ -6447,6 +6448,7 @@ MonoBehaviour:
   highScoreTxt: {fileID: 1559106778}
   currentScoreTxt: {fileID: 904405512}
   coinsEarnedTxt: {fileID: 1391608205}
+  isCalculateCoinsEarned: 0
   devMovementSpeedTxt: {fileID: 1626558576}
   devLuckTxt: {fileID: 1964703562}
   devDodgeRateTxt: {fileID: 1548129319}
@@ -7195,15 +7197,15 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1849669877}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.5735764, y: 0, z: 0, w: 0.8191521}
-  m_LocalPosition: {x: 0, y: 12.6763115, z: -4.1042433}
+  m_LocalRotation: {x: 0.38268343, y: 0, z: 0, w: 0.92387956}
+  m_LocalPosition: {x: 0, y: 9.885281, z: -8.485281}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 150300021}
   - {fileID: 963194228}
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 70, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 45, y: 0, z: 0}
 --- !u!114 &1849669880
 MonoBehaviour:
   m_ObjectHideFlags: 0
