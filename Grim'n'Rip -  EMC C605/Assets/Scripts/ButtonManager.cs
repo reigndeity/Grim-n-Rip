@@ -6,6 +6,8 @@ public class ButtonManager : MonoBehaviour
 {
     [Header("Main Menu Properties")]
     [SerializeField] GameObject shopPanelObj;
+    [Header("Game Menu Properties")]
+    [SerializeField] GameObject pausePanelObj;
     // MAIN MENU SCENE ==================================================================================
     public void OnClickStart(string sceneName)
     {
@@ -24,11 +26,27 @@ public class ButtonManager : MonoBehaviour
 
 
     // GAME SCENE ==================================================================================
-    public void OnClickRestart(string sceneName)
+    public void OnClickGameOverRestart(string sceneName)
     {
         SceneManager.LoadScene(sceneName);
     }
-    public void OnClickMenu(string sceneName)
+    public void OnClickGameOverMenu(string sceneName)
+    {
+        SceneManager.LoadScene(sceneName);
+    }
+
+    public void OnClickPause()
+    {
+        Time.timeScale = 0;
+        pausePanelObj.SetActive(true);
+    }
+    public void OnClickPauseResume()
+    {
+        Time.timeScale = 1;
+        pausePanelObj.SetActive(false);
+    }
+
+    public void OnClickPauseMenu(string sceneName)
     {
         SceneManager.LoadScene(sceneName);
     }

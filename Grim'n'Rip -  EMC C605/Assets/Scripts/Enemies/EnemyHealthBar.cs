@@ -9,9 +9,12 @@ public class EnemyHealthBar : MonoBehaviour
     [SerializeField] EnemyStats enemyStatsScript;
     [SerializeField] Camera cameraMain;
     [SerializeField] Transform target;
+    [SerializeField] Vector3 offset;
 
     private bool isEnemyHealthFill;
     private float enemyHealthValue;
+
+    //public bool isEnemyTypeRange;
 
     void Awake()
     {
@@ -31,5 +34,7 @@ public class EnemyHealthBar : MonoBehaviour
         slider.value = enemyStatsScript.health / enemyHealthValue;
 
         transform.rotation = cameraMain.transform.rotation;
+        transform.position = target.position + offset;
+        
     }
 }

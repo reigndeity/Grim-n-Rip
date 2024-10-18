@@ -1,0 +1,320 @@
+fileFormatVersion: 2
+guid: dd0f756ca3ff41c4f8b098352634293a
+ModelImporter:
+  serializedVersion: 22200
+  internalIDToNameTable: []
+  externalObjects: {}
+  materials:
+    materialImportMode: 2
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    removeConstantScaleCurves: 0
+    motionNodeName: 
+    rigImportErrors: "Invalid Avatar Rig Configuration. Missing or invalid transform:\n\tRequired
+      human bone 'RightUpperLeg' not found\n"
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 3
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 0
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    sortHierarchyByName: 1
+    importPhysicalCameras: 1
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    nodeNameCollisionStrategy: 1
+    fileIdsGeneration: 2
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    keepQuads: 0
+    weldVertices: 1
+    bakeAxisConversion: 0
+    preserveHierarchy: 0
+    skinWeightsMode: 0
+    maxBonesPerVertex: 4
+    minBoneWeight: 0.001
+    optimizeBones: 1
+    meshOptimizationFlags: -1
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVMarginMethod: 1
+    secondaryUVMinLightmapResolution: 40
+    secondaryUVMinObjectScale: 1
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+    strictVertexDataChecks: 0
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  referencedClips: []
+  importAnimation: 1
+  humanDescription:
+    serializedVersion: 3
+    human: []
+    skeleton:
+    - name: Blaze_LowPoly_Animated(Clone)
+      parentName: 
+      position: {x: 0, y: 0, z: 0}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: LOW POLY
+      parentName: Blaze_LowPoly_Animated(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 24.236143, y: 24.236143, z: 24.236143}
+    - name: torso
+      parentName: LOW POLY
+      position: {x: -0.0017254907, y: -0.0015971136, z: 0.05551196}
+      rotation: {x: 0.70680207, y: -0.020761842, z: 0.02076182, w: 0.70680183}
+      scale: {x: 1.0000001, y: 0.99999976, z: 0.99999946}
+    - name: lower body
+      parentName: torso
+      position: {x: 0.00008324042, y: -0.00022449787, z: 0.0007940737}
+      rotation: {x: 0.7557204, y: -0.08112073, z: 0.64907455, w: 0.03175569}
+      scale: {x: 0.99999744, y: 0.9999998, z: 0.9999998}
+    - name: lower body_end
+      parentName: lower body
+      position: {x: -0, y: 0.013264868, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: head
+      parentName: torso
+      position: {x: -2.6077032e-10, y: 0.01309157, z: -4.8023313e-10}
+      rotation: {x: 0.02597278, y: -0.0007012793, z: -0.026990062, w: 0.999298}
+      scale: {x: 1.0000001, y: 0.9999998, z: 1}
+    - name: upper head
+      parentName: head
+      position: {x: -0.0000000011851079, y: 0.02215493, z: -9.546056e-11}
+      rotation: {x: 0.21737075, y: 0.00036825237, z: 0.001797367, w: 0.97608745}
+      scale: {x: 0.9999997, y: 1.0000001, z: 1.0000001}
+    - name: upper head_end
+      parentName: upper head
+      position: {x: -0, y: 0.0096594645, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: upper mouth
+      parentName: torso
+      position: {x: 0.0005069265, y: 0.020128902, z: 0.008685446}
+      rotation: {x: 0.68436104, y: -0.71947134, z: -0.08081322, w: -0.086488314}
+      scale: {x: 0.9999999, y: 0.9999998, z: 0.9999971}
+    - name: upper mouth_end
+      parentName: upper mouth
+      position: {x: -0, y: 0.0034113014, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: bottom mouth
+      parentName: torso
+      position: {x: -0.000019893645, y: 0.012753228, z: 0.009344465}
+      rotation: {x: 0.12062919, y: -0.001083605, z: -0.028848646, w: 0.9922778}
+      scale: {x: 0.99999994, y: 1, z: 1}
+    - name: bottom mouth_end
+      parentName: bottom mouth
+      position: {x: -0, y: 0.0036902293, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: side tooth-bottom1
+      parentName: torso
+      position: {x: 0.010507281, y: 0.0017832335, z: 0.0022642892}
+      rotation: {x: 0.085270315, y: 0.89149874, z: 0.004077524, w: -0.4449072}
+      scale: {x: 0.9999999, y: 1.0000001, z: 0.9999998}
+    - name: side tooth-bottom1_end
+      parentName: side tooth-bottom1
+      position: {x: -0, y: 0.0018514162, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: side tooth-bottom2
+      parentName: torso
+      position: {x: 0.009209798, y: 0.0032679634, z: 0.0038277598}
+      rotation: {x: 0.26996055, y: 0.87510055, z: -0.0009947419, w: -0.40164587}
+      scale: {x: 1, y: 1.0000001, z: 0.9999999}
+    - name: side tooth-bottom2_end
+      parentName: side tooth-bottom2
+      position: {x: -0, y: 0.0017400169, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: side tooth-right1
+      parentName: torso
+      position: {x: 0.008848851, y: 0.006107052, z: 0.005381916}
+      rotation: {x: 0.6455493, y: 0.73029447, z: 0.059782587, w: -0.21531904}
+      scale: {x: 1.0000001, y: 1.0000004, z: 1.0000001}
+    - name: side tooth-right1_end
+      parentName: side tooth-right1
+      position: {x: -0, y: 0.0017400157, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: side tooth-right
+      parentName: torso
+      position: {x: 0.009031656, y: 0.009216026, z: 0.006087653}
+      rotation: {x: 0.5762027, y: 0.61718833, z: -0.38043663, w: -0.37727565}
+      scale: {x: 1.0000001, y: 1, z: 1.0000002}
+    - name: side tooth-right_end
+      parentName: side tooth-right
+      position: {x: -0, y: 0.0017400165, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: side tooth-top2
+      parentName: torso
+      position: {x: 0.0107361935, y: 0.012704008, z: 0.004950529}
+      rotation: {x: 0.807747, y: 0.19073296, z: -0.5247326, w: -0.18926552}
+      scale: {x: 0.99999976, y: 0.9999997, z: 0.9999997}
+    - name: side tooth-top2_end
+      parentName: side tooth-top2
+      position: {x: -0, y: 0.001740022, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: side tooth-top1
+      parentName: torso
+      position: {x: 0.011884784, y: 0.013637189, z: 0.0031631854}
+      rotation: {x: 0.85292923, y: 0.0837147, z: -0.5056026, w: -0.099345885}
+      scale: {x: 1.0000002, y: 1, z: 1.0000014}
+    - name: side tooth-top1_end
+      parentName: side tooth-top1
+      position: {x: -0, y: 0.00174002, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: side tooth-top
+      parentName: torso
+      position: {x: 0.013003796, y: 0.014009174, z: 0.00063186494}
+      rotation: {x: 0.8817692, y: -0.05782018, z: -0.46779624, w: 0.017512018}
+      scale: {x: 0.9999922, y: 0.99999994, z: 0.9999928}
+    - name: side tooth-top_end
+      parentName: side tooth-top
+      position: {x: -0, y: 0.001740013, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: side tooth-top3
+      parentName: torso
+      position: {x: 0.013645373, y: 0.013362409, z: -0.0024558406}
+      rotation: {x: 0.8387425, y: -0.21625851, z: -0.44967872, w: 0.21801898}
+      scale: {x: 1.0000001, y: 1.0000002, z: 1.0000006}
+    - name: side tooth-top3_end
+      parentName: side tooth-top3
+      position: {x: -0, y: 0.0017400092, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: side tooth-left
+      parentName: torso
+      position: {x: 0.013126557, y: 0.009754064, z: -0.004149952}
+      rotation: {x: 0.619766, y: -0.36672807, z: -0.414831, w: 0.55616176}
+      scale: {x: 0.9999999, y: 1.0000002, z: 1.0000001}
+    - name: side tooth-left_end
+      parentName: side tooth-left
+      position: {x: -0, y: 0.0017400092, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: side tooth-left1
+      parentName: torso
+      position: {x: 0.012195029, y: 0.0062594167, z: -0.0038208158}
+      rotation: {x: 0.40374434, y: -0.4444147, z: -0.32482257, w: 0.7307369}
+      scale: {x: 0.9999999, y: 1, z: 0.9999998}
+    - name: side tooth-left1_end
+      parentName: side tooth-left1
+      position: {x: -0, y: 0.0017400091, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: side tooth-bottom3
+      parentName: torso
+      position: {x: 0.0120262215, y: 0.0033885045, z: -0.0018632029}
+      rotation: {x: 0.11388708, y: -0.4873684, z: -0.14910102, w: 0.8528017}
+      scale: {x: 0.9999999, y: 0.9999998, z: 1}
+    - name: side tooth-bottom3_end
+      parentName: side tooth-bottom3
+      position: {x: -0, y: 0.0017400121, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: side tooth-bottom
+      parentName: torso
+      position: {x: 0.011475815, y: 0.0017369146, z: 0.00025473238}
+      rotation: {x: 0.043398798, y: 0.89366996, z: 0.08887985, w: -0.4376882}
+      scale: {x: 1, y: 0.99999994, z: 1.0000001}
+    - name: side tooth-bottom_end
+      parentName: side tooth-bottom
+      position: {x: -0, y: 0.0018514121, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: ROOT BONE
+      parentName: LOW POLY
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071067}
+      scale: {x: 1.0000001, y: 0.9999999, z: 0.9999999}
+    - name: inner tail
+      parentName: ROOT BONE
+      position: {x: -0.0010918129, y: 0.042470712, z: -0.0005001071}
+      rotation: {x: 0.62544596, y: -0.042467862, z: 0.7790104, w: 0.01251328}
+      scale: {x: 1.0000103, y: 1.0000006, z: 1.0000045}
+    - name: mid tail
+      parentName: inner tail
+      position: {x: 0.0000000012293457, y: 0.0045114337, z: 9.685754e-10}
+      rotation: {x: 0.06188223, y: 0.98574775, z: 0.10078055, w: 0.119646735}
+      scale: {x: 0.99999934, y: 1.0000019, z: 0.9999986}
+    - name: lower tail
+      parentName: mid tail
+      position: {x: -9.150244e-10, y: 0.00438405, z: 8.9406965e-10}
+      rotation: {x: -0.09346913, y: -0.96648276, z: -0.03366674, w: -0.23673028}
+      scale: {x: 1, y: 1.0000013, z: 0.9999989}
+    - name: lower tail_end
+      parentName: lower tail
+      position: {x: -0, y: 0.0046168026, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: blaze-model
+      parentName: Blaze_LowPoly_Animated(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    globalScale: 1
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 1
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  autoGenerateAvatarMappingIfUnspecified: 1
+  animationType: 2
+  humanoidOversampling: 1
+  avatarSetup: 1
+  addHumanoidExtraRootOnlyWhenUsingAvatar: 1
+  importBlendShapeDeformPercent: 1
+  remapMaterialsIfMaterialImportModeIsNone: 0
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

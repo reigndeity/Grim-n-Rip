@@ -5,7 +5,6 @@ using TMPro;
 using UnityEngine.UI;
 
 
-
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
@@ -27,6 +26,8 @@ public class GameManager : MonoBehaviour
 
     [Header("Player Properties")]
     public GameObject playerObj;
+    [SerializeField] Transform floatingTextPos;
+    [SerializeField] GameObject floatingTextPrefab;
 
     [Header("Wave Properties")]
     [SerializeField] TextMeshProUGUI waveTxt;
@@ -255,5 +256,10 @@ public class GameManager : MonoBehaviour
 
         PlayerPrefs.SetInt("totalCoins", totalCoins);
         coinsEarnedTxt.text = coinsEarned.ToString();
+    }
+
+    public void SpawnFloatingText()
+    {
+        Instantiate(floatingTextPrefab,floatingTextPos);
     }
 }

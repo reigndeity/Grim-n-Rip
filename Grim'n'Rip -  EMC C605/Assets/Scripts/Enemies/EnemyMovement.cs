@@ -8,10 +8,15 @@ public class EnemyMovement : MonoBehaviour
     [Header("Script Reference")]
     public EnemyStats enemyStatsScript;
     public EnemyValues enemyValuesScript;
+    public Animator enemyAnimator;
+    public EnemyProjectileType enemyProjectileTypeScript;
 
     [Header("Enemy Components")]
     [SerializeField] NavMeshAgent enemyAgent;
     public Transform playerTarget;
+
+    [Header("EnemyType")]
+    [SerializeField] int enemyType;
 
     [Header("Melee Type Enemy")]
     [SerializeField] bool isAttacking;
@@ -20,6 +25,7 @@ public class EnemyMovement : MonoBehaviour
 
     [Header("Projectile Type Enemy")]
     [SerializeField] bool isProjectileType;
+    //[SerializeField] Transform enemyRotation; // only for the fucked up model of the projectile
 
     
 
@@ -29,6 +35,10 @@ public class EnemyMovement : MonoBehaviour
         playerTarget = GameObject.FindWithTag("Player").transform; // finds the player tag within hierarchy
         enemyStatsScript = GetComponent<EnemyStats>();
         enemyValuesScript = GetComponent<EnemyValues>();
+        enemyAnimator = GetComponent<Animator>();
+        enemyProjectileTypeScript = GetComponent<EnemyProjectileType>();
+
+        
     }
     void Update()
     {
@@ -41,58 +51,123 @@ public class EnemyMovement : MonoBehaviour
         if (isProjectileType == false)
         {
             float distanceToPlayer = Vector3.Distance(transform.position, playerTarget.position);
-            if (distanceToPlayer < 2.0f)
-            {
-                if (isAttacking == false)
+                
+                if (enemyType == 0)
                 {
-                    StartCoroutine(MeleeAttack());
+                    // Make the enemy look at the player target
+                    Vector3 directionToPlayer = playerTarget.position - transform.position;
+                    directionToPlayer.y = 0; // Keep the rotation only on the Y-axis
+                    Quaternion lookRotation = Quaternion.LookRotation(directionToPlayer);
+                    transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * 5f); // Smooth rotation
+
+                    if (distanceToPlayer < 1.5f)
+                    {
+                        enemyAgent.velocity = Vector3.zero;
+                        if (isAttacking == false)
+                        {
+                            StartCoroutine(BlazeAttack());
+                        }
+                    }
+                    if (distanceToPlayer >= 1.5f)
+                    {
+                        isPlayerWithinArea = false;
+                        if (isPlayerWithinArea == false && isAttacking == false)
+                        {
+                            enemyAgent.SetDestination(playerTarget.position);
+                            enemyAnimator.SetInteger("animState", 0);
+                        }
+                    }
                 }
-            }
-            // Player left the zombie's attack range
-            if (distanceToPlayer >= 2)
-            {
-                isPlayerWithinArea = false;
-                if (isPlayerWithinArea == false && isAttacking ==false)
+
+                if (enemyType == 2)
                 {
-                    enemyAgent.SetDestination(playerTarget.position);
+                    // Make the enemy look at the player target
+                    Vector3 directionToPlayer = playerTarget.position - transform.position;
+                    directionToPlayer.y = 0; // Keep the rotation only on the Y-axis
+                    Quaternion lookRotation = Quaternion.LookRotation(directionToPlayer);
+                    transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * 5f); // Smooth rotation
+
+                    if (distanceToPlayer < 2.0f)
+                    {
+                        enemyAgent.velocity = Vector3.zero;
+                        if (isAttacking == false)
+                        {
+                            StartCoroutine(VainedAttack());
+                        }
+                    }
+                    if (distanceToPlayer >= 2.0f)
+                    {
+                        isPlayerWithinArea = false;
+                        if (isPlayerWithinArea == false && isAttacking == false)
+                        {
+                            enemyAgent.SetDestination(playerTarget.position);
+                            enemyAnimator.SetInteger("animState", 0);
+                        }
+                    }
                 }
-            }  
+             
         }
         // Range Type Enemy Movement
         else
         {
+            // Calculate direction towards the player
+            Vector3 directionToPlayer = playerTarget.position - transform.position;
+            directionToPlayer.y = 0; // Keep the rotation on the Y-axis only
+
+            // Rotate towards the player
+            Quaternion lookRotation = Quaternion.LookRotation(directionToPlayer);
+            transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * 5f); // Smooth rotation
+
+            // Adjust the enemy's rotation to keep 90 degrees on X-axis cuz this model is shit
+            // Transform enemyRotation = transform;
+            // enemyRotation.eulerAngles = new Vector3(90f, enemyRotation.eulerAngles.y, enemyRotation.eulerAngles.z);
+
             float distanceToPlayer = Vector3.Distance(transform.position, playerTarget.position);
-            if (distanceToPlayer < 10.0f)
+            
+            if (distanceToPlayer < 8)
             {
                 Debug.Log("Enemy Attacking Area Reached!");
-                
+                enemyAgent.velocity = Vector3.zero;
                 if (isAttacking == false)
                 {
                     StartCoroutine(RangeAttack());
                 }
-
             }
-            // Player left the zombie's attack range
-            if (distanceToPlayer >= 10)
+
+            if (distanceToPlayer >= 8)
             {
                 isPlayerWithinArea = false;
-                if (isPlayerWithinArea == false && isAttacking ==false)
+                if (isPlayerWithinArea == false && isAttacking == false)
                 {
                     enemyAgent.SetDestination(playerTarget.position);
                 }
-            }  
+            }
         }
 
     }
 
-    IEnumerator MeleeAttack()
+    IEnumerator BlazeAttack()
     {
         isAttacking = true;
         enemyAgent.ResetPath();
+        enemyAnimator.SetInteger("animState", 1);
+        yield return new WaitForSeconds(1f);
         meleeAttack.SetActive(true);
         yield return new WaitForSeconds(0.1f);
         meleeAttack.SetActive(false);
-        yield return new WaitForSeconds(2f); // Adjust base on animation
+        yield return new WaitForSeconds(0.07f); // Adjust base on animation
+        isAttacking = false;
+    }
+    IEnumerator VainedAttack()
+    {
+        isAttacking = true;
+        enemyAgent.ResetPath();
+        enemyAnimator.SetInteger("animState", 1);
+        yield return new WaitForSeconds(1f);
+        meleeAttack.SetActive(true);
+        yield return new WaitForSeconds(0.1f);
+        meleeAttack.SetActive(false);
+        yield return new WaitForSeconds(0.75f); // Adjust base on animation
         isAttacking = false;
     }
 
@@ -100,7 +175,9 @@ public class EnemyMovement : MonoBehaviour
     {
         isAttacking = true;
         enemyAgent.ResetPath();
-        yield return new WaitForSeconds(2f); // Adjust base on animation
+        yield return new WaitForSeconds(1f); // Adjust base on animation
+        enemyProjectileTypeScript.FireProjectile();
+        yield return new WaitForSeconds(1f); // Adjust base on animation
         isAttacking = false;
     }
 }

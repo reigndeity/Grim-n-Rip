@@ -4,7 +4,21 @@ using UnityEngine;
 
 public class DeveloperMode : MonoBehaviour
 {
+    [Header("Debug Properties")]
+    [SerializeField] GameObject debugPanel;
     
+    void Update()
+    {
+        if (Input.GetKey(KeyCode.Tab))
+        {
+            debugPanel.SetActive(true);
+        }
+        else
+        {
+            debugPanel.SetActive(false);
+        }
+        
+    }
     public void ResetPlayerStats()
     {
         PlayerPrefs.SetInt("isFirstBoot", 0);
@@ -16,11 +30,23 @@ public class DeveloperMode : MonoBehaviour
         PlayerPrefs.SetFloat("projectileDamageAmount", 30f); 
         PlayerPrefs.SetFloat("projectileSpeedAmount", 10f);
         PlayerPrefs.SetFloat("weaponFireRateAmount", 1.5f); //1f orig
+
+        
     }
 
     public void ResetShopPrices()
     {
-        PlayerPrefs.SetInt("healthUpgradeCost", 0);
+        PlayerPrefs.SetInt("healthUpgradeCost", 20);
+        PlayerPrefs.SetInt("movementSpeedUpgradeCost", 20);
+        PlayerPrefs.SetInt("dodgeRateUpgradeCost", 20);
+        PlayerPrefs.SetInt("luckRateUpgradeCost", 20);
+        PlayerPrefs.SetInt("projectileDamageUpgradeCost", 20);
+        PlayerPrefs.SetInt("projectileSpeedUpgradeCost", 20);
+        PlayerPrefs.SetInt("weaponFireRateUpgradeCost", 20);
+    }
+    public void ResetMoney()
+    {
+        PlayerPrefs.SetInt("totalCoins", 0);
     }
 
     public void GainMoney()
@@ -31,6 +57,6 @@ public class DeveloperMode : MonoBehaviour
         totalCoins += coinAmount;
 
         PlayerPrefs.SetInt("totalCoins", totalCoins);
-        
     }
+
 }

@@ -29,7 +29,7 @@ public class EnemyValues : MonoBehaviour
                 enemyStatsScript.health = 80f;
                 enemyStatsScript.damage = 10f;
                 enemyStatsScript.movementSpeed = 4f;
-                enemyStatsScript.hitChance = 70f;
+                enemyStatsScript.hitChance = 100f;
                 enemyStatsScript.enemyScore = 50f;               
             break;
             case 1: // SINISTER SEER Base Values
@@ -81,13 +81,13 @@ public class EnemyValues : MonoBehaviour
         }
 
         // Capping The Enemy Stats
-        if (enemyStatsScript.hitChance > 70f)
+        if (enemyStatsScript.hitChance > 100f)
         {
-            enemyStatsScript.hitChance = 70f;
+            enemyStatsScript.hitChance = 100f;
         }
-        if (enemyStatsScript.movementSpeed > 15f)
+        if (enemyStatsScript.movementSpeed > 5f)
         {
-            enemyStatsScript.movementSpeed = 15f;
+            enemyStatsScript.movementSpeed = 5;
         }
     }
 

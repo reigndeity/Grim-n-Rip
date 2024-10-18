@@ -20,9 +20,14 @@ public class ShopManager : MonoBehaviour
     [SerializeField] TextMeshProUGUI projectileDamageValueTxt;
     [SerializeField] TextMeshProUGUI projectileSpeedValueTxt;
     [SerializeField] TextMeshProUGUI weaponFireRateValueTxt;
-    // Player Cost
+    [Header("Upgrade Cost Properties")]
     [SerializeField] TextMeshProUGUI healthCostTxt;
     [SerializeField] TextMeshProUGUI movementSpeedCostTxt;
+    [SerializeField] TextMeshProUGUI dodgeRateCostTxt;
+    [SerializeField] TextMeshProUGUI luckRateCostTxt;
+    [SerializeField] TextMeshProUGUI projectileDamageCostTxt;
+    [SerializeField] TextMeshProUGUI projectileSpeedCostTxt;
+    [SerializeField] TextMeshProUGUI weaponFireRateCostTxt;
 
 
     void Start()
@@ -49,9 +54,13 @@ public class ShopManager : MonoBehaviour
 
             // Upgrade Cost
             PlayerPrefs.SetInt("healthUpgradeCost", 20);
-            PlayerPrefs.SetInt("movementSpeedCost", 15);
-
-            }
+            PlayerPrefs.SetInt("movementSpeedUpgradeCost", 20);
+            PlayerPrefs.SetInt("dodgeRateUpgradeCost", 20);
+            PlayerPrefs.SetInt("luckRateUpgradeCost", 20);
+            PlayerPrefs.SetInt("projectileDamageUpgradeCost", 20);
+            PlayerPrefs.SetInt("projectileSpeedUpgradeCost", 20);
+            PlayerPrefs.SetInt("weaponFireRateUpgradeCost", 20);
+        }
     }
 
 
@@ -69,11 +78,16 @@ public class ShopManager : MonoBehaviour
         
 
         healthCostTxt.text = PlayerPrefs.GetInt("healthUpgradeCost").ToString();
+        movementSpeedCostTxt.text = PlayerPrefs.GetInt("movementSpeedUpgradeCost").ToString();
+        dodgeRateCostTxt.text = PlayerPrefs.GetInt("dodgeRateUpgradeCost").ToString();
+        luckRateCostTxt.text = PlayerPrefs.GetInt("luckRateUpgradeCost").ToString();
+        projectileDamageCostTxt.text = PlayerPrefs.GetInt("projectileDamageUpgradeCost").ToString();
+        projectileSpeedCostTxt.text = PlayerPrefs.GetInt("projectileSpeedUpgradeCost").ToString();
+        weaponFireRateCostTxt.text = PlayerPrefs.GetInt("weaponFireRateUpgradeCost").ToString();
     }
 
     public void HealthUpgrade()
     {
-        // Retrieve the current upgrade cost from PlayerPrefs, default to 50 if not set
         int upgradeCost = PlayerPrefs.GetInt("healthUpgradeCost");
         int currentCoins = PlayerPrefs.GetInt("totalCoins");
 
@@ -90,9 +104,9 @@ public class ShopManager : MonoBehaviour
             permanentHealthUpgrade += healthUpgrade;
             PlayerPrefs.SetFloat("healthAmount", permanentHealthUpgrade);
 
-            // Increase the upgrade cost for next time and save it
-            int randomNumber = Random.Range(20, 30);
-            upgradeCost += randomNumber; // Increment the cost (adjust as needed)
+            // Increase the upgrade cost by 10% for next time and save it
+            float priceCost = 1.1f;
+            upgradeCost = Mathf.CeilToInt(upgradeCost * priceCost); 
             PlayerPrefs.SetInt("healthUpgradeCost", upgradeCost);
         }
         else
@@ -103,48 +117,154 @@ public class ShopManager : MonoBehaviour
 
     public void MovementSpeedUpgrade()
     {
-        float movementSpeedUpgrade = 1;
-        float permanentMovementSpeed = PlayerPrefs.GetFloat("movementSpeedAmount");
-        permanentMovementSpeed += movementSpeedUpgrade;
-        PlayerPrefs.SetFloat("movementSpeedAmount", permanentMovementSpeed);
+        int upgradeCost = PlayerPrefs.GetInt("movementSpeedUpgradeCost");
+        int currentCoins = PlayerPrefs.GetInt("totalCoins");
+
+        if (currentCoins >= upgradeCost)
+        {
+           
+            currentCoins -= upgradeCost;
+            PlayerPrefs.SetInt("totalCoins", currentCoins);
+
+            float movementSpeedUpgrade = 1;
+            float permanentMovementSpeed = PlayerPrefs.GetFloat("movementSpeedAmount");
+            permanentMovementSpeed += movementSpeedUpgrade;
+            PlayerPrefs.SetFloat("movementSpeedAmount", permanentMovementSpeed);
+           
+            float priceCost = 1.1f;
+            upgradeCost = Mathf.CeilToInt(upgradeCost * priceCost); 
+            PlayerPrefs.SetInt("movementSpeedUpgradeCost", upgradeCost);
+        }
+        else
+        {
+            Debug.Log("Not enough coins to upgrade movement speed!");
+        }
     }
     public void DodgeRateUpgrade()
     {
-        float dodgeRateUpgrade = 2.75f;
-        float permanentDodgeRate = PlayerPrefs.GetFloat("dodgeRateAmount");
-        permanentDodgeRate += dodgeRateUpgrade;
-        PlayerPrefs.SetFloat("dodgeRateAmount", permanentDodgeRate);
+        int upgradeCost = PlayerPrefs.GetInt("dodgeRateUpgradeCost");
+        int currentCoins = PlayerPrefs.GetInt("totalCoins");
+
+        if (currentCoins >= upgradeCost)
+        {
+           
+            currentCoins -= upgradeCost;
+            PlayerPrefs.SetInt("totalCoins", currentCoins);
+
+            float dodgeRateUpgrade = 2.75f;
+            float permanentDodgeRate = PlayerPrefs.GetFloat("dodgeRateAmount");
+            permanentDodgeRate += dodgeRateUpgrade;
+            PlayerPrefs.SetFloat("dodgeRateAmount", permanentDodgeRate);
+           
+            float priceCost = 1.1f;
+            upgradeCost = Mathf.CeilToInt(upgradeCost * priceCost); 
+            PlayerPrefs.SetInt("dodgeRateUpgradeCost", upgradeCost);
+        }
+        else
+        {
+            Debug.Log("Not enough coins to upgrade dodge rate!");
+        }
     }
 
     public void LuckUpgrade()
     {
-        float luckUpgrade = 1.5f;
-        float permanentLuck = PlayerPrefs.GetFloat("luckRateAmount");
-        permanentLuck += luckUpgrade;
-        PlayerPrefs.SetFloat("luckRateAmount", permanentLuck);
+        int upgradeCost = PlayerPrefs.GetInt("luckRateUpgradeCost");
+        int currentCoins = PlayerPrefs.GetInt("totalCoins");
+
+        if (currentCoins >= upgradeCost)
+        {
+           
+            currentCoins -= upgradeCost;
+            PlayerPrefs.SetInt("totalCoins", currentCoins);
+
+            float luckUpgrade = 1.5f;
+            float permanentLuck = PlayerPrefs.GetFloat("luckRateAmount");
+            permanentLuck += luckUpgrade;
+            PlayerPrefs.SetFloat("luckRateAmount", permanentLuck);
+           
+            float priceCost = 1.1f;
+            upgradeCost = Mathf.CeilToInt(upgradeCost * priceCost); 
+            PlayerPrefs.SetInt("luckRateUpgradeCost", upgradeCost);
+        }
+        else
+        {
+            Debug.Log("Not enough coins to upgrade luck rate!");
+        }
     }
 
 
     public void ProjectileDamageUpgrade()
     {
-        float projectileDamageUpgrade = 15;
-        float permanentProjectileDamage = PlayerPrefs.GetFloat("projectileDamageAmount");
-        permanentProjectileDamage += projectileDamageUpgrade;
-        PlayerPrefs.SetFloat("projectileDamageAmount", permanentProjectileDamage);
+        int upgradeCost = PlayerPrefs.GetInt("projectileDamageUpgradeCost");
+        int currentCoins = PlayerPrefs.GetInt("totalCoins");
+
+        if (currentCoins >= upgradeCost)
+        {
+           
+            currentCoins -= upgradeCost;
+            PlayerPrefs.SetInt("totalCoins", currentCoins);
+
+            float projectileDamageUpgrade = 15;
+            float permanentProjectileDamage = PlayerPrefs.GetFloat("projectileDamageAmount");
+            permanentProjectileDamage += projectileDamageUpgrade;
+            PlayerPrefs.SetFloat("projectileDamageAmount", permanentProjectileDamage);
+           
+            float priceCost = 1.1f;
+            upgradeCost = Mathf.CeilToInt(upgradeCost * priceCost); 
+            PlayerPrefs.SetInt("projectileDamageUpgradeCost", upgradeCost);
+        }
+        else
+        {
+            Debug.Log("Not enough coins to upgrade projectile damage!");
+        }
     }
     public void ProjectileSpeedUpgrade()
     {
-        float projectileSpeedUpgrade = 3f;
-        float permanentProjectileSpeed = PlayerPrefs.GetFloat("projectileSpeedAmount");
-        permanentProjectileSpeed += projectileSpeedUpgrade;
-        PlayerPrefs.SetFloat("projectileSpeedAmount", permanentProjectileSpeed);
+        int upgradeCost = PlayerPrefs.GetInt("projectileSpeedUpgradeCost");
+        int currentCoins = PlayerPrefs.GetInt("totalCoins");
+
+        if (currentCoins >= upgradeCost)
+        {
+            currentCoins -= upgradeCost;
+            PlayerPrefs.SetInt("totalCoins", currentCoins);
+
+            float projectileSpeedUpgrade = 3f;
+            float permanentProjectileSpeed = PlayerPrefs.GetFloat("projectileSpeedAmount");
+            permanentProjectileSpeed += projectileSpeedUpgrade;
+            PlayerPrefs.SetFloat("projectileSpeedAmount", permanentProjectileSpeed);
+           
+            float priceCost = 1.1f;
+            upgradeCost = Mathf.CeilToInt(upgradeCost * priceCost); 
+            PlayerPrefs.SetInt("projectileSpeedUpgradeCost", upgradeCost);
+        }
+        else
+        {
+            Debug.Log("Not enough coins to upgrade projectile speed!");
+        }
     }
     public void WeaponFireRateUpgrade()
     {
-        float weaponFireRateUpgrade = 0.1f;
-        float permanentWeaponFireRate = PlayerPrefs.GetFloat("weaponFireRateAmount");
-        permanentWeaponFireRate -= weaponFireRateUpgrade;
-        PlayerPrefs.SetFloat("weaponFireRateAmount", permanentWeaponFireRate);
+        int upgradeCost = PlayerPrefs.GetInt("weaponFireRateUpgradeCost");
+        int currentCoins = PlayerPrefs.GetInt("totalCoins");
+
+        if (currentCoins >= upgradeCost)
+        {
+            currentCoins -= upgradeCost;
+            PlayerPrefs.SetInt("totalCoins", currentCoins);
+
+            float weaponFireRateUpgrade = 0.1f;
+            float permanentWeaponFireRate = PlayerPrefs.GetFloat("weaponFireRateAmount");
+            permanentWeaponFireRate -= weaponFireRateUpgrade;
+            PlayerPrefs.SetFloat("weaponFireRateAmount", permanentWeaponFireRate);
+           
+            float priceCost = 1.1f;
+            upgradeCost = Mathf.CeilToInt(upgradeCost * priceCost); 
+            PlayerPrefs.SetInt("weaponFireRateUpgradeCost", upgradeCost);
+        }
+        else
+        {
+            Debug.Log("Not enough coins to upgrade weapon fire rate!");
+        }
     }
 
 

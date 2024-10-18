@@ -38,6 +38,10 @@ public class EnemyAttack : MonoBehaviour
             playerStatsScript.health -= damageAmount;
             playerStatsScript.health = Mathf.Ceil(playerStatsScript.health);
         }
+        else
+        {
+            GameManager.instance.SpawnFloatingText();
+        }
     }
 
 
