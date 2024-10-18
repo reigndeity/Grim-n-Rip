@@ -62,7 +62,7 @@ Transform:
   m_GameObject: {fileID: 799810180048237235}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.566514, y: 0, z: 3.8636608}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -154,6 +154,7 @@ MonoBehaviour:
   enemyStatsScript: {fileID: 0}
   enemyValuesScript: {fileID: 0}
   enemyAnimator: {fileID: 0}
+  enemyProjectileTypeScript: {fileID: 0}
   enemyAgent: {fileID: 0}
   playerTarget: {fileID: 0}
   enemyType: 2
@@ -299,7 +300,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 3}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!223 &6191139660101611673
@@ -380,7 +381,8 @@ MonoBehaviour:
   slider: {fileID: 5563602403442601174}
   enemyStatsScript: {fileID: 0}
   cameraMain: {fileID: 0}
-  target: {fileID: 0}
+  target: {fileID: 5167781026959224738}
+  offset: {x: 0, y: 3, z: 0}
 --- !u!1 &2324409146478373070
 GameObject:
   m_ObjectHideFlags: 0

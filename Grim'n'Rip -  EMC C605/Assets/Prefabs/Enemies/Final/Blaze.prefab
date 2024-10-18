@@ -319,7 +319,6 @@ MonoBehaviour:
   isPlayerWithinArea: 0
   meleeAttack: {fileID: 8587625165362357079}
   isProjectileType: 0
-  enemyRotation: {fileID: 0}
 --- !u!114 &3301685979737918622
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1505,7 +1504,6 @@ MonoBehaviour:
   cameraMain: {fileID: 0}
   target: {fileID: 983754861450876824}
   offset: {x: 0, y: 3, z: 0}
-  isEnemyTypeRange: 0
 --- !u!1 &6863888043240723932
 GameObject:
   m_ObjectHideFlags: 0

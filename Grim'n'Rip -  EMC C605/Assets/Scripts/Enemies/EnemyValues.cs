@@ -36,21 +36,21 @@ public class EnemyValues : MonoBehaviour
                 enemyStatsScript.health = 60f;
                 enemyStatsScript.damage = 15f;
                 enemyStatsScript.movementSpeed = 3;
-                enemyStatsScript.hitChance = 30f;
+                enemyStatsScript.hitChance = 60f;
                 enemyStatsScript.enemyScore = 75f;                
             break;
             case 2: // VAINED Base Values
                 enemyStatsScript.health = 120f;
                 enemyStatsScript.damage = 30f;
                 enemyStatsScript.movementSpeed = 2f;
-                enemyStatsScript.hitChance = 20f;
+                enemyStatsScript.hitChance = 60f;
                 enemyStatsScript.enemyScore = 100f;
             break;
             case 3: // TORMENTED SOUL Base Values
                 enemyStatsScript.health = 200;
                 enemyStatsScript.damage = 25f;
                 enemyStatsScript.movementSpeed = 2.5f;
-                enemyStatsScript.hitChance = 35f;
+                enemyStatsScript.hitChance = 60f;
                 enemyStatsScript.enemyScore = 200f;
             break;
         }        

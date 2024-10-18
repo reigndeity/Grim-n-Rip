@@ -1807,7 +1807,7 @@ MonoBehaviour:
   - {fileID: 344671539}
   enemyPrefabs:
   - {fileID: 1420562253199227619, guid: 1380741384530e44daac6f75e7a48fe7, type: 3}
-  - {fileID: 5778868493084233930, guid: cf97a732279aca54db048d76cd7ddd4a, type: 3}
+  - {fileID: 8077415606205144828, guid: 3ec5e0fa3c494214898a6bed0fefe68c, type: 3}
   - {fileID: 799810180048237235, guid: 14c6650dc386d934fa0511f44da0f34c, type: 3}
   isEnemySpawning: 0
   enemySpawnRate: 0.3
@@ -10557,8 +10557,8 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.8
-  m_Height: 3.95
+  m_Radius: 0.44
+  m_Height: 3.58
   m_Direction: 1
   m_Center: {x: 0, y: 1.85, z: 0}
 --- !u!54 &5866666021753635169

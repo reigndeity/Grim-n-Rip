@@ -60,7 +60,7 @@ public class EnemyMovement : MonoBehaviour
                     Quaternion lookRotation = Quaternion.LookRotation(directionToPlayer);
                     transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * 5f); // Smooth rotation
 
-                    if (distanceToPlayer < 1.5f)
+                    if (distanceToPlayer < 2.0f)
                     {
                         enemyAgent.velocity = Vector3.zero;
                         if (isAttacking == false)
@@ -68,7 +68,7 @@ public class EnemyMovement : MonoBehaviour
                             StartCoroutine(BlazeAttack());
                         }
                     }
-                    if (distanceToPlayer >= 1.5f)
+                    if (distanceToPlayer >= 2.0f)
                     {
                         isPlayerWithinArea = false;
                         if (isPlayerWithinArea == false && isAttacking == false)
@@ -131,6 +131,7 @@ public class EnemyMovement : MonoBehaviour
                 if (isAttacking == false)
                 {
                     StartCoroutine(RangeAttack());
+                    
                 }
             }
 
@@ -140,6 +141,7 @@ public class EnemyMovement : MonoBehaviour
                 if (isPlayerWithinArea == false && isAttacking == false)
                 {
                     enemyAgent.SetDestination(playerTarget.position);
+                    enemyAnimator.SetInteger("animState", 0);
                 }
             }
         }
@@ -175,9 +177,10 @@ public class EnemyMovement : MonoBehaviour
     {
         isAttacking = true;
         enemyAgent.ResetPath();
-        yield return new WaitForSeconds(1f); // Adjust base on animation
+        enemyAnimator.SetInteger("animState", 1);
+        yield return new WaitForSeconds(0.15f); // Adjust base on animation
         enemyProjectileTypeScript.FireProjectile();
-        yield return new WaitForSeconds(1f); // Adjust base on animation
+        yield return new WaitForSeconds(1.52f);
         isAttacking = false;
     }
 }
