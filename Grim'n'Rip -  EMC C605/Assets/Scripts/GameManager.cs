@@ -32,6 +32,7 @@ public class GameManager : MonoBehaviour
     [Header("Wave Properties")]
     [SerializeField] TextMeshProUGUI waveTxt;
     [SerializeField] TextMeshProUGUI enemiesRemainingTxt;
+    [SerializeField] GameObject enemiesRemainingObj;
     public bool isRoundStart;
     public bool isRoundResetting;
     public float enemiesValue;
@@ -106,7 +107,6 @@ public class GameManager : MonoBehaviour
         waveTxt.text = waveManagerScript.currentWave.ToString();
         enemiesValue = waveManagerScript.enemyCount;
         enemiesRemainingTxt.text = enemiesValue.ToString();
-
         // Enemies Remaining Fill
         if (isEnemiesRemainingFill == false) 
         {
@@ -132,6 +132,7 @@ public class GameManager : MonoBehaviour
         {
             canMove = true; // Player can now move
             canShoot = true; // Player can now shoot 
+            enemiesRemainingObj.SetActive(true);
         }
         else
         {
@@ -154,6 +155,7 @@ public class GameManager : MonoBehaviour
                 isRoundStart = false;
                 waveUpgradeObj.SetActive(true);
                 waveUpgradesScript.SpawnWaveUpgrades();
+                enemiesRemainingObj.SetActive(false);
                 //Invoke("StartRound", 3f);
                 
             }

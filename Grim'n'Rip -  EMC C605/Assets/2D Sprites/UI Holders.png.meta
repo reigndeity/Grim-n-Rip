@@ -134,18 +134,150 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: UI Holders_0
+      rect:
+        serializedVersion: 2
+        x: 271
+        y: 4652
+        width: 3109
+        height: 712
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3d9fa937bc23aeb4d93ee3f57aeb0ea2
+      internalID: -901292486
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI Holders_1
+      rect:
+        serializedVersion: 2
+        x: 4639
+        y: 4300
+        width: 3902
+        height: 893
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 18aa2700d416fe84da5bc8bf77135458
+      internalID: -782156802
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI Holders_2
+      rect:
+        serializedVersion: 2
+        x: 255
+        y: 2827
+        width: 2327
+        height: 533
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7b53cce526b04c94e8660f96df776eb8
+      internalID: 1906539682
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI Holders_3
+      rect:
+        serializedVersion: 2
+        x: 236
+        y: 1536
+        width: 1509
+        height: 345
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 411cbe8bc90791e40b9a5d79cded862f
+      internalID: 1212099764
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI Holders_4
+      rect:
+        serializedVersion: 2
+        x: 3885
+        y: 1175
+        width: 4651
+        height: 1064
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bd87bc554d38a5e4591e5344539e3bd4
+      internalID: -1980571097
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI Holders_5
+      rect:
+        serializedVersion: 2
+        x: 221
+        y: 738
+        width: 797
+        height: 182
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7a33d6978c0100d40af1dcfba78c9ffa
+      internalID: 556659377
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 8a5e80f4ca1e71f49966fbb4cbe8f3bf
     internalID: 0
     vertices: []
     indices: 
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      UI Holders_0: -901292486
+      UI Holders_1: -782156802
+      UI Holders_2: 1906539682
+      UI Holders_3: 1212099764
+      UI Holders_4: -1980571097
+      UI Holders_5: 556659377
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

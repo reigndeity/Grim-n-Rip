@@ -22,6 +22,7 @@ public class EnemyMovement : MonoBehaviour
     [SerializeField] bool isAttacking;
     [SerializeField] bool isPlayerWithinArea;
     [SerializeField] GameObject meleeAttack;
+    [SerializeField] bool animatorTransition;
 
     [Header("Projectile Type Enemy")]
     [SerializeField] bool isProjectileType;
@@ -60,7 +61,7 @@ public class EnemyMovement : MonoBehaviour
                     Quaternion lookRotation = Quaternion.LookRotation(directionToPlayer);
                     transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * 5f); // Smooth rotation
 
-                    if (distanceToPlayer < 2.0f)
+                    if (distanceToPlayer < 1.5f)
                     {
                         enemyAgent.velocity = Vector3.zero;
                         if (isAttacking == false)
@@ -68,7 +69,7 @@ public class EnemyMovement : MonoBehaviour
                             StartCoroutine(BlazeAttack());
                         }
                     }
-                    if (distanceToPlayer >= 2.0f)
+                    if (distanceToPlayer >= 1.5f)
                     {
                         isPlayerWithinArea = false;
                         if (isPlayerWithinArea == false && isAttacking == false)
@@ -102,6 +103,7 @@ public class EnemyMovement : MonoBehaviour
                         {
                             enemyAgent.SetDestination(playerTarget.position);
                             enemyAnimator.SetInteger("animState", 0);
+                            animatorTransition = false;
                         }
                     }
                 }
@@ -153,11 +155,16 @@ public class EnemyMovement : MonoBehaviour
         isAttacking = true;
         enemyAgent.ResetPath();
         enemyAnimator.SetInteger("animState", 1);
-        yield return new WaitForSeconds(1f);
+        if (animatorTransition == false)
+        {
+            yield return new WaitForSeconds(1.25f);
+            animatorTransition = true;
+        }
+        yield return new WaitForSeconds(0.10f);
         meleeAttack.SetActive(true);
         yield return new WaitForSeconds(0.1f);
         meleeAttack.SetActive(false);
-        yield return new WaitForSeconds(0.07f); // Adjust base on animation
+        yield return new WaitForSeconds(1.05f); // Adjust base on animation
         isAttacking = false;
     }
     IEnumerator VainedAttack()

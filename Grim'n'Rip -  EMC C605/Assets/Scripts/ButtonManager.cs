@@ -6,6 +6,7 @@ public class ButtonManager : MonoBehaviour
 {
     [Header("Main Menu Properties")]
     [SerializeField] GameObject shopPanelObj;
+    [SerializeField] GameObject quitPanelObj;
     [Header("Game Menu Properties")]
     [SerializeField] GameObject pausePanelObj;
     // MAIN MENU SCENE ==================================================================================
@@ -23,6 +24,19 @@ public class ButtonManager : MonoBehaviour
     {
        shopPanelObj.SetActive(false);
     }
+    public void OnClickQuit()
+    {
+        quitPanelObj.SetActive(true);
+    }
+    public void OnClickQuitNo()
+    {
+        quitPanelObj.SetActive(false);
+    }
+    public void OnClickQuitYes()
+    {
+        Application.Quit();
+    }
+    
 
 
     // GAME SCENE ==================================================================================
