@@ -9,6 +9,7 @@ public class PlayerMovement : MonoBehaviour
     public float playerMovementSpeed;
 
     [Header("PlayerComponent")]
+    [SerializeField] Animator playerAnim;
     public Rigidbody playerRb;
     [SerializeField] FixedJoystick movementJoystick;
     [SerializeField] FixedJoystick aimingJoystick;
@@ -21,6 +22,7 @@ public class PlayerMovement : MonoBehaviour
     {
         lastAimDirection = Vector3.forward; // Default facing direction
         playerRb = GetComponent<Rigidbody>();
+        playerAnim = GetComponent<Animator>();
     }
 
 
@@ -31,45 +33,50 @@ public class PlayerMovement : MonoBehaviour
     }
     void FixedUpdate()
     {
-        
         if (GameManager.instance.canMove == true)
         {
-            // Handle movement
+             // Handle movement
             Vector3 movement = new Vector3(movementJoystick.Horizontal * playerMovementSpeed, playerRb.velocity.y, movementJoystick.Vertical * playerMovementSpeed);
             playerRb.velocity = movement;
 
-            // Check if there is aim input, if so update the aim direction
-            if (aimingJoystick.Horizontal != 0 || aimingJoystick.Vertical != 0)
+            bool isMoving = movementJoystick.Horizontal != 0 || movementJoystick.Vertical != 0;
+            bool isAiming = aimingJoystick.Horizontal != 0 || aimingJoystick.Vertical != 0;
+
+            // Handle aiming input
+            if (isAiming)
             {
                 lastAimDirection = new Vector3(aimingJoystick.Horizontal, 0, aimingJoystick.Vertical).normalized;
 
                 // Smoothly rotate the player towards the aim direction
                 Quaternion targetRotation = Quaternion.LookRotation(lastAimDirection);
                 transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * rotationSpeed);
-            }
-            else if (movementJoystick.Horizontal != 0 || movementJoystick.Vertical != 0)
-            {
-                // If the player is moving and there is no aim input, keep the last aim direction for facing
-                Quaternion targetRotation = Quaternion.LookRotation(lastAimDirection);
-                transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * rotationSpeed);
-            }
 
-            // Handle animations or other behavior based on movement, e.g., backward or forward running
-            if (movementJoystick.Horizontal != 0 || movementJoystick.Vertical != 0)
-            {
-                Vector3 moveDirection = new Vector3(movementJoystick.Horizontal, 0, movementJoystick.Vertical).normalized;
-
-                // Check if the player is moving backward (opposite of the last aim direction)
-                if (Vector3.Dot(moveDirection, lastAimDirection) < -0.5f)
+                if (isMoving)
                 {
-                    // Running backward while firing (add relevant code here)
+                    // Moving while shooting
+                    playerAnim.SetInteger("animState", 2);  // Introduce a new state for moving and shooting
                 }
                 else
                 {
-                    // Regular forward movement while firing (add relevant code here)
+                    // Aiming but not moving
+                    playerAnim.SetInteger("animState", 1);  // Shooting but standing still
                 }
             }
-        }
+            else if (isMoving)
+            {
+                // If moving but not aiming, use last aim direction
+                Quaternion targetRotation = Quaternion.LookRotation(lastAimDirection);
+                transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * rotationSpeed);
+
+                // Moving without shooting
+                playerAnim.SetInteger("animState", 2);  // Running animation
+            }
+            else
+            {
+                // Player is idle
+                playerAnim.SetInteger("animState", 1);
+            }
+        }    
     }
 }
 

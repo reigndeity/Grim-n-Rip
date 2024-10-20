@@ -161,6 +161,7 @@ MonoBehaviour:
   isAttacking: 0
   isPlayerWithinArea: 0
   meleeAttack: {fileID: 3379616709828943898}
+  animatorTransition: 0
   isProjectileType: 0
 --- !u!114 &6084904622242534423
 MonoBehaviour:
@@ -676,7 +677,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: 0.7071068, z: -0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0.583, z: -0.195}
-  m_LocalScale: {x: 1.7729154, y: 0.5743248, z: 1.8852837}
+  m_LocalScale: {x: 2.6193333, y: 0.5003558, z: 2.785348}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5167781026959224738}
@@ -696,7 +697,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3379616709828943898}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1

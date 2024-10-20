@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using System;
 
 
 public class GameManager : MonoBehaviour
@@ -58,13 +59,13 @@ public class GameManager : MonoBehaviour
     [SerializeField] TextMeshProUGUI coinsEarnedTxt;
     public bool isCalculateCoinsEarned;
 
-    [Header("DEV Properties")]
-    [SerializeField] TextMeshProUGUI devMovementSpeedTxt;
-    [SerializeField] TextMeshProUGUI devLuckTxt;
-    [SerializeField] TextMeshProUGUI devDodgeRateTxt;
-    [SerializeField] TextMeshProUGUI devProjectileDamageTxt;
-    [SerializeField] TextMeshProUGUI devProjectileSpeedTxt;
-    [SerializeField] TextMeshProUGUI devWeaponFireRateTxt;
+    [Header("Stat Holder Properties")]
+    [SerializeField] TextMeshProUGUI movementSpeedTxt;
+    [SerializeField] TextMeshProUGUI luckTxt;
+    [SerializeField] TextMeshProUGUI dodgeRateTxt;
+    [SerializeField] TextMeshProUGUI projectileDamageTxt;
+    [SerializeField] TextMeshProUGUI projectileSpeedTxt;
+    [SerializeField] TextMeshProUGUI weaponFireRateTxt;
 
 
 
@@ -106,7 +107,7 @@ public class GameManager : MonoBehaviour
         scoreTxt.text = scoreValue.ToString();
         waveTxt.text = waveManagerScript.currentWave.ToString();
         enemiesValue = waveManagerScript.enemyCount;
-        enemiesRemainingTxt.text = enemiesValue.ToString();
+        enemiesRemainingTxt.text = "ENEMIES REMAINING: " + enemiesValue.ToString();
         // Enemies Remaining Fill
         if (isEnemiesRemainingFill == false) 
         {
@@ -166,13 +167,13 @@ public class GameManager : MonoBehaviour
             PlayerDefeat();
         }
 
-        // Developer View
-        devMovementSpeedTxt.text = playerStatsScipt.movementSpeed.ToString();
-        devLuckTxt.text = playerStatsScipt.luck.ToString();
-        devDodgeRateTxt.text = playerStatsScipt.dodgeRate.ToString();
-        devProjectileDamageTxt.text = playerStatsScipt.projectileDamage.ToString();
-        devProjectileSpeedTxt.text = playerStatsScipt.projectileSpeed.ToString();
-        devWeaponFireRateTxt.text = playerStatsScipt.fireRate.ToString();
+        // Stat Holder View
+        movementSpeedTxt.text = Mathf.Ceil(playerStatsScipt.movementSpeed).ToString();
+        luckTxt.text = Mathf.Ceil(playerStatsScipt.luck).ToString();
+        dodgeRateTxt.text = Mathf.Ceil(playerStatsScipt.dodgeRate).ToString();
+        projectileDamageTxt.text = Mathf.Ceil(playerStatsScipt.projectileDamage).ToString();
+        projectileSpeedTxt.text = Mathf.Ceil(playerStatsScipt.projectileSpeed).ToString();
+        weaponFireRateTxt.text = playerStatsScipt.fireRate.ToString("F1");
     }
 
     public void StartRound()

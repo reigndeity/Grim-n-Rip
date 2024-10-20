@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Scripting.APIUpdating;
 
 public class EnemyProjectile : MonoBehaviour
 {
@@ -24,6 +25,9 @@ public class EnemyProjectile : MonoBehaviour
 
         // Calculate the direction towards the player ONCE when the projectile is instantiated
         initialDirection = (playerTarget.position - transform.position).normalized;
+
+        transform.parent = null;
+        rb.velocity =  Vector3.forward;
     }
 
     void Start()

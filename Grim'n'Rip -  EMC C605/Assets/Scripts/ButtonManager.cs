@@ -9,6 +9,8 @@ public class ButtonManager : MonoBehaviour
     [SerializeField] GameObject quitPanelObj;
     [Header("Game Menu Properties")]
     [SerializeField] GameObject pausePanelObj;
+    [SerializeField] Animator statHolderAnimator;
+    public bool isClick;
     // MAIN MENU SCENE ==================================================================================
     public void OnClickStart(string sceneName)
     {
@@ -63,5 +65,21 @@ public class ButtonManager : MonoBehaviour
     public void OnClickPauseMenu(string sceneName)
     {
         SceneManager.LoadScene(sceneName);
+    }
+
+    public void OnClickPlayerIcon()
+    {
+        if (isClick == false)
+        {
+            statHolderAnimator.SetInteger("animState",1);
+            isClick = true;
+        }
+        else
+        {
+            statHolderAnimator.SetInteger("animState",2);
+            isClick = false;
+        }
+        
+        
     }
 }
