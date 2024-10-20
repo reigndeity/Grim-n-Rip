@@ -1,11 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class DeveloperMode : MonoBehaviour
 {
     [Header("Debug Properties")]
     [SerializeField] GameObject debugPanel;
+    [SerializeField] TextMeshProUGUI opModeTxt;
+    public bool isClick;
     
     void Update()
     {
@@ -59,4 +63,29 @@ public class DeveloperMode : MonoBehaviour
         PlayerPrefs.SetInt("totalCoins", totalCoins);
     }
 
+
+    // Game Debug Stick
+    public void OnClickDebugStick()
+    {
+        debugPanel.SetActive(true);
+        Time.timeScale = 0;
+    }
+    public void OnClickCloseDebugStick()
+    {
+        debugPanel.SetActive(false);
+        Time.timeScale = 1;
+    }
+    public void OnClickOpMode()
+    {
+        if (isClick == false)
+        {
+            opModeTxt.color = Color.green;
+            isClick = true;
+        }
+        else
+        {
+            opModeTxt.color = Color.red;
+            isClick = false;
+        }
+    }
 }

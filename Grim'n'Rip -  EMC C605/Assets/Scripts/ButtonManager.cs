@@ -79,7 +79,7 @@ public class ButtonManager : MonoBehaviour
             statHolderAnimator.SetInteger("animState",2);
             isClick = false;
         }
-        
-        
     }
+
+
 }
