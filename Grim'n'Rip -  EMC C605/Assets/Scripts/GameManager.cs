@@ -104,7 +104,7 @@ public class GameManager : MonoBehaviour
     void Update()
     {  
         // UI Updates ===================================
-        scoreTxt.text = scoreValue.ToString();
+        scoreTxt.text = "SCORE:\n" + scoreValue.ToString();
         waveTxt.text = waveManagerScript.currentWave.ToString();
         enemiesValue = waveManagerScript.enemyCount;
         enemiesRemainingTxt.text = "ENEMIES REMAINING: " + enemiesValue.ToString();
