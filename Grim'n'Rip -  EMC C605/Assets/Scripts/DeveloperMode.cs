@@ -7,22 +7,15 @@ using UnityEngine.UI;
 public class DeveloperMode : MonoBehaviour
 {
     [Header("Debug Properties")]
+    public PlayerStats playerStats;
+    public WaveManager waveManager;
     [SerializeField] GameObject debugPanel;
     [SerializeField] TextMeshProUGUI opModeTxt;
+    [SerializeField] TextMeshProUGUI currentWaveTxt;
     public bool isClick;
+    public bool isOpMode;
     
-    void Update()
-    {
-        if (Input.GetKey(KeyCode.Tab))
-        {
-            debugPanel.SetActive(true);
-        }
-        else
-        {
-            debugPanel.SetActive(false);
-        }
-        
-    }
+
     public void ResetPlayerStats()
     {
         PlayerPrefs.SetInt("isFirstBoot", 0);
@@ -34,8 +27,6 @@ public class DeveloperMode : MonoBehaviour
         PlayerPrefs.SetFloat("projectileDamageAmount", 30f); 
         PlayerPrefs.SetFloat("projectileSpeedAmount", 10f);
         PlayerPrefs.SetFloat("weaponFireRateAmount", 1.5f); //1f orig
-
-        
     }
 
     public void ResetShopPrices()
@@ -63,7 +54,6 @@ public class DeveloperMode : MonoBehaviour
         PlayerPrefs.SetInt("totalCoins", totalCoins);
     }
 
-
     // Game Debug Stick
     public void OnClickDebugStick()
     {
@@ -81,11 +71,37 @@ public class DeveloperMode : MonoBehaviour
         {
             opModeTxt.color = Color.green;
             isClick = true;
+            playerStats.health = 100000f;
+            PlayerPrefs.SetFloat("movementSpeedAmount", 15f);
+            PlayerPrefs.SetFloat("dodgeRateAmount", 70f);
+            PlayerPrefs.SetFloat("luckRateAmount", 40); //5f orig
+            PlayerPrefs.SetFloat("projectileDamageAmount", 10000f); 
+            PlayerPrefs.SetFloat("projectileSpeedAmount",50f);
+            PlayerPrefs.SetFloat("weaponFireRateAmount", 0.1f); //1f orig
         }
         else
         {
             opModeTxt.color = Color.red;
             isClick = false;
+            playerStats.health = 100;
+            PlayerPrefs.SetFloat("healthAmount", 100f); 
+            PlayerPrefs.SetFloat("movementSpeedAmount", 5f);
+            PlayerPrefs.SetFloat("dodgeRateAmount", 5f);
+            PlayerPrefs.SetFloat("luckRateAmount", 5); //5f orig
+            PlayerPrefs.SetFloat("projectileDamageAmount", 30f); 
+            PlayerPrefs.SetFloat("projectileSpeedAmount", 10f);
+            PlayerPrefs.SetFloat("weaponFireRateAmount", 1.5f); //1f orig
         }
+    }
+
+    public void IncreaseWave()
+    {
+        waveManager.currentWave += 1;
+        currentWaveTxt.text = "Current Wave: " + waveManager.currentWave.ToString();
+    }
+    public void DecreaseWave()
+    {
+        waveManager.currentWave -= 1;
+        currentWaveTxt.text = "Current Wave: " + waveManager.currentWave.ToString();
     }
 }

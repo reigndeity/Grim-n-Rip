@@ -53,20 +53,20 @@ public class ShopManager : MonoBehaviour
             PlayerPrefs.Save();
 
             // Upgrade Cost
-            PlayerPrefs.SetInt("healthUpgradeCost", 20);
-            PlayerPrefs.SetInt("movementSpeedUpgradeCost", 20);
-            PlayerPrefs.SetInt("dodgeRateUpgradeCost", 20);
-            PlayerPrefs.SetInt("luckRateUpgradeCost", 20);
-            PlayerPrefs.SetInt("projectileDamageUpgradeCost", 20);
+            PlayerPrefs.SetInt("healthUpgradeCost", 40);
+            PlayerPrefs.SetInt("movementSpeedUpgradeCost", 35);
+            PlayerPrefs.SetInt("dodgeRateUpgradeCost", 30);
+            PlayerPrefs.SetInt("luckRateUpgradeCost", 30);
+            PlayerPrefs.SetInt("projectileDamageUpgradeCost", 25);
             PlayerPrefs.SetInt("projectileSpeedUpgradeCost", 20);
-            PlayerPrefs.SetInt("weaponFireRateUpgradeCost", 20);
+            PlayerPrefs.SetInt("weaponFireRateUpgradeCost", 30);
         }
     }
 
 
     void Update()
     {
-        totalCoinsTxt.text = Mathf.Ceil(PlayerPrefs.GetInt("totalCoins")).ToString();
+        totalCoinsTxt.text = "Coins: " + Mathf.Ceil(PlayerPrefs.GetInt("totalCoins")).ToString();
 
         healthValueTxt.text = Mathf.Ceil(PlayerPrefs.GetFloat("healthAmount")).ToString();
         movementSpeedValueTxt.text = Mathf.Ceil(PlayerPrefs.GetFloat("movementSpeedAmount")).ToString();
@@ -77,13 +77,13 @@ public class ShopManager : MonoBehaviour
         weaponFireRateValueTxt.text = PlayerPrefs.GetFloat("weaponFireRateAmount").ToString();
         
 
-        healthCostTxt.text = PlayerPrefs.GetInt("healthUpgradeCost").ToString();
-        movementSpeedCostTxt.text = PlayerPrefs.GetInt("movementSpeedUpgradeCost").ToString();
-        dodgeRateCostTxt.text = PlayerPrefs.GetInt("dodgeRateUpgradeCost").ToString();
-        luckRateCostTxt.text = PlayerPrefs.GetInt("luckRateUpgradeCost").ToString();
-        projectileDamageCostTxt.text = PlayerPrefs.GetInt("projectileDamageUpgradeCost").ToString();
-        projectileSpeedCostTxt.text = PlayerPrefs.GetInt("projectileSpeedUpgradeCost").ToString();
-        weaponFireRateCostTxt.text = PlayerPrefs.GetInt("weaponFireRateUpgradeCost").ToString();
+        healthCostTxt.text = "COST\n" + PlayerPrefs.GetInt("healthUpgradeCost").ToString();
+        movementSpeedCostTxt.text = "COST\n" + PlayerPrefs.GetInt("movementSpeedUpgradeCost").ToString();
+        dodgeRateCostTxt.text = "COST\n" + PlayerPrefs.GetInt("dodgeRateUpgradeCost").ToString();
+        luckRateCostTxt.text ="COST\n" +  PlayerPrefs.GetInt("luckRateUpgradeCost").ToString();
+        projectileDamageCostTxt.text ="COST\n" +  PlayerPrefs.GetInt("projectileDamageUpgradeCost").ToString();
+        projectileSpeedCostTxt.text = "COST\n" + PlayerPrefs.GetInt("projectileSpeedUpgradeCost").ToString();
+        weaponFireRateCostTxt.text = "COST\n" + PlayerPrefs.GetInt("weaponFireRateUpgradeCost").ToString();
     }
 
     public void HealthUpgrade()

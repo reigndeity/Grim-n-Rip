@@ -119,7 +119,7 @@ MonoBehaviour:
   enemyStatsScript: {fileID: 0}
   cameraMain: {fileID: 0}
   target: {fileID: 8618496562020558397}
-  offset: {x: 0, y: 3, z: 0}
+  offset: {x: 0, y: 4, z: 0}
 --- !u!1 &2219162734842225032
 GameObject:
   m_ObjectHideFlags: 0
@@ -880,6 +880,7 @@ MonoBehaviour:
   isAttacking: 0
   isPlayerWithinArea: 0
   meleeAttack: {fileID: 0}
+  animatorTransition: 0
   isProjectileType: 1
 --- !u!114 &2101292623012094465
 MonoBehaviour:

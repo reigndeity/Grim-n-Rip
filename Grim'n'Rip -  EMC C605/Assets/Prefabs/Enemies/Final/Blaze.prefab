@@ -1504,7 +1504,7 @@ MonoBehaviour:
   enemyStatsScript: {fileID: 0}
   cameraMain: {fileID: 0}
   target: {fileID: 983754861450876824}
-  offset: {x: 0, y: 3, z: 0}
+  offset: {x: 0, y: 4, z: 0}
 --- !u!1 &6863888043240723932
 GameObject:
   m_ObjectHideFlags: 0
