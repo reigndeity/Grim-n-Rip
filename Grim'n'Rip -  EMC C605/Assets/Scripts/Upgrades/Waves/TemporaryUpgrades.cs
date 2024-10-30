@@ -8,6 +8,9 @@ public class TemporaryUpgrades : MonoBehaviour
     [SerializeField] PlayerStats playerStatsScript;
     [SerializeField] WaveUpgrades waveUpgradesScript;
 
+    [Header("Player Components")]
+    [SerializeField] GameObject playerObj;
+
     void Awake()
     {
         playerStatsScript = FindObjectOfType<PlayerStats>();
@@ -85,5 +88,7 @@ public class TemporaryUpgrades : MonoBehaviour
         GameManager.instance.waveUpgradeObj.SetActive(false);
         GameManager.instance.StartRound();
         waveUpgradesScript.DestroySpawnedUpgrades();
+
+        playerObj.transform.position = new Vector3(0,1,0); // Go back to the center of the map
     }
 }

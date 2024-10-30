@@ -19,7 +19,6 @@ public class DeveloperMode : MonoBehaviour
     public void ResetPlayerStats()
     {
         PlayerPrefs.SetInt("isFirstBoot", 0);
-        
         PlayerPrefs.SetFloat("healthAmount", 100f); 
         PlayerPrefs.SetFloat("movementSpeedAmount", 5f);
         PlayerPrefs.SetFloat("dodgeRateAmount", 5f);

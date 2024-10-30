@@ -68,7 +68,6 @@ public class GameManager : MonoBehaviour
     [SerializeField] TextMeshProUGUI weaponFireRateTxt;
 
 
-
     void Awake()
     {
         if (instance != null && instance != this)
@@ -150,15 +149,15 @@ public class GameManager : MonoBehaviour
             playerMovementScript.playerRb.velocity = Vector3.zero;
             if (isRoundResetting == false)
             {
-                isDoneSpawningObjects = false;
-                
+                isDoneSpawningObjects = false;       
                 isRoundResetting = true;
                 isRoundStart = false;
                 waveUpgradeObj.SetActive(true);
                 waveUpgradesScript.SpawnWaveUpgrades();
                 enemiesRemainingObj.SetActive(false);
                 //Invoke("StartRound", 3f);
-                
+                playerObj.transform.position = new Vector3(0,1,0); // Go back to the center of the map
+                playerMovementScript.playerRb.velocity = Vector3.zero;
             }
         }
 
@@ -189,17 +188,17 @@ public class GameManager : MonoBehaviour
         canMove = false;
         canShoot = false; 
         objectAreaScript.isMoving = true;
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSecondsRealtime(0.5f);
         objectAreaScript.SpawnArea();
-        yield return new WaitForSeconds(0.1f);
+        yield return new WaitForSecondsRealtime(0.1f);
         objectSpawnerScript = FindObjectOfType<ObjectSpawner>();
-        yield return new WaitForSeconds(0.1f);
+        yield return new WaitForSecondsRealtime(0.1f);
         objectSpawnerScript.SpawnObject();
-
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSecondsRealtime(3f);
         currentWaveObj.SetActive(true);
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSecondsRealtime(2f);
         currentWaveObj.SetActive(false);
+        
     }
 
     void RoundResetBool()

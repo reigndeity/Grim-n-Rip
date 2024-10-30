@@ -8,12 +8,17 @@ public class ObjectBehavior : MonoBehaviour
 
     void Start()
     {
-        SetMaterialToOpaque(materialObj); 
+        if (materialObj != null)
+        {
+            // Ensure the material uses the Standard shader
+            materialObj.shader = Shader.Find("Standard");
+            SetMaterialToOpaque(materialObj); // Start with material in opaque mode
+        }
     }
 
     void OnTriggerStay(Collider other)
     {
-        if (other.gameObject.tag == "Player")
+        if (other.CompareTag("Player"))
         {
             Debug.Log("Player Detected");
             SetMaterialToFade(materialObj, 155f / 255f);  // Change to Fade with alpha 155
@@ -22,7 +27,7 @@ public class ObjectBehavior : MonoBehaviour
 
     void OnTriggerExit(Collider other)
     {
-        if (other.gameObject.tag == "Player")
+        if (other.CompareTag("Player"))
         {
             Debug.Log("Player left");
             SetMaterialToOpaque(materialObj);  // Change to Opaque

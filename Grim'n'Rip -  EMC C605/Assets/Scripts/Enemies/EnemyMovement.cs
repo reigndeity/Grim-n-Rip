@@ -21,12 +21,10 @@ public class EnemyMovement : MonoBehaviour
     [Header("Melee Type Enemy")]
     [SerializeField] bool isAttacking;
     [SerializeField] bool isPlayerWithinArea;
-    [SerializeField] GameObject meleeAttack;
     [SerializeField] bool animatorTransition;
 
     [Header("Projectile Type Enemy")]
     [SerializeField] bool isProjectileType;
-    //[SerializeField] Transform enemyRotation; // only for the fucked up model of the projectile
 
     
 
@@ -52,15 +50,15 @@ public class EnemyMovement : MonoBehaviour
         if (isProjectileType == false)
         {
             float distanceToPlayer = Vector3.Distance(transform.position, playerTarget.position);
-                
+            // Calculate direction towards the player
+            Vector3 directionToPlayer = playerTarget.position - transform.position;
+            directionToPlayer.y = 0; // Keep the rotation on the Y-axis only
+
+            // Rotate towards the player
+            Quaternion lookRotation = Quaternion.LookRotation(directionToPlayer);
+            transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * 5f); // Smooth rotation
                 if (enemyType == 0)
                 {
-                    // Make the enemy look at the player target
-                    Vector3 directionToPlayer = playerTarget.position - transform.position;
-                    directionToPlayer.y = 0; // Keep the rotation only on the Y-axis
-                    Quaternion lookRotation = Quaternion.LookRotation(directionToPlayer);
-                    transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * 5f); // Smooth rotation
-
                     if (distanceToPlayer < 2f)
                     {
                         enemyAgent.velocity = Vector3.zero;
@@ -79,15 +77,8 @@ public class EnemyMovement : MonoBehaviour
                         }
                     }
                 }
-
                 if (enemyType == 2)
                 {
-                    // Make the enemy look at the player target
-                    Vector3 directionToPlayer = playerTarget.position - transform.position;
-                    directionToPlayer.y = 0; // Keep the rotation only on the Y-axis
-                    Quaternion lookRotation = Quaternion.LookRotation(directionToPlayer);
-                    transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * 5f); // Smooth rotation
-
                     if (distanceToPlayer < 2.0f)
                     {
                         enemyAgent.velocity = Vector3.zero;
@@ -110,12 +101,6 @@ public class EnemyMovement : MonoBehaviour
 
                 if (enemyType == 3)
                 {
-                    // Make the enemy look at the player target
-                    Vector3 directionToPlayer = playerTarget.position - transform.position;
-                    directionToPlayer.y = 0; // Keep the rotation only on the Y-axis
-                    Quaternion lookRotation = Quaternion.LookRotation(directionToPlayer);
-                    transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * 5f); // Smooth rotation
-
                     if (distanceToPlayer < 2.0f)
                     {
                         enemyAgent.velocity = Vector3.zero;
@@ -183,16 +168,7 @@ public class EnemyMovement : MonoBehaviour
         isAttacking = true;
         enemyAgent.ResetPath();
         enemyAnimator.SetInteger("animState", 1);
-        if (animatorTransition == false)
-        {
-            yield return new WaitForSeconds(1.25f);
-            animatorTransition = true;
-        }
-        yield return new WaitForSeconds(0.10f);
-        meleeAttack.SetActive(true);
-        yield return new WaitForSeconds(0.1f);
-        meleeAttack.SetActive(false);
-        yield return new WaitForSeconds(1.05f); // Adjust base on animation
+        yield return new WaitForSeconds(1.250f); // Adjust base on animation
         isAttacking = false;
     }
     IEnumerator VainedAttack()
@@ -200,16 +176,7 @@ public class EnemyMovement : MonoBehaviour
         isAttacking = true;
         enemyAgent.ResetPath();
         enemyAnimator.SetInteger("animState", 1);
-        if (animatorTransition == false)
-        {
-            yield return new WaitForSeconds(1.25f);
-            animatorTransition = true;
-        }
-        yield return new WaitForSeconds(1f);
-        meleeAttack.SetActive(true);
-        yield return new WaitForSeconds(0.1f);
-        meleeAttack.SetActive(false);
-        yield return new WaitForSeconds(0.75f); // Adjust base on animation
+        yield return new WaitForSeconds(1.875f); // Adjust base on animation
         isAttacking = false;
     }
 
@@ -218,16 +185,7 @@ public class EnemyMovement : MonoBehaviour
         isAttacking = true;
         enemyAgent.ResetPath();
         enemyAnimator.SetInteger("animState", 1);
-        if (animatorTransition == false)
-        {
-            yield return new WaitForSeconds(1.25f);
-            animatorTransition = true;
-        }
-        yield return new WaitForSeconds(1.3f);
-        meleeAttack.SetActive(true);
-        yield return new WaitForSeconds(0.1f);
-        meleeAttack.SetActive(false);
-        yield return new WaitForSeconds(0.03f);
+        yield return new WaitForSeconds(1.583f);
         isAttacking = false;
     }
 
