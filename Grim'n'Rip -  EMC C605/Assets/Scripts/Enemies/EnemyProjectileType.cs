@@ -11,4 +11,5 @@ public class EnemyProjectileType : MonoBehaviour
     {
         GameObject projectile = Instantiate(projectilePrefab, firingPos.position, firingPos.rotation, firingPos);
     }
+    
 }

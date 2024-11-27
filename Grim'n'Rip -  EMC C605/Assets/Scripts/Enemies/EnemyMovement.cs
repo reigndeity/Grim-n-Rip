@@ -36,8 +36,6 @@ public class EnemyMovement : MonoBehaviour
         enemyValuesScript = GetComponent<EnemyValues>();
         enemyAnimator = GetComponent<Animator>();
         enemyProjectileTypeScript = GetComponent<EnemyProjectileType>();
-
-        
     }
     void Update()
     {
@@ -79,7 +77,7 @@ public class EnemyMovement : MonoBehaviour
                 }
                 if (enemyType == 2)
                 {
-                    if (distanceToPlayer < 2.0f)
+                    if (distanceToPlayer < 2.5f)
                     {
                         enemyAgent.velocity = Vector3.zero;
                         if (isAttacking == false)
@@ -87,7 +85,7 @@ public class EnemyMovement : MonoBehaviour
                             StartCoroutine(VainedAttack());
                         }
                     }
-                    if (distanceToPlayer >= 2.0f)
+                    if (distanceToPlayer >= 2.5f)
                     {
                         isPlayerWithinArea = false;
                         if (isPlayerWithinArea == false && isAttacking == false)
@@ -101,7 +99,7 @@ public class EnemyMovement : MonoBehaviour
 
                 if (enemyType == 3)
                 {
-                    if (distanceToPlayer < 2.0f)
+                    if (distanceToPlayer < 3.0f)
                     {
                         enemyAgent.velocity = Vector3.zero;
                         if (isAttacking == false)
@@ -109,7 +107,7 @@ public class EnemyMovement : MonoBehaviour
                             StartCoroutine(TormentorAttack());
                         }
                     }
-                    if (distanceToPlayer >= 2.0f)
+                    if (distanceToPlayer >= 3.0f)
                     {
                         isPlayerWithinArea = false;
                         if (isPlayerWithinArea == false && isAttacking == false)
@@ -194,9 +192,8 @@ public class EnemyMovement : MonoBehaviour
         isAttacking = true;
         enemyAgent.ResetPath();
         enemyAnimator.SetInteger("animState", 1);
-        yield return new WaitForSeconds(0.15f); // Adjust base on animation
-        enemyProjectileTypeScript.FireProjectile();
-        yield return new WaitForSeconds(1.52f);
+        yield return new WaitForSeconds(1.667f); // Adjust base on animation
         isAttacking = false;
     }
+
 }

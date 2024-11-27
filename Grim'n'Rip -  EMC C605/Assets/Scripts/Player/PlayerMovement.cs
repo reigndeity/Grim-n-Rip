@@ -9,7 +9,7 @@ public class PlayerMovement : MonoBehaviour
     public float playerMovementSpeed;
 
     [Header("PlayerComponent")]
-    [SerializeField] Animator playerAnim;
+    public Animator playerAnim;
     public Rigidbody playerRb;
     [SerializeField] FixedJoystick movementJoystick;
     [SerializeField] FixedJoystick aimingJoystick;
@@ -30,6 +30,11 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
         playerMovementSpeed = PlayerPrefs.GetFloat("movementSpeedAmount") + PlayerPrefs.GetFloat("temporaryMovementSpeedAmount");
+
+        if (GameManager.instance.enemiesValue <= 0 && GameManager.instance.isRoundStart == true)
+        {
+            GameManager.instance.ResetPlayerPosition();
+        }
     }
     void FixedUpdate()
     {

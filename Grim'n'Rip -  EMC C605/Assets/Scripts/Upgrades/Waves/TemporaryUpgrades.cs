@@ -89,6 +89,6 @@ public class TemporaryUpgrades : MonoBehaviour
         GameManager.instance.StartRound();
         waveUpgradesScript.DestroySpawnedUpgrades();
 
-        playerObj.transform.position = new Vector3(0,1,0); // Go back to the center of the map
+        GameManager.instance.playerObj.transform.position = new Vector3(0,-0.001472749f,0); // Go back to the center of the map
     }
 }

@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class EnemyValues : MonoBehaviour
 {
@@ -8,10 +10,17 @@ public class EnemyValues : MonoBehaviour
     [SerializeField] EnemyStats enemyStatsScript;
     [SerializeField] WaveManager waveManagerScript;
     [SerializeField] PlayerStats playerStatsScript;
+    [SerializeField] EnemyMovement enemyMovementScript;
     
     [Header("Enemy Properties")]
     [SerializeField] int enemyType; // 0 - blaze | 1 - sinister seer | 2 - vained | 3 - tormented soul
     [SerializeField] bool isDoneUpgrade;
+    [SerializeField] NavMeshAgent enemyAgent;
+    [SerializeField] Animator enemyAnimator;
+    [SerializeField] CapsuleCollider enemyCollider;
+    [SerializeField] GameObject healthBar;
+    [SerializeField] ParticleSystem bloodSplat;
+    [SerializeField] GameObject[] thisModel;
     
    
 
@@ -20,6 +29,12 @@ public class EnemyValues : MonoBehaviour
         enemyStatsScript = GetComponent<EnemyStats>();
         waveManagerScript = FindObjectOfType<WaveManager>();
         playerStatsScript = FindObjectOfType<PlayerStats>();
+        enemyAgent = GetComponent<NavMeshAgent>();
+        enemyAnimator = GetComponent<Animator>();
+        enemyMovementScript = GetComponent<EnemyMovement>();
+        enemyCollider = GetComponent<CapsuleCollider>();
+        healthBar = transform.Find("Enemy Health Display Canvas").gameObject;
+        bloodSplat = GetComponentInChildren<ParticleSystem>();
     }
     void Start()
     {
@@ -62,7 +77,11 @@ public class EnemyValues : MonoBehaviour
         enemyStatsScript.health -= damageAmount;
         if (enemyStatsScript.health <= 0)
         {
-            Destroy(gameObject);
+            enemyAnimator.SetInteger("animState",2);
+            Destroy(enemyMovementScript);
+            Destroy(healthBar);
+            enemyAgent.speed = 0;
+            enemyCollider.enabled = false;
             GameManager.instance.scoreValue += enemyStatsScript.enemyScore;
             waveManagerScript.enemyCount--;
         }
@@ -89,6 +108,21 @@ public class EnemyValues : MonoBehaviour
         {
             enemyStatsScript.movementSpeed = 5;
         }
+    }
+
+    
+    public void DestroyMyself()
+    {
+        bloodSplat.Play();
+        for (int i = 0; i < thisModel.Length; i++)
+        {
+            thisModel[i].SetActive(false);
+        }
+        Invoke("ActuallyDestroyMyself", 1f);
+    }
+    public void ActuallyDestroyMyself()
+    {
+        Destroy(gameObject);
     }
 
 }

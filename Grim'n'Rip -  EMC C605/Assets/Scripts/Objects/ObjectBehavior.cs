@@ -4,75 +4,71 @@ using UnityEngine;
 
 public class ObjectBehavior : MonoBehaviour
 {
-    public Material materialObj;
+    // Dictionary to store outlines for each GameObject
+    private Dictionary<GameObject, List<Outline>> trackedObjectsOutlines = new Dictionary<GameObject, List<Outline>>();
 
-    void Start()
+    void OnTriggerEnter(Collider other)
     {
-        if (materialObj != null)
+        // Check if the colliding object has the tag "Player"
+        if (other.gameObject.CompareTag("Player")) //|| other.gameObject.layer == 3
         {
-            // Ensure the material uses the Standard shader
-            materialObj.shader = Shader.Find("Standard");
-            SetMaterialToOpaque(materialObj); // Start with material in opaque mode
+            // If this object is not already tracked, add it to the dictionary
+            if (!trackedObjectsOutlines.ContainsKey(other.gameObject))
+            {
+                // Get all Outline components on the GameObject
+                List<Outline> outlines = new List<Outline>(other.gameObject.GetComponents<Outline>());
+                trackedObjectsOutlines.Add(other.gameObject, outlines);
+
+                // Enable each Outline component
+                foreach (Outline outline in outlines)
+                {
+                    outline.enabled = true;
+                }
+
+                Debug.Log($"Enabled Outline components for: {other.gameObject.name} (Layer: {LayerMask.LayerToName(other.gameObject.layer)})");
+            }
         }
     }
-
     void OnTriggerStay(Collider other)
     {
-        if (other.CompareTag("Player"))
+        // Check if the colliding object has the tag "Player"
+        if (other.gameObject.CompareTag("Player")) // || other.gameObject.layer == 3
         {
-            Debug.Log("Player Detected");
-            SetMaterialToFade(materialObj, 155f / 255f);  // Change to Fade with alpha 155
+            // If this object is not already tracked, add it to the dictionary
+            if (!trackedObjectsOutlines.ContainsKey(other.gameObject))
+            {
+                // Get all Outline components on the GameObject
+                List<Outline> outlines = new List<Outline>(other.gameObject.GetComponents<Outline>());
+                trackedObjectsOutlines.Add(other.gameObject, outlines);
+
+                // Enable each Outline component
+                foreach (Outline outline in outlines)
+                {
+                    outline.enabled = true;
+                }
+
+                Debug.Log($"Enabled Outline components for: {other.gameObject.name} (Layer: {LayerMask.LayerToName(other.gameObject.layer)})");
+            }
         }
     }
 
     void OnTriggerExit(Collider other)
     {
-        if (other.CompareTag("Player"))
+        // Check if the exiting object is tracked
+        if (trackedObjectsOutlines.ContainsKey(other.gameObject))
         {
-            Debug.Log("Player left");
-            SetMaterialToOpaque(materialObj);  // Change to Opaque
-        }
-    }
+            List<Outline> outlines = trackedObjectsOutlines[other.gameObject];
 
-    void SetMaterialToFade(Material mat, float alpha)
-    {
-        if (mat != null)
-        {
-            // Set rendering mode to Fade
-            mat.SetFloat("_Mode", 2);
-            mat.SetInt("_SrcBlend", (int)UnityEngine.Rendering.BlendMode.SrcAlpha);
-            mat.SetInt("_DstBlend", (int)UnityEngine.Rendering.BlendMode.OneMinusSrcAlpha);
-            mat.SetInt("_ZWrite", 0);
-            mat.DisableKeyword("_ALPHATEST_ON");
-            mat.EnableKeyword("_ALPHABLEND_ON");
-            mat.DisableKeyword("_ALPHAPREMULTIPLY_ON");
-            mat.renderQueue = (int)UnityEngine.Rendering.RenderQueue.Transparent;
+            // Disable each Outline component
+            foreach (Outline outline in outlines)
+            {
+                outline.enabled = false;
+            }
 
-            // Set the alpha value
-            Color color = mat.color;  // Get the current color
-            color.a = alpha;          // Set the alpha
-            mat.color = color;        // Apply the new color
-        }
-    }
+            // Remove the object from the dictionary
+            trackedObjectsOutlines.Remove(other.gameObject);
 
-    void SetMaterialToOpaque(Material mat)
-    {
-        if (mat != null)
-        {
-            // Set rendering mode to Opaque
-            mat.SetFloat("_Mode", 0);
-            mat.SetInt("_SrcBlend", (int)UnityEngine.Rendering.BlendMode.One);
-            mat.SetInt("_DstBlend", (int)UnityEngine.Rendering.BlendMode.Zero);
-            mat.SetInt("_ZWrite", 1);
-            mat.EnableKeyword("_ALPHATEST_ON");
-            mat.DisableKeyword("_ALPHABLEND_ON");
-            mat.DisableKeyword("_ALPHAPREMULTIPLY_ON");
-            mat.renderQueue = (int)UnityEngine.Rendering.RenderQueue.Geometry;
-
-            // Reset the alpha value to fully opaque (1)
-            Color color = mat.color;
-            color.a = 1f;  // Fully opaque
-            mat.color = color; // Apply the new color
+            Debug.Log($"Disabled Outline components for: {other.gameObject.name} (Layer: {LayerMask.LayerToName(other.gameObject.layer)})");
         }
     }
 }

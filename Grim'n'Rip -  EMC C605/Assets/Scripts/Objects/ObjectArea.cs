@@ -16,6 +16,7 @@ public class ObjectArea : MonoBehaviour
     private Vector3 descentPosition = new Vector3(0, -20, 0); // Rise position
     private Vector3 startPosition; // Start position
     public bool isMoving = false;
+    public bool isDecentDone;
 
     //[Header("Nav Mesh Area Properties")]
     public NavMeshSurface navMeshSurface;
@@ -38,7 +39,7 @@ public class ObjectArea : MonoBehaviour
        {
         RiseObjects();
        } 
-       else
+       if (GameManager.instance.isRoundStart == false && isDecentDone == false)
        {
         DescendObjects();
        }
@@ -53,6 +54,7 @@ public class ObjectArea : MonoBehaviour
         {
             isMoving = true;
             navMeshSurface.BuildNavMesh(); // bake
+            isDecentDone = true;
         }
     }
 
@@ -70,7 +72,7 @@ public class ObjectArea : MonoBehaviour
                 navMeshSurface.BuildNavMesh(); // bake
                 GameManager.instance.isDoneSpawningObjects = true; // objects are spawned
                 GameManager.instance.canStartWave = true;
-
+                isDecentDone = false;
                 Debug.Log("I AM DONE SPAWNING THE OBJECTS");
             }
         }

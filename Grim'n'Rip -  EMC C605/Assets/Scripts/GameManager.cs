@@ -24,6 +24,8 @@ public class GameManager : MonoBehaviour
     public bool canShoot;
     public bool canMove;
     public bool canStartWave;
+    public GameObject postProcessObj;
+    //public bool doneTeleportingPlayer;
 
     [Header("Player Properties")]
     public GameObject playerObj;
@@ -61,7 +63,7 @@ public class GameManager : MonoBehaviour
 
     [Header("Stat Holder Properties")]
     [SerializeField] TextMeshProUGUI movementSpeedTxt;
-    [SerializeField] TextMeshProUGUI luckTxt;
+    //[SerializeField] TextMeshProUGUI luckTxt;
     [SerializeField] TextMeshProUGUI dodgeRateTxt;
     [SerializeField] TextMeshProUGUI projectileDamageTxt;
     [SerializeField] TextMeshProUGUI projectileSpeedTxt;
@@ -98,6 +100,16 @@ public class GameManager : MonoBehaviour
         // Start the round
         Time.timeScale = 1;
         StartCoroutine(BeginRound());
+
+        int postProcess = PlayerPrefs.GetInt("postProcess");
+        if (postProcess == 0)
+        {
+            postProcessObj.SetActive(false);
+        }
+        else
+        {
+            postProcessObj.SetActive(true);
+        }
     }
 
     void Update()
@@ -145,8 +157,10 @@ public class GameManager : MonoBehaviour
         // If there are no enemies left
         if (enemiesValue <= 0 && isRoundStart == true)
         {
-            playerObj.transform.position = new Vector3(0,1,0); // Go back to the center of the map
+            playerObj.transform.position = new Vector3(0f,-0.001472749f,0f); // Go back to the center of the map
             playerMovementScript.playerRb.velocity = Vector3.zero;
+            playerMovementScript.playerAnim.SetInteger("animState", 1);
+
             if (isRoundResetting == false)
             {
                 isDoneSpawningObjects = false;       
@@ -156,9 +170,11 @@ public class GameManager : MonoBehaviour
                 waveUpgradesScript.SpawnWaveUpgrades();
                 enemiesRemainingObj.SetActive(false);
                 //Invoke("StartRound", 3f);
-                playerObj.transform.position = new Vector3(0,1,0); // Go back to the center of the map
-                playerMovementScript.playerRb.velocity = Vector3.zero;
+                // playerObj.transform.position = new Vector3(0,1,0); // Go back to the center of the map
+                // playerMovementScript.playerRb.velocity = Vector3.zero;
+                
             }
+            Debug.Log("Teleporting player");
         }
 
         if (playerStatsScipt.health <= 0)
@@ -168,7 +184,7 @@ public class GameManager : MonoBehaviour
 
         // Stat Holder View
         movementSpeedTxt.text = Mathf.Ceil(playerStatsScipt.movementSpeed).ToString();
-        luckTxt.text = Mathf.Ceil(playerStatsScipt.luck).ToString();
+        //luckTxt.text = Mathf.Ceil(playerStatsScipt.luck).ToString();
         dodgeRateTxt.text = Mathf.Ceil(playerStatsScipt.dodgeRate).ToString();
         projectileDamageTxt.text = Mathf.Ceil(playerStatsScipt.projectileDamage).ToString();
         projectileSpeedTxt.text = Mathf.Ceil(playerStatsScipt.projectileSpeed).ToString();
@@ -209,7 +225,7 @@ public class GameManager : MonoBehaviour
     void ResetTemporaryUpgrades()
     {
         PlayerPrefs.SetFloat("temporaryMovementSpeedAmount", 0);
-        PlayerPrefs.SetFloat("temporaryLuckRateAmount", 0);
+        //PlayerPrefs.SetFloat("temporaryLuckRateAmount", 0);
         PlayerPrefs.SetFloat("temporaryDodgeRateAmount", 0);
         PlayerPrefs.SetFloat("temporaryProjectileDamageAmount", 0);
         PlayerPrefs.SetFloat("temporaryProjectileSpeedAmount", 0);
@@ -263,5 +279,11 @@ public class GameManager : MonoBehaviour
     public void SpawnFloatingText()
     {
         Instantiate(floatingTextPrefab,floatingTextPos);
+    }
+    public void ResetPlayerPosition()
+    {
+        playerObj.transform.position = new Vector3(0f,-0.001472749f,0f); // Go back to the center of the map
+        playerMovementScript.playerRb.velocity = Vector3.zero;
+        playerMovementScript.playerAnim.SetInteger("animState", 1);
     }
 }

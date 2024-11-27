@@ -1,0 +1,457 @@
+fileFormatVersion: 2
+guid: 2816823a8209ddf4d86506c7f2691b69
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 0
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 8192
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: iPhone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: ui settings, exit confirmation buttons_13
+      rect:
+        serializedVersion: 2
+        x: 131
+        y: 855
+        width: 738
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6271e0867487da44b85b30dc0b8f74cf
+      internalID: -2069966922
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui settings, exit confirmation buttons_18
+      rect:
+        serializedVersion: 2
+        x: 997
+        y: 750
+        width: 143
+        height: 168
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 33755a8ff4d49124bbdd689aaaa09cce
+      internalID: 439987917
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui settings, exit confirmation buttons_21
+      rect:
+        serializedVersion: 2
+        x: 127
+        y: 693
+        width: 748
+        height: 123
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 707c2d2e5ebc1e94588a131837b33637
+      internalID: 1970141620
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui settings, exit confirmation buttons_28
+      rect:
+        serializedVersion: 2
+        x: 36
+        y: 604
+        width: 8
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f585d5997ab03a8458c6d113fe634b36
+      internalID: -1144108030
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui settings, exit confirmation buttons_29
+      rect:
+        serializedVersion: 2
+        x: 1021
+        y: 507
+        width: 87
+        height: 110
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 28438e6d6a1428a449bf6c3b95d4ca7c
+      internalID: -1751799583
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui settings, exit confirmation buttons_36
+      rect:
+        serializedVersion: 2
+        x: 145
+        y: 467
+        width: 720
+        height: 76
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ec363031b6d30934b9f036344c90307f
+      internalID: -571760066
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui settings, exit confirmation buttons_38
+      rect:
+        serializedVersion: 2
+        x: 36
+        y: 454
+        width: 8
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3d03d293bbaa8464c92cc321fc4a0855
+      internalID: 1908027983
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui settings, exit confirmation buttons_39
+      rect:
+        serializedVersion: 2
+        x: 1009
+        y: 345
+        width: 106
+        height: 119
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c3b90d85ed167644c8c120753aa6deda
+      internalID: 608427597
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui settings, exit confirmation buttons_40
+      rect:
+        serializedVersion: 2
+        x: 36
+        y: 391
+        width: 8
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 94000d3d1e840c14fac68425fab11c5d
+      internalID: 1469704512
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui settings, exit confirmation buttons_44
+      rect:
+        serializedVersion: 2
+        x: 139
+        y: 300
+        width: 730
+        height: 91
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0e3eea2998a41c2469a11b7c09b97ea5
+      internalID: -928741641
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui settings, exit confirmation buttons_48
+      rect:
+        serializedVersion: 2
+        x: 1050
+        y: 66
+        width: 420
+        height: 153
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 076e54d485550794bbc7d25ad6dc87a8
+      internalID: -558378438
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui settings, exit confirmation buttons_49
+      rect:
+        serializedVersion: 2
+        x: 1493
+        y: 74
+        width: 388
+        height: 138
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0e8cca22cebbac845a5a75ad395d8565
+      internalID: 1574434678
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: ce7755d35943d5c4dbcaf67ecd4bd9ef
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      ui settings, exit confirmation buttons_0: 975704500
+      ui settings, exit confirmation buttons_1: -1096535846
+      ui settings, exit confirmation buttons_10: -1430008576
+      ui settings, exit confirmation buttons_11: -782000506
+      ui settings, exit confirmation buttons_12: -169029097
+      ui settings, exit confirmation buttons_13: -2069966922
+      ui settings, exit confirmation buttons_14: 82691985
+      ui settings, exit confirmation buttons_15: 1737263983
+      ui settings, exit confirmation buttons_16: 12353547
+      ui settings, exit confirmation buttons_17: -704430853
+      ui settings, exit confirmation buttons_18: 439987917
+      ui settings, exit confirmation buttons_19: -354127387
+      ui settings, exit confirmation buttons_2: 1238747844
+      ui settings, exit confirmation buttons_20: 1304934158
+      ui settings, exit confirmation buttons_21: 1970141620
+      ui settings, exit confirmation buttons_22: 277454272
+      ui settings, exit confirmation buttons_23: 1080408819
+      ui settings, exit confirmation buttons_24: -362464228
+      ui settings, exit confirmation buttons_25: 341570184
+      ui settings, exit confirmation buttons_26: -654722867
+      ui settings, exit confirmation buttons_27: -2073938696
+      ui settings, exit confirmation buttons_28: -1144108030
+      ui settings, exit confirmation buttons_29: -1751799583
+      ui settings, exit confirmation buttons_3: -1213747046
+      ui settings, exit confirmation buttons_30: -1782991493
+      ui settings, exit confirmation buttons_31: 1628086887
+      ui settings, exit confirmation buttons_32: -1261538568
+      ui settings, exit confirmation buttons_33: -1310359259
+      ui settings, exit confirmation buttons_34: -1878208592
+      ui settings, exit confirmation buttons_35: 194727212
+      ui settings, exit confirmation buttons_36: -571760066
+      ui settings, exit confirmation buttons_37: 828471434
+      ui settings, exit confirmation buttons_38: 1908027983
+      ui settings, exit confirmation buttons_39: 608427597
+      ui settings, exit confirmation buttons_4: -1904043997
+      ui settings, exit confirmation buttons_40: 1469704512
+      ui settings, exit confirmation buttons_41: -1421312388
+      ui settings, exit confirmation buttons_42: 168827318
+      ui settings, exit confirmation buttons_43: 711022697
+      ui settings, exit confirmation buttons_44: -928741641
+      ui settings, exit confirmation buttons_45: 370392456
+      ui settings, exit confirmation buttons_46: 2037909565
+      ui settings, exit confirmation buttons_47: 843750114
+      ui settings, exit confirmation buttons_48: -558378438
+      ui settings, exit confirmation buttons_49: 1574434678
+      ui settings, exit confirmation buttons_5: 1842695466
+      ui settings, exit confirmation buttons_50: -1075614382
+      ui settings, exit confirmation buttons_51: -416564576
+      ui settings, exit confirmation buttons_6: 459759401
+      ui settings, exit confirmation buttons_7: -2051982636
+      ui settings, exit confirmation buttons_8: 1151781765
+      ui settings, exit confirmation buttons_9: 285261733
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

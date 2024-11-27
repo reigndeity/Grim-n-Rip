@@ -1,0 +1,265 @@
+fileFormatVersion: 2
+guid: c4a8e9ee7c5e066469f837d26c13997d
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 0
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 8192
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: iPhone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: loading screen-loading bar_68
+      rect:
+        serializedVersion: 2
+        x: 468
+        y: 1200
+        width: 2718
+        height: 60
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fa817225f08eccf4ea820a9268a3761a
+      internalID: -1669479124
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: loading screen-loading bar_69
+      rect:
+        serializedVersion: 2
+        x: 342
+        y: 934
+        width: 2964
+        height: 161
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 105d4f35d5d77df4abfa2d7e4367dc67
+      internalID: -1063111402
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 3c3d069cdf3414c438a2aac46ade5fac
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      loading screen-loading bar_0: -876075896
+      loading screen-loading bar_1: 315336755
+      loading screen-loading bar_10: 1178055384
+      loading screen-loading bar_11: -542455892
+      loading screen-loading bar_12: -371318972
+      loading screen-loading bar_13: -915681978
+      loading screen-loading bar_14: 2033205355
+      loading screen-loading bar_15: -12527953
+      loading screen-loading bar_16: 1134104557
+      loading screen-loading bar_17: -1040796345
+      loading screen-loading bar_18: 320123443
+      loading screen-loading bar_19: 1029902002
+      loading screen-loading bar_2: 1664068737
+      loading screen-loading bar_20: -2078632757
+      loading screen-loading bar_21: 480185323
+      loading screen-loading bar_22: 979088387
+      loading screen-loading bar_23: 1366339559
+      loading screen-loading bar_24: -409351761
+      loading screen-loading bar_25: 1203139071
+      loading screen-loading bar_26: -1050168449
+      loading screen-loading bar_27: 1867099781
+      loading screen-loading bar_28: 731035136
+      loading screen-loading bar_29: -1303339125
+      loading screen-loading bar_3: -1218217489
+      loading screen-loading bar_30: -1729188240
+      loading screen-loading bar_31: -1439825144
+      loading screen-loading bar_32: -282631006
+      loading screen-loading bar_33: -705839093
+      loading screen-loading bar_34: -63583597
+      loading screen-loading bar_35: -1750482875
+      loading screen-loading bar_36: -146238138
+      loading screen-loading bar_37: 470957395
+      loading screen-loading bar_38: -919899490
+      loading screen-loading bar_39: -953294576
+      loading screen-loading bar_4: -463222413
+      loading screen-loading bar_40: -271357519
+      loading screen-loading bar_41: 93813463
+      loading screen-loading bar_42: -210922005
+      loading screen-loading bar_43: -660802923
+      loading screen-loading bar_44: 1907238655
+      loading screen-loading bar_45: -926725263
+      loading screen-loading bar_46: -839075530
+      loading screen-loading bar_47: 1135457160
+      loading screen-loading bar_48: 893697386
+      loading screen-loading bar_49: -658997216
+      loading screen-loading bar_5: 2066727189
+      loading screen-loading bar_50: 1117491019
+      loading screen-loading bar_51: -1038801316
+      loading screen-loading bar_52: -2033316698
+      loading screen-loading bar_53: -1891824962
+      loading screen-loading bar_54: -1264483559
+      loading screen-loading bar_55: -2080005969
+      loading screen-loading bar_56: 1650519887
+      loading screen-loading bar_57: -701897770
+      loading screen-loading bar_58: 211182157
+      loading screen-loading bar_59: 1177472500
+      loading screen-loading bar_6: -634557746
+      loading screen-loading bar_60: -2036717455
+      loading screen-loading bar_61: 1975862496
+      loading screen-loading bar_62: 1647437118
+      loading screen-loading bar_63: 1457129731
+      loading screen-loading bar_64: 1267994126
+      loading screen-loading bar_65: -970976982
+      loading screen-loading bar_66: -1715650491
+      loading screen-loading bar_67: 1124966836
+      loading screen-loading bar_68: -1669479124
+      loading screen-loading bar_69: -1063111402
+      loading screen-loading bar_7: 1050481402
+      loading screen-loading bar_8: -322407733
+      loading screen-loading bar_9: -1385275711
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

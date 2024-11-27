@@ -15,7 +15,7 @@ public class PlayerValues : MonoBehaviour
         playerStatsScript.health = PlayerPrefs.GetFloat("healthAmount");
         playerStatsScript.movementSpeed = PlayerPrefs.GetFloat("movementSpeedAmount");
         playerStatsScript.dodgeRate = PlayerPrefs.GetFloat("dodgeRateAmount");
-        playerStatsScript.luck = PlayerPrefs.GetFloat("luckRateAmount");
+        //playerStatsScript.luck = PlayerPrefs.GetFloat("luckRateAmount");
         playerStatsScript.projectileDamage = PlayerPrefs.GetFloat("projectileDamageAmount");
         playerStatsScript.projectileSpeed = PlayerPrefs.GetFloat("projectileSpeedAmount");
         playerStatsScript.fireRate = PlayerPrefs.GetFloat("weaponFireRateAmount");
