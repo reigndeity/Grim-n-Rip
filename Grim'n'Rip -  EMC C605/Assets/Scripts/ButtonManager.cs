@@ -46,17 +46,7 @@ public class ButtonManager : MonoBehaviour
                 lowPostProcessObj.SetActive(false);
                 highPostProcessObj.SetActive(true);              
             }
-            // Max Fire Rate Upgrade
-            if (_shopManager.selectedUpgrade == 3 && _shopManager.isMaxFireRate == true)
-            {
-                _shopManager.weaponFireRateCostTxt.text = "MAXED OUT!";
-                _shopManager.fireRateBut.interactable = false;
-                _shopManager.confirmButton.interactable = false;
-            }
-            else
-            {
-                _shopManager.confirmButton.interactable = true;
-            }
+            // ===============================================================================
 
         }
     }

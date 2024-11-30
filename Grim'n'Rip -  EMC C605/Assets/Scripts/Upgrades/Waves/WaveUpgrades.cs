@@ -21,27 +21,52 @@ public class WaveUpgrades : MonoBehaviour
 
     public void SpawnWaveUpgrades()
     {
-        // Create a temporary list of upgrades to avoid duplicates
-        List<GameObject> availableUpgrades = new List<GameObject>(waveUpgrades);
+  // Create a temporary list of upgrades to avoid duplicates
+    List<GameObject> availableUpgrades = new List<GameObject>(waveUpgrades);
 
-        // Spawn upgrades 3 times, ensuring no duplicates
-        for (int i = 0; i < 3; i++) 
-        {
-            if (availableUpgrades.Count > 0)
-            {
-                // Pick a random index from the available upgrades list
-                int randomIndex = Random.Range(0, availableUpgrades.Count);
+    // Check if upgrades should be disabled based on PlayerPrefs values
+    if (PlayerPrefs.GetInt("movementSpeedUpgradeCount") >= 9)
+    {
+        // Disable movement speed upgrade (waveUpgrades[1])
+        availableUpgrades[1] = null;
+    }
+    if (PlayerPrefs.GetInt("dodgeRateUpgradeCount") >= 30)
+    {
+        // Disable dodge rate upgrade (waveUpgrades[3])
+        availableUpgrades[3] = null;
+    }
+    if (PlayerPrefs.GetInt("projectileSpeedUpgradeCount") >= 4)
+    {
+        // Disable projectile speed upgrade (waveUpgrades[4])
+        availableUpgrades[4] = null;
+    }
+    if (PlayerPrefs.GetInt("fireRateUpgradeCount") >= 13)
+    {
+        // Disable fire rate upgrade (waveUpgrades[5])
+        availableUpgrades[5] = null;
+    }
 
-                // Instantiate the selected upgrade
-                GameObject spawnedUpgrade = Instantiate(availableUpgrades[randomIndex], parentPos);
+    // Filter out the null entries (disabled upgrades) to get the actual list of available upgrades
+    availableUpgrades.RemoveAll(upgrade => upgrade == null);
 
-                // Add the spawned object to the list
-                spawnedUpgrades.Add(spawnedUpgrade);
+    // Ensure we spawn the remaining valid upgrades, whether it's 3 or 2
+    int upgradesToSpawn = Mathf.Min(3, availableUpgrades.Count);
 
-                // Remove the selected upgrade from the available list
-                availableUpgrades.RemoveAt(randomIndex);
-            }
-        }
+    // Spawn the determined number of upgrades
+    for (int i = 0; i < upgradesToSpawn; i++) 
+    {
+        // Pick a random index from the available upgrades list
+        int randomIndex = Random.Range(0, availableUpgrades.Count);
+
+        // Instantiate the selected upgrade
+        GameObject spawnedUpgrade = Instantiate(availableUpgrades[randomIndex], parentPos);
+
+        // Add the spawned object to the list
+        spawnedUpgrades.Add(spawnedUpgrade);
+
+        // Remove the selected upgrade from the available list
+        availableUpgrades.RemoveAt(randomIndex);
+    }
     }
 
     // Function to destroy all spawned upgrades

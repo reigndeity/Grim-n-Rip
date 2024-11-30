@@ -16,8 +16,8 @@ Shader "Custom/Outline Fill" {
 
   SubShader {
     Tags {
-      "Queue" = "Transparent+110"
-      "RenderType" = "Transparent"
+      "Queue" = "Overlay" // Render as an overlay (on top of everything else)
+      "RenderType" = "Overlay"
       "DisableBatching" = "True"
     }
 
@@ -73,7 +73,7 @@ Shader "Custom/Outline Fill" {
       }
 
       fixed4 frag(v2f input) : SV_Target {
-        return input.color;
+        return input.color; // Return color, not emission
       }
       ENDCG
     }

@@ -15,8 +15,9 @@ public class ShopManager : MonoBehaviour
     public GameObject[] upgradeImages;
     public TextMeshProUGUI statUpgradeValueTxt;
     public Button confirmButton;
-    public TextMeshProUGUI confirmTxt;
+    public TextMeshProUGUI confirmYesTxt;
     public int selectedUpgrade;
+    public TextMeshProUGUI confirmHeaderTxt;
 
     [Header("Shop UI Properties")]
     // Player Stat Values
@@ -29,15 +30,26 @@ public class ShopManager : MonoBehaviour
     [SerializeField] TextMeshProUGUI weaponFireRateValueTxt;
     [Header("Upgrade Cost Properties")]
     [SerializeField] TextMeshProUGUI healthCostTxt;
-    [SerializeField] TextMeshProUGUI movementSpeedCostTxt;
-    [SerializeField] TextMeshProUGUI dodgeRateCostTxt;
+    public TextMeshProUGUI movementSpeedCostTxt;
+    public TextMeshProUGUI dodgeRateCostTxt;
     //[SerializeField] TextMeshProUGUI luckRateCostTxt;
     [SerializeField] TextMeshProUGUI projectileDamageCostTxt;
-    [SerializeField] TextMeshProUGUI projectileSpeedCostTxt;
+    public TextMeshProUGUI projectileSpeedCostTxt;
     public TextMeshProUGUI weaponFireRateCostTxt;
     [Header("Upgrade Button Properties")]
     public bool isMaxFireRate;
     public Button fireRateBut;
+    public bool isMaxMovementSpeed;
+    public Button movementSpeedBut;
+    public bool isMaxDodgeRate;
+    public Button dodgeRateBut;
+    public bool isMaxProjectileSpeed;
+    public Button projectileSpeedBut;
+
+    public int dodgeUpgradeCount;
+    public int movementSpeedUpgradeCount;
+    public int fireRateUpgradeCount;
+    public int projectileSpeedUpgradeCount;
 
 
     void Start()
@@ -74,6 +86,13 @@ public class ShopManager : MonoBehaviour
 
             PlayerPrefs.SetInt("postProcess", 0);
         }
+
+        movementSpeedUpgradeCount = PlayerPrefs.GetInt("movementSpeedUpgradeCount");
+        dodgeUpgradeCount = PlayerPrefs.GetInt("dodgeRateUpgradeCount");
+        projectileSpeedUpgradeCount = PlayerPrefs.GetInt("projectileSpeedUpgradeCount");
+        fireRateUpgradeCount = PlayerPrefs.GetInt("fireRateUpgradeCount");
+        
+        
     }
 
 
@@ -91,40 +110,124 @@ public class ShopManager : MonoBehaviour
         
 
         healthCostTxt.text = "COST: " + PlayerPrefs.GetInt("healthUpgradeCost").ToString();
-        movementSpeedCostTxt.text = "COST: " + PlayerPrefs.GetInt("movementSpeedUpgradeCost").ToString();
-        dodgeRateCostTxt.text = "COST: " + PlayerPrefs.GetInt("dodgeRateUpgradeCost").ToString();
         //luckRateCostTxt.text ="COST\n" +  PlayerPrefs.GetInt("luckRateUpgradeCost").ToString();
         projectileDamageCostTxt.text ="COST: " +  PlayerPrefs.GetInt("projectileDamageUpgradeCost").ToString();
-        projectileSpeedCostTxt.text = "COST: " + PlayerPrefs.GetInt("projectileSpeedUpgradeCost").ToString();
-        weaponFireRateCostTxt.text = "COST: " + PlayerPrefs.GetInt("weaponFireRateUpgradeCost").ToString();
+        
 
-        if (selectedUpgrade == 0)
+        // Limited Upgrades
+        if (movementSpeedUpgradeCount >= 9)
+        {
+            isMaxMovementSpeed = true;
+            movementSpeedCostTxt.text = "MAXED OUT!";
+            //movementSpeedBut.interactable = false;
+        }
+        if (dodgeUpgradeCount >= 30)
+        {
+            isMaxDodgeRate = true;
+            dodgeRateCostTxt.text = "MAXED OUT!";
+            //dodgeRateBut.interactable = false;
+        }
+        if (projectileSpeedUpgradeCount >= 4)
+        {
+            isMaxProjectileSpeed = true;
+            projectileSpeedCostTxt.text = "MAXED OUT!";
+            //projectileSpeedBut.interactable = false;
+        }
+        if (fireRateUpgradeCount >= 13)
+        {
+            isMaxFireRate = true;
+            weaponFireRateCostTxt.text = "MAXED OUT!";
+            //fireRateBut.interactable = false;
+        }
+        
+
+        if (isMaxMovementSpeed == false)
+        {
+            movementSpeedCostTxt.text = "COST: " + PlayerPrefs.GetInt("movementSpeedUpgradeCost").ToString();
+        }
+        else
+        {
+            movementSpeedCostTxt.text = "MAXED OUT!";
+        }
+        if (isMaxDodgeRate == false)
+        {
+            dodgeRateCostTxt.text = "COST: " + PlayerPrefs.GetInt("dodgeRateUpgradeCost").ToString();
+        }
+        else
+        {
+            dodgeRateCostTxt.text = "MAXED OUT!";
+        }
+
+        if (isMaxProjectileSpeed == false)
+        {
+            projectileSpeedCostTxt.text = "COST: " + PlayerPrefs.GetInt("projectileSpeedUpgradeCost").ToString();
+        }
+        else
+        {
+            projectileSpeedCostTxt.text = "MAXED OUT!";
+        }
+        if (isMaxFireRate == false)
+        {
+            weaponFireRateCostTxt.text = "COST: " + PlayerPrefs.GetInt("weaponFireRateUpgradeCost").ToString();
+        }
+        else
+        {
+            weaponFireRateCostTxt.text = "MAXED OUT!";
+        }
+
+
+        if (selectedUpgrade == 0 && isMaxDodgeRate == false)
         {
             float currentDodgeRate = PlayerPrefs.GetFloat("dodgeRateAmount");
             float projectedValue = Mathf.Ceil(currentDodgeRate + 2.75f); // Add the upgrade value
             statUpgradeValueTxt.text = Mathf.Ceil(currentDodgeRate).ToString() + " > " + projectedValue.ToString();
+            confirmHeaderTxt.text = "Confirm Upgrade?";
+            confirmButton.interactable = true;
+        }
+        if (selectedUpgrade == 0 && isMaxDodgeRate == true)
+        {
+            float currentDodgeRate = PlayerPrefs.GetFloat("dodgeRateAmount");
+            statUpgradeValueTxt.text = "CURRENT STAT: " + Mathf.Ceil(currentDodgeRate).ToString();
+            confirmHeaderTxt.text = "Already Max!";
+            confirmButton.interactable = false;
         }
         if (selectedUpgrade == 1)
         {
             float currentHealth = PlayerPrefs.GetFloat("healthAmount");
             float projectedValue = Mathf.Ceil(currentHealth + 30f); // Health upgrade adds 30
             statUpgradeValueTxt.text = Mathf.Ceil(currentHealth).ToString() + " > " + projectedValue.ToString();
+            confirmHeaderTxt.text = "Confirm Upgrade?";
+            confirmButton.interactable = true;
         }
-        if (selectedUpgrade == 2)
+        if (selectedUpgrade == 2 && isMaxMovementSpeed == false)
         {
             float currentMovementSpeed = PlayerPrefs.GetFloat("movementSpeedAmount");
             float projectedValue = Mathf.Ceil(currentMovementSpeed + 1f); // Movement speed upgrade adds 1
             statUpgradeValueTxt.text = Mathf.Ceil(currentMovementSpeed).ToString() + " > " + projectedValue.ToString();
+            confirmHeaderTxt.text = "Confirm Upgrade?";
+            confirmButton.interactable = true;
+        }
+        if (selectedUpgrade == 2 && isMaxMovementSpeed == true)
+        {
+            float currentMovementSpeed = PlayerPrefs.GetFloat("movementSpeedAmount");
+            statUpgradeValueTxt.text = "CURRENT STAT: " + Mathf.Ceil(currentMovementSpeed).ToString();
+            confirmHeaderTxt.text = "Already Max!";
+            confirmButton.interactable = false;
         }
         if (selectedUpgrade == 3 && isMaxFireRate == false)
         {
             float currentWeaponFireRate = PlayerPrefs.GetFloat("weaponFireRateAmount");
             float projectedValue = (currentWeaponFireRate - 0.1f); // Weapon fire rate upgrade reduces by 0.1
             statUpgradeValueTxt.text = (currentWeaponFireRate).ToString("F1") + " > " + projectedValue.ToString("F1");
+            confirmHeaderTxt.text = "Confirm Upgrade?";
+            confirmButton.interactable = true;
         }
         if (selectedUpgrade == 3 && isMaxFireRate == true)
         {
-            statUpgradeValueTxt.text = "MAXED OUT!";
+            float currentFireRate = PlayerPrefs.GetFloat("weaponFireRateAmount");
+            statUpgradeValueTxt.text = "CURRENT STAT: " + (currentFireRate).ToString("F1");
+            confirmHeaderTxt.text = "Already Max!";
+            confirmButton.interactable = false;
         }
 
         if (selectedUpgrade == 4)
@@ -132,12 +235,23 @@ public class ShopManager : MonoBehaviour
             float currentProjectileDamage = PlayerPrefs.GetFloat("projectileDamageAmount");
             float projectedValue = Mathf.Ceil(currentProjectileDamage + 15f); // Projectile damage upgrade adds 15
             statUpgradeValueTxt.text = Mathf.Ceil(currentProjectileDamage).ToString() + " > " + projectedValue.ToString();
+            confirmHeaderTxt.text = "Confirm Upgrade?";
+            confirmButton.interactable = true;
         }
-        if (selectedUpgrade == 5)
+        if (selectedUpgrade == 5 && isMaxProjectileSpeed == false)
         {
             float currentProjectileSpeed = PlayerPrefs.GetFloat("projectileSpeedAmount");
             float projectedValue = Mathf.Ceil(currentProjectileSpeed + 3f); // Projectile speed upgrade adds 3
             statUpgradeValueTxt.text = Mathf.Ceil(currentProjectileSpeed).ToString() + " > " + projectedValue.ToString();
+            confirmHeaderTxt.text = "Confirm Upgrade?";
+            confirmButton.interactable = true;
+        }
+        if (selectedUpgrade == 5 && isMaxProjectileSpeed == true)
+        {
+            float currentProjectileSpeed = PlayerPrefs.GetFloat("projectileSpeedAmount");
+            statUpgradeValueTxt.text = "CURRENT STAT: " + Mathf.Ceil(currentProjectileSpeed).ToString();
+            confirmHeaderTxt.text = "Already Max!";confirmHeaderTxt.text = "Already Max!";
+            confirmButton.interactable = false;
         }
     }
 
@@ -146,6 +260,7 @@ public class ShopManager : MonoBehaviour
         int upgradeCost = PlayerPrefs.GetInt("healthUpgradeCost");
         int currentCoins = PlayerPrefs.GetInt("totalCoins");
 
+        int healthUpgradeCount = PlayerPrefs.GetInt("healthUpgradeCount", 0);
         // Check if the player has enough coins
         if (currentCoins >= upgradeCost)
         {
@@ -163,6 +278,10 @@ public class ShopManager : MonoBehaviour
             float priceCost = 1.1f;
             upgradeCost = Mathf.CeilToInt(upgradeCost * priceCost); 
             PlayerPrefs.SetInt("healthUpgradeCost", upgradeCost);
+
+            // Increment the upgrade count
+            healthUpgradeCount++;
+            PlayerPrefs.SetInt("healthUpgradeCount", healthUpgradeCount);
         }
         else
         {
@@ -179,7 +298,7 @@ public class ShopManager : MonoBehaviour
         int movementSpeedUpgradeCount = PlayerPrefs.GetInt("movementSpeedUpgradeCount", 0);
 
         // Set the maximum number of upgrades allowed
-        int maxMovementSpeedUpgrades = 10;
+        int maxMovementSpeedUpgrades = 9;
 
         // Check if the upgrade count is less than the max limit
         if (movementSpeedUpgradeCount < maxMovementSpeedUpgrades)
@@ -212,6 +331,8 @@ public class ShopManager : MonoBehaviour
         else
         {
             Debug.Log("Maximum upgrades reached for movement speed!");
+            PlayerPrefs.SetFloat("movementSpeedAmount", 15f);
+            isMaxMovementSpeed = true;
         }
     }
     public void DodgeRateUpgrade()
@@ -256,6 +377,8 @@ public class ShopManager : MonoBehaviour
         else
         {
             Debug.Log("Maximum upgrades reached for dodge rate!");
+            PlayerPrefs.SetFloat("dodgeRateAmount", 91);
+            isMaxDodgeRate = true;
         }
     }
 
@@ -320,7 +443,7 @@ public class ShopManager : MonoBehaviour
         int projectileSpeedUpgradeCount = PlayerPrefs.GetInt("projectileSpeedUpgradeCount", 0);
 
         // Set the maximum number of upgrades allowed
-        int maxProjectileSpeedUpgrades = 5;
+        int maxProjectileSpeedUpgrades = 4;
 
         // Check if the upgrade count is less than the max limit
         if (projectileSpeedUpgradeCount < maxProjectileSpeedUpgrades)
@@ -353,6 +476,8 @@ public class ShopManager : MonoBehaviour
         else
         {
             Debug.Log("Maximum upgrades reached for projectile speed!");
+            PlayerPrefs.SetFloat("projectileSpeedAmount", 25f);
+            isMaxProjectileSpeed = true;
         }
     }
     public void WeaponFireRateUpgrade()
@@ -364,7 +489,7 @@ public class ShopManager : MonoBehaviour
         int fireRateUpgradeCount = PlayerPrefs.GetInt("fireRateUpgradeCount", 0);
 
         // Set the maximum number of upgrades allowed
-        int maxUpgrades = 14;
+        int maxUpgrades = 13;
 
         // Check if the upgrade count is less than the max limit
         if (fireRateUpgradeCount < maxUpgrades)
@@ -397,6 +522,7 @@ public class ShopManager : MonoBehaviour
         else
         {
             Debug.Log("Maximum upgrades reached for fire rate!");
+            PlayerPrefs.SetFloat("weaponFireRateAmount", 0.1f);
             isMaxFireRate = true;
         }
     }

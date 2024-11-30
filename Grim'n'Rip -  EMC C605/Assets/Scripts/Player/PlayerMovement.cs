@@ -31,10 +31,17 @@ public class PlayerMovement : MonoBehaviour
     {
         playerMovementSpeed = PlayerPrefs.GetFloat("movementSpeedAmount") + PlayerPrefs.GetFloat("temporaryMovementSpeedAmount");
 
-        if (GameManager.instance.enemiesValue <= 0 && GameManager.instance.isRoundStart == true)
+        // if (GameManager.instance.enemiesValue <= 0 && GameManager.instance.isRoundStart == true)
+        // {
+        //     GameManager.instance.ResetPlayerPosition();
+        //     Debug.Log("Resetting Player Position");
+        // }
+        if (GameManager.instance.enemiesValue <= 0 )
         {
             GameManager.instance.ResetPlayerPosition();
+            Debug.Log("Resetting Player Position");
         }
+
     }
     void FixedUpdate()
     {

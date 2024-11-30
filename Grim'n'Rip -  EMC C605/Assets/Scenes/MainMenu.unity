@@ -1865,8 +1865,9 @@ MonoBehaviour:
   - {fileID: 1873180536}
   statUpgradeValueTxt: {fileID: 637579549}
   confirmButton: {fileID: 1718777156}
-  confirmTxt: {fileID: 1132072658}
+  confirmYesTxt: {fileID: 1132072658}
   selectedUpgrade: 0
+  confirmHeaderTxt: {fileID: 1242363455}
   healthValueTxt: {fileID: 1922404001}
   movementSpeedValueTxt: {fileID: 687676610}
   dodgeRateValueTxt: {fileID: 1013011192}
@@ -1881,6 +1882,16 @@ MonoBehaviour:
   weaponFireRateCostTxt: {fileID: 1073345591}
   isMaxFireRate: 0
   fireRateBut: {fileID: 67882025}
+  isMaxMovementSpeed: 0
+  movementSpeedBut: {fileID: 1067179355}
+  isMaxDodgeRate: 0
+  dodgeRateBut: {fileID: 2114493121}
+  isMaxProjectileSpeed: 0
+  projectileSpeedBut: {fileID: 726221547}
+  dodgeUpgradeCount: 0
+  movementSpeedUpgradeCount: 0
+  fireRateUpgradeCount: 0
+  projectileSpeedUpgradeCount: 0
 --- !u!4 &209093999
 Transform:
   m_ObjectHideFlags: 0
@@ -10886,7 +10897,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: -3.3}
-  m_SizeDelta: {x: 54.7, y: 40}
+  m_SizeDelta: {x: 180.24, y: 40}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1132072658
 MonoBehaviour:
@@ -11480,7 +11491,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1156741960
 RectTransform:
   m_ObjectHideFlags: 0

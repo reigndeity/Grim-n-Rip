@@ -75,8 +75,8 @@ public class Outline : MonoBehaviour {
   private List<ListVector3> bakeValues = new List<ListVector3>();
 
   private Renderer[] renderers;
-  private Material outlineMaskMaterial;
-  private Material outlineFillMaterial;
+  public Material outlineMaskMaterial;
+  public Material outlineFillMaterial;
 
   private bool needsUpdate;
 
@@ -135,6 +135,7 @@ public class Outline : MonoBehaviour {
 
       UpdateMaterialProperties();
     }
+    
   }
 
   void OnDisable() {
@@ -273,7 +274,7 @@ public class Outline : MonoBehaviour {
 
     // Apply properties according to mode
     outlineFillMaterial.SetColor("_OutlineColor", outlineColor);
-
+    
     switch (outlineMode) {
       case Mode.OutlineAll:
         outlineMaskMaterial.SetFloat("_ZTest", (float)UnityEngine.Rendering.CompareFunction.Always);
