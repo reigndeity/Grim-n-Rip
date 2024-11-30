@@ -10,6 +10,7 @@ public class EnemyMovement : MonoBehaviour
     public EnemyValues enemyValuesScript;
     public Animator enemyAnimator;
     public EnemyProjectileType enemyProjectileTypeScript;
+    public AudioManager _audioManager;
 
     [Header("Enemy Components")]
     [SerializeField] NavMeshAgent enemyAgent;
@@ -36,6 +37,7 @@ public class EnemyMovement : MonoBehaviour
         enemyValuesScript = GetComponent<EnemyValues>();
         enemyAnimator = GetComponent<Animator>();
         enemyProjectileTypeScript = GetComponent<EnemyProjectileType>();
+        _audioManager = FindObjectOfType<AudioManager>();
     }
     void Update()
     {
@@ -196,4 +198,21 @@ public class EnemyMovement : MonoBehaviour
         isAttacking = false;
     }
 
+    // Event System
+    public void BlazeAttackSound()
+    {
+        _audioManager.PlayBlazeAttackSound();
+    }
+    public void SinisterSeerAttackSound()
+    {
+        _audioManager.PlaySinisterSeerAttackSound();
+    }
+    public void VainedAttackSound()
+    {
+        _audioManager.PlayVainedAttackSound();
+    }
+    public void TormentorAttackSound()
+    {
+        _audioManager.PlayTormentorAttackSound();
+    }
 }

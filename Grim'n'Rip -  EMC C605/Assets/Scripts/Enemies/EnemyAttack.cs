@@ -7,6 +7,7 @@ public class EnemyAttack : MonoBehaviour
     [Header("Script References")]
     [SerializeField] EnemyStats enemyStatsScript;
     [SerializeField] PlayerStats playerStatsScript;
+    public AudioManager _audioManager;
 
     [Header("Enemy Properties")]
     [SerializeField] float enemyHitChance;
@@ -15,6 +16,7 @@ public class EnemyAttack : MonoBehaviour
     {
         enemyStatsScript = GetComponentInParent<EnemyStats>();
         playerStatsScript = FindObjectOfType<PlayerStats>();
+        _audioManager = FindObjectOfType<AudioManager>();
     }
 
     void OnTriggerEnter(Collider other)
@@ -37,6 +39,7 @@ public class EnemyAttack : MonoBehaviour
         {
             playerStatsScript.health -= damageAmount;
             playerStatsScript.health = Mathf.Ceil(playerStatsScript.health);
+            _audioManager.PlayPlayerHurtSound();
         }
         else
         {

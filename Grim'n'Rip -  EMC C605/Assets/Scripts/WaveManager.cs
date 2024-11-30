@@ -16,8 +16,9 @@ public class WaveManager : MonoBehaviour
     {
         enemySpawnerScript = FindObjectOfType<EnemySpawner>();
         CalculateEnemyCount();
-
-
+        
+        int debugWave = PlayerPrefs.GetInt("debugWave");
+        currentWave = debugWave;
     }
 
     void Update()

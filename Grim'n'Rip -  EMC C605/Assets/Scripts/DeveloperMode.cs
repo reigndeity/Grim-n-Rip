@@ -15,7 +15,6 @@ public class DeveloperMode : MonoBehaviour
     public bool isClick;
     public bool isOpMode;
     
-
     public void ResetPlayerStats()
     {
         PlayerPrefs.SetInt("isFirstBoot", 0);
@@ -93,14 +92,50 @@ public class DeveloperMode : MonoBehaviour
         }
     }
 
-    public void IncreaseWave()
+    public void IncreaseWaveOne()
     {
-        waveManager.currentWave += 1;
-        currentWaveTxt.text = "Current Wave: " + waveManager.currentWave.ToString();
+        int addedWave = 1;
+        int currentWave = PlayerPrefs.GetInt("debugWave");
+
+        currentWave += addedWave;
+        PlayerPrefs.SetInt("debugWave",currentWave);
+        currentWaveTxt.text = "Current Wave: " + currentWave.ToString();
+
     }
-    public void DecreaseWave()
+    public void DecreaseWaveOne()
     {
-        waveManager.currentWave -= 1;
-        currentWaveTxt.text = "Current Wave: " + waveManager.currentWave.ToString();
+        int addedWave = 1;
+        int currentWave = PlayerPrefs.GetInt("debugWave");
+        if (currentWave > 0)
+        {
+            currentWave = Mathf.Max(0, currentWave - addedWave); // Ensure it does not go below zero
+            PlayerPrefs.SetInt("debugWave", currentWave);
+            currentWaveTxt.text = "Current Wave: " + currentWave.ToString();
+        }
+    }
+        public void IncreaseWaveTen()
+    {
+        int addedWave = 10;
+        int currentWave = PlayerPrefs.GetInt("debugWave");
+        currentWave += addedWave;
+        PlayerPrefs.SetInt("debugWave",currentWave);
+        currentWaveTxt.text = "Current Wave: " + currentWave.ToString();
+    }
+    public void DecreaseWaveTen()
+    {
+        int addedWave = 10;
+        int currentWave = PlayerPrefs.GetInt("debugWave");
+        if (currentWave > 0)
+        {
+            currentWave = Mathf.Max(0, currentWave - addedWave); // Ensure it does not go below zero
+            PlayerPrefs.SetInt("debugWave", currentWave);
+            currentWaveTxt.text = "Current Wave: " + currentWave.ToString();
+        }
+    }
+    public void ResetWave()
+    {
+        int currentWave = PlayerPrefs.GetInt("debugWave");
+        PlayerPrefs.SetInt("debugWave", 0);
+        currentWaveTxt.text = "Current Wave: " + currentWave.ToString();
     }
 }

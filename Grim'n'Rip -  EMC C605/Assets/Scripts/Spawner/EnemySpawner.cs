@@ -13,18 +13,19 @@ public class EnemySpawner : MonoBehaviour
     public int maxEnemiesOnScreen = 50;  // Max number of enemies allowed on the screen at once
     [SerializeField] float baseEnemySpawn = 5f;  // Starting number of enemies for the first wave
 
-    // Base spawn chances
-    [Header("Enemy Type Spawn Chances")]
-    [SerializeField] float commonSpawnChance = 100f; // Base common enemy spawn chance
-    [SerializeField] float uncommonSpawnChance = 5f;  // Base uncommon enemy spawn chance
-    [SerializeField] float rareSpawnChance = 0f;       // Base rare enemy spawn chance
-    [SerializeField] float epicSpawnChance = 0f;       // Base epic enemy spawn chance
+    // Spawn chances for Phase 1
+    [Header("Phase 1 Enemy Spawn Chances")]
+    [SerializeField] float commonSpawnChance = 100f;
+    [SerializeField] float uncommonSpawnChance = 5f;
+    [SerializeField] float rareSpawnChance = 0f;
+    [SerializeField] float epicSpawnChance = 0f;
 
-    // Phase 2 spawn chances (declare at class level)
-    public float commonPhase2Chance;
-    public float uncommonPhase2Chance;
-    public float rarePhase2Chance;
-    public float epicPhase2Chance;
+    // Spawn chances for Phase 2
+    [Header("Phase 2 Enemy Spawn Chances")]
+    [SerializeField] float common2SpawnChance = 0f;
+    [SerializeField] float uncommon2SpawnChance = 0f;
+    [SerializeField] float rare2SpawnChance = 0f;
+    [SerializeField] float epic2SpawnChance = 0f;
 
     [Header("Script References")]
     public WaveManager waveManagerScript;
@@ -47,10 +48,8 @@ public class EnemySpawner : MonoBehaviour
     {
         float waveFactor = waveManagerScript.currentWave;
 
-        // Phase 1 spawn chances (decrease over time)
-        float phaseOutWave = 150f; // The wave at which phase 1 enemies no longer spawn
-
-        if (waveFactor >= phaseOutWave)
+        // Update Phase 1 spawn chances (Phase 1 becomes inactive at wave 150)
+        if (waveFactor >= 150)
         {
             commonSpawnChance = 0f;
             uncommonSpawnChance = 0f;
@@ -59,42 +58,24 @@ public class EnemySpawner : MonoBehaviour
         }
         else
         {
-            commonSpawnChance = 100f - (0.5f * waveFactor);
-            uncommonSpawnChance = 5f + (0.7f * waveFactor);
-            rareSpawnChance = 0f + (0.2f * waveFactor);
-            epicSpawnChance = 0f + (0.1f * waveFactor);
+            commonSpawnChance = Mathf.Max(0f, 100f - (0.5f * waveFactor));
+            uncommonSpawnChance = Mathf.Max(0f, 5f + (0.7f * waveFactor));
+            rareSpawnChance = Mathf.Max(0f, 0.2f * waveFactor);
+            epicSpawnChance = Mathf.Max(0f, 0.1f * waveFactor);
         }
 
-        // Phase 2 spawn chances (start at specific wave thresholds)
-        float phase2Factor = Mathf.Max(0, waveFactor - 50);
-        float phase2UncommonFactor = Mathf.Max(0, waveFactor - 65);
-        float phase2RareFactor = Mathf.Max(0, waveFactor - 80);
-        float phase2EpicFactor = Mathf.Max(0, waveFactor - 105);
-
-        commonPhase2Chance = Mathf.Min(50f, phase2Factor * 0.4f);
-        uncommonPhase2Chance = Mathf.Min(50f, phase2UncommonFactor * 0.5f);
-        rarePhase2Chance = Mathf.Min(50f, phase2RareFactor * 0.6f);
-        epicPhase2Chance = Mathf.Min(50f, phase2EpicFactor * 0.7f);
-
-        // Combine the chances for phase 1 and phase 2
-        commonSpawnChance += commonPhase2Chance;
-        uncommonSpawnChance += uncommonPhase2Chance;
-        rareSpawnChance += rarePhase2Chance;
-        epicSpawnChance += epicPhase2Chance;
-
-        // Ensure spawn chances are within bounds
-        commonSpawnChance = Mathf.Max(0f, commonSpawnChance);
-        uncommonSpawnChance = Mathf.Min(50f, uncommonSpawnChance);
-        rareSpawnChance = Mathf.Min(50f, rareSpawnChance);
-        epicSpawnChance = Mathf.Min(50f, epicSpawnChance);
+        // Update Phase 2 spawn chances (Phase 2 starts at wave 50)
+        common2SpawnChance = Mathf.Min(50f, Mathf.Max(0, (waveFactor - 50) * 0.4f));
+        uncommon2SpawnChance = Mathf.Min(50f, Mathf.Max(0, (waveFactor - 75) * 0.5f));
+        rare2SpawnChance = Mathf.Min(50f, Mathf.Max(0, (waveFactor - 100) * 0.6f));
+        epic2SpawnChance = Mathf.Min(50f, Mathf.Max(0, (waveFactor - 125) * 0.7f));
     }
 
     private GameObject GetRandomEnemy()
     {
-        float totalChance = commonSpawnChance + uncommonSpawnChance + rareSpawnChance + epicSpawnChance;
-
-        // Add phase 2 chances to total
-        totalChance += (commonPhase2Chance + uncommonPhase2Chance + rarePhase2Chance + epicPhase2Chance);
+        // Combine spawn chances for Phase 1 and Phase 2
+        float totalChance = commonSpawnChance + uncommonSpawnChance + rareSpawnChance + epicSpawnChance +
+                            common2SpawnChance + uncommon2SpawnChance + rare2SpawnChance + epic2SpawnChance;
 
         float randomValue = Random.Range(0, totalChance);
 
@@ -115,16 +96,17 @@ public class EnemySpawner : MonoBehaviour
         {
             return enemyPrefabs[3]; // Epic Phase 1
         }
+
         // Phase 2 enemies
-        else if (randomValue < commonSpawnChance + uncommonSpawnChance + rareSpawnChance + epicSpawnChance + commonPhase2Chance)
+        else if (randomValue < commonSpawnChance + uncommonSpawnChance + rareSpawnChance + epicSpawnChance + common2SpawnChance)
         {
             return enemyPrefabs[4]; // Common Phase 2
         }
-        else if (randomValue < commonSpawnChance + uncommonSpawnChance + rareSpawnChance + epicSpawnChance + commonPhase2Chance + uncommonPhase2Chance)
+        else if (randomValue < commonSpawnChance + uncommonSpawnChance + rareSpawnChance + epicSpawnChance + common2SpawnChance + uncommon2SpawnChance)
         {
             return enemyPrefabs[5]; // Uncommon Phase 2
         }
-        else if (randomValue < commonSpawnChance + uncommonSpawnChance + rareSpawnChance + epicSpawnChance + commonPhase2Chance + uncommonPhase2Chance + rarePhase2Chance)
+        else if (randomValue < commonSpawnChance + uncommonSpawnChance + rareSpawnChance + epicSpawnChance + common2SpawnChance + uncommon2SpawnChance + rare2SpawnChance)
         {
             return enemyPrefabs[6]; // Rare Phase 2
         }

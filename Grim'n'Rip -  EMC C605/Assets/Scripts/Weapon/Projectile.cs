@@ -11,6 +11,7 @@ public class Projectile : MonoBehaviour
     [SerializeField] ParticleSystem bulletSplash;
     [SerializeField] MeshRenderer thisBullet;
     [SerializeField] SphereCollider bulletCollider;
+    public AudioManager _audioManager;
     
 
     void Awake()
@@ -19,14 +20,17 @@ public class Projectile : MonoBehaviour
         bulletCollider = GetComponent<SphereCollider>();
         bulletSplash = GetComponentInChildren<ParticleSystem>();
         thisBullet = GetComponent<MeshRenderer>();
+        _audioManager = FindObjectOfType<AudioManager>();
     }
 
     void OnCollisionEnter(Collision other)
     {
         bulletSplash.Play();
+        
         thisBullet.enabled = false;
         if (other.gameObject.CompareTag("Enemy"))
         {
+            _audioManager.PlayProjectileHitEnemySound();
             EnemyValues enemyValuesScript = other.gameObject.GetComponent<EnemyValues>();
             enemyValuesScript.TakeDamage(weaponScript.projectileDamage);
             bulletCollider.enabled = false;
@@ -35,6 +39,7 @@ public class Projectile : MonoBehaviour
 
         if (other.gameObject.CompareTag("ProjectileDestroyer"))
         {
+            _audioManager.PlayProjectileHitEnemySound();
             bulletCollider.enabled = false;
             Invoke("DestroyBullet", 1f);
         }

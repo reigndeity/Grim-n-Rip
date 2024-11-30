@@ -11,6 +11,7 @@ public class EnemyValues : MonoBehaviour
     [SerializeField] WaveManager waveManagerScript;
     [SerializeField] PlayerStats playerStatsScript;
     [SerializeField] EnemyMovement enemyMovementScript;
+    public AudioManager _audioManager;
     
     [Header("Enemy Properties")]
     [SerializeField] int enemyType; // 0 - blaze | 1 - sinister seer | 2 - vained | 3 - tormented soul
@@ -35,6 +36,7 @@ public class EnemyValues : MonoBehaviour
         enemyCollider = GetComponent<CapsuleCollider>();
         healthBar = transform.Find("Enemy Health Display Canvas").gameObject;
         bloodSplat = GetComponentInChildren<ParticleSystem>();
+        _audioManager = FindObjectOfType<AudioManager>();
     }
     void Start()
     {
@@ -119,9 +121,15 @@ public class EnemyValues : MonoBehaviour
             thisModel[i].SetActive(false);
         }
         Invoke("ActuallyDestroyMyself", 1f);
+        if (_audioManager.playOnce == 0)
+        {
+            _audioManager.PlayEnemyDeathSound();
+            _audioManager.playOnce = 1;
+        }
     }
     public void ActuallyDestroyMyself()
     {
+        _audioManager.playOnce = 0;
         Destroy(gameObject);
     }
 

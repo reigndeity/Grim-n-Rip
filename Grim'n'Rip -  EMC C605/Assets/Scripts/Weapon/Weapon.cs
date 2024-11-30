@@ -6,6 +6,7 @@ public class Weapon : MonoBehaviour
 {
     [Header("Script References")]
     public PlayerStats playerStatsScript;
+    public AudioManager _audioManager;
     [Header("Upgradables")]
     public float projectileSpeed;
     public float fireRate;
@@ -19,6 +20,7 @@ public class Weapon : MonoBehaviour
     void Start()
     {
         playerStatsScript = FindObjectOfType<PlayerStats>();
+        _audioManager = FindObjectOfType<AudioManager>();
     }
 
     void Update()
@@ -30,6 +32,7 @@ public class Weapon : MonoBehaviour
         {
             if (isShoot == false)
             {
+                _audioManager.PlayPlayerAttack();
                 var bullet = Instantiate(projectilePrefab, firingPos.position, firingPos.rotation);
                 bullet.GetComponent<Rigidbody>().velocity =  firingPos.forward * projectileSpeed;
                 isShoot = true;

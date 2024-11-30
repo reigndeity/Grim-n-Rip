@@ -9,6 +9,7 @@ using System;
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
+    public AudioManager _audioManager;
     [Header("Script References")]
     public ObjectArea objectAreaScript;
     public ObjectSpawner objectSpawnerScript;
@@ -110,6 +111,7 @@ public class GameManager : MonoBehaviour
         {
             postProcessObj.SetActive(true);
         }
+        _audioManager = FindObjectOfType<AudioManager>();
     }
 
     void Update()
@@ -173,6 +175,7 @@ public class GameManager : MonoBehaviour
                 // playerObj.transform.position = new Vector3(0,1,0); // Go back to the center of the map
                 // playerMovementScript.playerRb.velocity = Vector3.zero;
                 
+                
             }
             Debug.Log("Teleporting player");
         }
@@ -204,15 +207,16 @@ public class GameManager : MonoBehaviour
         canMove = false;
         canShoot = false; 
         objectAreaScript.isMoving = true;
-        yield return new WaitForSecondsRealtime(0.5f);
+        yield return new WaitForSeconds(0.5f); //waitforsecondsrealtime
         objectAreaScript.SpawnArea();
-        yield return new WaitForSecondsRealtime(0.1f);
+        yield return new WaitForSeconds(0.1f);
         objectSpawnerScript = FindObjectOfType<ObjectSpawner>();
         yield return new WaitForSecondsRealtime(0.1f);
         objectSpawnerScript.SpawnObject();
-        yield return new WaitForSecondsRealtime(3f);
+        yield return new WaitForSeconds(3f);
+        _audioManager.PlayWavecountSound();
         currentWaveObj.SetActive(true);
-        yield return new WaitForSecondsRealtime(2f);
+        yield return new WaitForSeconds(2f);
         currentWaveObj.SetActive(false);
         
     }
@@ -249,6 +253,14 @@ public class GameManager : MonoBehaviour
             CalculateCoinsEarned();
             isCalculateCoinsEarned = true;
         }
+
+      
+        if (_audioManager.playOnce == 0)
+        {
+            _audioManager.PlayPlayerDeathSound();
+            _audioManager.playOnce = 1;
+        }
+        
     }
 
     public void CheckHighScore()
