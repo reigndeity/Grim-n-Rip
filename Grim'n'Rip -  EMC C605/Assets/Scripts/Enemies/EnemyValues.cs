@@ -106,10 +106,23 @@ public class EnemyValues : MonoBehaviour
         {
             enemyStatsScript.hitChance = 100f;
         }
-        if (enemyStatsScript.movementSpeed > 5f)
+        if (enemyStatsScript.movementSpeed > 8f && enemyType == 0)
+        {
+            enemyStatsScript.movementSpeed = 8;
+        }
+        if (enemyStatsScript.movementSpeed > 5 && enemyType == 1)
         {
             enemyStatsScript.movementSpeed = 5;
         }
+        if (enemyStatsScript.movementSpeed > 6.5f && enemyType == 2)
+        {
+            enemyStatsScript.movementSpeed = 6.5f;
+        }
+        if (enemyStatsScript.movementSpeed > 5 && enemyType == 3)
+        {
+            enemyStatsScript.movementSpeed = 5;
+        }
+
     }
 
     
