@@ -15,6 +15,10 @@ public class DeveloperMode : MonoBehaviour
     public bool isClick;
     public bool isOpMode;
     
+    void Start()
+    {
+        Application.targetFrameRate = 90;
+    }
     public void ResetPlayerStats()
     {
         PlayerPrefs.SetInt("isFirstBoot", 0);
