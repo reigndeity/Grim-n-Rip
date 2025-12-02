@@ -48,6 +48,5 @@ Grim’n’Rip is a 3D top-down survival game where players constantly face an e
 # Project Role
 - Game Programmer
 - Game Design
-- Sound Design
 
 The game was built over the course of two terms, beginning at midterms and developed steadily until finals.
