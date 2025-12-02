@@ -5,17 +5,19 @@
 </p>
 
 # Game Overview
-
 Grim’n’Rip is a 3D top-down survival game where players constantly face an endless wave of enemies. Players have to be quick on their feet and choose upgrades wisely after each wave. As enemies grow faster and stronger, picking the right enhancements becomes key to survival. Each wave also introduces unique terrain changes, with random buildings and obstacles appearing, forcing players to adapt their strategy.
 
-<img width="1612" height="720" alt="image" src="https://github.com/user-attachments/assets/94b26309-6b37-42fc-a41b-c0cb7e19aec6" />
+<img width="1612" height="720" alt="image" src="https://github.com/user-attachments/assets/dc04adbd-ac96-4941-820b-dda44bc120a5" />
+
+
+
 
 
 
 # Game Screenshots
 <img width="1612" height="720" alt="image" src="https://github.com/user-attachments/assets/07dbffaa-666f-4464-9f88-f180263e7b4d" />
 <img width="1612" height="720" alt="image" src="https://github.com/user-attachments/assets/0ce4c078-55ea-4a87-8ff2-1212c0834cd8" />
-<img width="1612" height="720" alt="image" src="https://github.com/user-attachments/assets/dc04adbd-ac96-4941-820b-dda44bc120a5" />
+<img width="1612" height="720" alt="image" src="https://github.com/user-attachments/assets/94b26309-6b37-42fc-a41b-c0cb7e19aec6" />
 
 
 
